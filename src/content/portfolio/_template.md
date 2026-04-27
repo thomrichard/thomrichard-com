@@ -1,6 +1,6 @@
 ---
 # ──────────────────────────────────────────────────────────────────────────────
-# Template fiche portfolio — tomrichard.com
+# Template fiche portfolio — thomrichard.com
 # ──────────────────────────────────────────────────────────────────────────────
 # Comment l'utiliser :
 #   1. Dupliquer ce fichier en `mon-projet.md` (le nom de fichier devient le slug
