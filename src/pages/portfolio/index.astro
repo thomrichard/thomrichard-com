@@ -1,0 +1,219 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Icon from '../../components/Icon.astro';
+
+const all = (await getCollection('portfolio'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const filters = ['Tous', 'E-commerce', 'Automatisation', 'IA', 'Data'];
+
+const globals = [
+  { n: '12+', l: 'projets livrés' },
+  { n: '6', l: 'secteurs couverts' },
+  { n: '×17', l: "d'activité, même équipe" },
+  { n: '100+', l: 'automatisations en prod' },
+];
+---
+<Page title="Portfolio — Thomas Richard" active="portfolio">
+
+  <!-- Hero -->
+  <section style="background:var(--paper);padding:80px 0 56px;position:relative;overflow:hidden;">
+    <svg style="position:absolute;top:60px;right:0;width:320px;height:320px;opacity:.5;pointer-events:none;" viewBox="0 0 300 300" aria-hidden="true">
+      <rect x="20" y="20" width="120" height="120" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.15"/>
+      <circle cx="220" cy="100" r="50" fill="var(--accent-zone)" opacity="0.22"/>
+      <polygon points="120,200 200,200 160,260" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.2"/>
+    </svg>
+    <div class="tr-container" style="position:relative;">
+      <div class="tr-eyebrow" style="margin-bottom:24px;">Portfolio · 2014 → 2026</div>
+      <h1 style="font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:20px;max-width:900px;">
+        12+ systèmes livrés. <span style="color:var(--accent);">Voici les chiffres.</span>
+      </h1>
+      <p style="font-size:19px;color:var(--n-600);max-width:680px;line-height:1.5;margin:0;">
+        Chaque projet, son contexte, sa stack, ses chiffres. Pas de témoignages génériques — des résultats mesurés.
+      </p>
+    </div>
+  </section>
+
+  <!-- Global stats -->
+  <section style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="tr-container" style="padding:40px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;">
+      {globals.map((s, i) => (
+        <div style={`border-left:${i === 0 ? 'none' : '1px solid var(--border)'};padding-left:${i === 0 ? '0' : '24px'};`}>
+          <div class="tr-num" style="font-size:44px;color:var(--ink);line-height:.95;">{s.n}</div>
+          <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--n-500);margin-top:6px;">{s.l}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Grid + filters -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div class="tr-eyebrow" style="margin-bottom:14px;">Tous les projets</div>
+          <h2 style="font-size:36px;font-weight:800;letter-spacing:-0.02em;">Filtre par secteur ou type de système.</h2>
+        </div>
+        <div class="pf-filters" role="tablist" aria-label="Filtres portfolio">
+          {filters.map(f => (
+            <button type="button" class={`pf-filter ${f === 'Tous' ? 'is-active' : ''}`} data-filter={f}>{f}</button>
+          ))}
+        </div>
+      </div>
+
+      <div class="pf-grid">
+        {all.map(p => {
+          const dark = p.data.tone === 'ink';
+          const filterTokens = [p.data.sector, ...p.data.tags].join('|');
+          return (
+            <a
+              href={p.data.detail ? `/portfolio/${p.id}` : '#'}
+              class={`pf-card ${dark ? 'pf-card--dark' : ''} ${!p.data.detail ? 'pf-card--coming' : ''}`}
+              data-tokens={filterTokens}
+            >
+              {p.data.featured && (
+                <div class="pf-card__featured">★ Cas phare</div>
+              )}
+              <div>
+                <div class="pf-card__sector">{p.data.sector}</div>
+                <div class="pf-card__client">{p.data.client}</div>
+              </div>
+              <div class="pf-card__wf">{p.data.workflow}</div>
+              <div class="pf-card__metric">
+                <div class="tr-num pf-card__num">{p.data.metric}</div>
+                <div class="pf-card__unit">{p.data.unit}</div>
+              </div>
+              <div class="pf-card__context">{p.data.context}</div>
+              <div class="pf-card__footer">
+                {p.data.tags.map(t => (<span class="pf-tag">{t}</span>))}
+                <span class="pf-card__cta">
+                  {p.data.detail ? 'Lire le cas' : 'Bientôt'} <Icon name="arrow-right" />
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section style="background:var(--accent-zone);padding:72px 0;">
+    <div class="tr-container" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);font-weight:600;margin-bottom:12px;">Tu veux le même genre de résultat ?</div>
+        <h2 style="font-size:36px;font-weight:800;color:var(--ink);max-width:720px;letter-spacing:-0.025em;line-height:1.1;">
+          Le Diag-IA part du même endroit : tes process actuels, tes vrais chiffres.
+        </h2>
+      </div>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);padding:18px 26px;border-radius:10px;font-family:var(--font-display);font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap;">
+        Réserver le Diag-IA <Icon name="arrow-right" />
+      </a>
+    </div>
+  </section>
+
+</Page>
+
+<style>
+  .pf-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pf-filter {
+    padding: 10px 16px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--white); color: var(--ink);
+    font-family: var(--font-display); font-weight: 600; font-size: 13px; cursor: pointer;
+    transition: all 150ms;
+  }
+  .pf-filter:hover { border-color: var(--ink); }
+  .pf-filter.is-active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .pf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 1000px) { .pf-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .pf-grid { grid-template-columns: 1fr; } }
+
+  .pf-card {
+    padding: 28px;
+    background: var(--white);
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 320px;
+    text-decoration: none;
+    position: relative;
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .pf-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+  .pf-card--dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pf-card--coming { cursor: default; pointer-events: none; opacity: .96; }
+
+  .pf-card__featured {
+    position: absolute; top: 24px; right: 24px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--amber); font-weight: 600;
+  }
+  .pf-card__sector {
+    font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--accent); font-weight: 600; margin-bottom: 8px;
+  }
+  .pf-card__client {
+    font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--n-600);
+  }
+  .pf-card--dark .pf-card__client { color: var(--n-300); }
+  .pf-card__wf {
+    font-family: var(--font-display); font-weight: 800; font-size: 22px;
+    letter-spacing: -0.02em; line-height: 1.15;
+  }
+  .pf-card__metric {
+    margin-top: auto; padding: 18px;
+    background: var(--n-50); border-radius: 10px;
+  }
+  .pf-card--dark .pf-card__metric {
+    background: rgba(245,174,42,0.08);
+    border: 1px solid rgba(245,174,42,0.15);
+  }
+  .pf-card__num { font-size: 40px; color: var(--ink); line-height: 0.95; }
+  .pf-card--dark .pf-card__num { color: var(--amber); }
+  .pf-card__unit {
+    font-family: var(--font-mono); font-size: 11px; color: var(--n-500);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+  }
+  .pf-card--dark .pf-card__unit { color: var(--n-300); }
+  .pf-card__context { font-family: var(--font-body); font-size: 13px; color: var(--n-600); line-height: 1.5; }
+  .pf-card--dark .pf-card__context { color: var(--n-300); }
+  .pf-card__footer {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    padding-top: 12px; border-top: 1px solid var(--border);
+  }
+  .pf-card--dark .pf-card__footer { border-top-color: rgba(250,250,250,0.1); }
+  .pf-tag {
+    font-family: var(--font-mono); font-size: 10px; padding: 3px 8px; border-radius: 999px;
+    background: rgba(11,11,11,0.05); color: var(--n-600); font-weight: 500; letter-spacing: 0.04em;
+  }
+  .pf-card--dark .pf-tag { background: rgba(250,250,250,0.08); color: var(--n-300); }
+  .pf-card__cta {
+    margin-left: auto; font-family: var(--font-display); font-weight: 700; font-size: 12px;
+    color: var(--ink); display: inline-flex; align-items: center; gap: 4px;
+  }
+  .pf-card--dark .pf-card__cta { color: var(--amber); }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.pf-filter');
+  const cards = document.querySelectorAll<HTMLAnchorElement>('.pf-card');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter ?? 'Tous';
+      buttons.forEach(b => b.classList.toggle('is-active', b === btn));
+      cards.forEach(c => {
+        const tokens = (c.dataset.tokens ?? '').split('|');
+        const visible = f === 'Tous' || tokens.includes(f);
+        (c as HTMLElement).style.display = visible ? '' : 'none';
+      });
+    });
+  });
+</script>

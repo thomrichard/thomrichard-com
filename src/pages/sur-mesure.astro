@@ -1,0 +1,307 @@
+---
+import Page from '../layouts/Page.astro';
+import Icon from '../components/Icon.astro';
+
+const offers = [
+  {
+    size: 'S', name: 'Sprint',
+    duration: '1-2 jours', price: '1 000€',
+    pitch: 'Un quick-win, un workflow, un système simple.',
+    bullets: ['Idéal après un Diag-IA', 'Un seul livrable, focused', 'Tests + doc + handover', 'Démarre sous 7 jours'],
+    featured: false,
+  },
+  {
+    size: 'M', name: 'Build',
+    duration: '~1 semaine', price: '3 500 - 4 000€',
+    pitch: 'Un système complet (CRM, onboarding, veille…).',
+    bullets: ['Conception + installation', 'Formation incluse', 'Documentation versionnée', 'Garantie 30 jours post-livraison'],
+    featured: true,
+  },
+  {
+    size: 'L', name: 'Programme',
+    duration: '~2 semaines', price: '7 000€',
+    pitch: 'Architecture + plusieurs systèmes connectés.',
+    bullets: ['Pour PME qui industrialisent', 'Multi-systèmes orchestrés', 'Stack documentée bout-en-bout', 'Suivi 60 jours inclus'],
+    featured: false,
+  },
+];
+
+const bricks = [
+  { letter: 'C', name: 'CAPTURE', d: 'Capter les leads, les inputs, les signaux. Formulaires, scraping, API entrantes, transcription.' },
+  { letter: 'V', name: 'VENDRE', d: 'Qualifier, scorer, router. Tunnels, séquences, CRM, propositions automatisées.' },
+  { letter: 'L', name: 'LIVRER', d: 'Onboarder, exécuter, suivre. Templates, statuts, workflows post-vente.' },
+  { letter: 'A', name: 'AMPLIFIER', d: 'Mesurer, itérer, partager. Reporting, contenu auto, recyclage des actifs.' },
+];
+
+const tools = [
+  { n: 'Make', d: 'Automatisation visuelle' },
+  { n: 'n8n', d: 'Workflows self-hosted' },
+  { n: 'Airtable', d: 'Base de données ops' },
+  { n: 'Claude API', d: 'IA classification + génération' },
+  { n: 'WeWeb', d: 'Front no-code' },
+  { n: 'Xano', d: 'Backend no-code' },
+  { n: 'Glide', d: 'Apps internes rapides' },
+  { n: 'Webflow', d: 'Sites + CMS' },
+];
+
+const cases = [
+  { sector: 'Retail · Décoration', client: 'Néocarte (RONA)', wf: 'Système chèques cadeaux', metric: '50→350', unit: 'magasins déployés', href: '/portfolio/neocarte' },
+  { sector: 'E-commerce', client: 'Leroy Merlin', wf: 'A/B test pages produit', metric: '+17%', unit: 'CA, 4-5 pays', href: '/portfolio' },
+  { sector: 'Immobilier · solo', client: 'Agence Nouméa', wf: 'Reporting PDF auto', metric: '300', unit: 'PDF / cycle', href: '/portfolio' },
+];
+---
+<Page title="Sur-mesure — Automation Builders" active="sur-mesure">
+
+  <!-- Hero -->
+  <section style="background:var(--paper);padding:80px 0 64px;position:relative;overflow:hidden;">
+    <svg style="position:absolute;top:60px;right:40px;width:280px;height:280px;opacity:.5;pointer-events:none;" viewBox="0 0 300 300" aria-hidden="true">
+      <rect x="40" y="40" width="220" height="220" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.15"/>
+      <rect x="100" y="100" width="100" height="100" fill="var(--accent-zone)" opacity="0.22"/>
+      <circle cx="220" cy="80" r="20" fill="var(--amber)" opacity="0.4"/>
+    </svg>
+    <div class="tr-container" style="position:relative;">
+      <div class="tr-eyebrow" style="margin-bottom:24px;">Automation Builders · sur-mesure</div>
+      <h1 style="font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;max-width:900px;">
+        Tu sais ce que tu veux automatiser. <span style="color:var(--accent);">Moi, je le construis.</span>
+      </h1>
+      <p style="font-size:19px;line-height:1.5;color:var(--n-600);max-width:680px;margin-bottom:36px;">
+        Trois formats pour aller du POC à la prod. Sur-mesure si rien ne colle. Make, n8n, Airtable, Claude API.
+      </p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="mailto:thomas@tomrichard.com?subject=Sur-mesure%20%E2%80%93%20appel%20d%C3%A9couverte" class="tr-btn tr-btn--primary">Réserver un appel <Icon name="arrow-right" /></a>
+        <a href="/portfolio" class="tr-btn tr-btn--secondary">Voir les cas clients</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offers -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Trois formats</div>
+      <h2 style="font-size:36px;font-weight:800;margin-bottom:48px;max-width:720px;">Du quick-win d'1 jour au programme de 2 semaines.</h2>
+      <div class="offers-grid">
+        {offers.map(o => {
+          const dark = o.featured;
+          return (
+            <article class={`offer-card ${dark ? 'offer-card--dark' : ''} ${o.featured ? 'offer-card--featured' : ''}`}>
+              {o.featured && (<div class="offer-card__badge">★ Le plus choisi</div>)}
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="offer-card__size">{o.size}</div>
+                <div>
+                  <div style="font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-0.02em;">{o.name}</div>
+                  <div class="offer-card__duration">{o.duration}</div>
+                </div>
+              </div>
+              <p class="offer-card__pitch">{o.pitch}</p>
+              <div class="offer-card__sep"></div>
+              <ul class="offer-card__bullets">
+                {o.bullets.map(b => (
+                  <li><span class="offer-card__check"><Icon name="check" /></span>{b}</li>
+                ))}
+              </ul>
+              <div class="offer-card__footer">
+                <div>
+                  <div class="offer-card__from">À partir de</div>
+                  <div class="tr-num offer-card__price">{o.price}</div>
+                </div>
+                <a href="mailto:thomas@tomrichard.com?subject=Sur-mesure%20%E2%80%93%20offre%20{o.name}" class="offer-card__cta">Réserver <Icon name="arrow-right" /></a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom block -->
+  <section class="tr-section--tight" style="padding:64px 0;">
+    <div class="tr-container">
+      <div class="custom-block">
+        <div>
+          <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--n-500);margin-bottom:12px;">Sur-mesure</div>
+          <h3 style="font-size:26px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-0.02em;">Ton besoin ne rentre pas dans une case ?</h3>
+          <p style="font-size:15px;color:var(--n-600);margin:0;max-width:640px;line-height:1.55;">
+            Parlons-en. Je devis sous 48h après un appel découverte de 30 minutes. Sans engagement.
+          </p>
+        </div>
+        <a href="mailto:thomas@tomrichard.com?subject=Sur-mesure%20%E2%80%93%20appel%20d%C3%A9couverte" class="tr-btn tr-btn--secondary">Réserver un appel <Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method (CAPTURE/VENDRE/LIVRER/AMPLIFIER) — converted to amber zone per design -->
+  <section class="tr-section" style="background:var(--accent-zone);">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;color:rgba(11,11,11,0.6);">Méthode · CAPTURE / VENDRE / LIVRER / AMPLIFIER</div>
+      <h2 style="color:var(--ink);font-size:36px;font-weight:800;margin-bottom:12px;max-width:720px;">Une grille en 4 briques. Tu sais où chaque chantier va atterrir.</h2>
+      <p style="color:rgba(11,11,11,0.78);font-size:16px;max-width:640px;margin-bottom:48px;">
+        Chaque système qu'on construit s'inscrit dans une de ces 4 briques. Pas de chantiers orphelins.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        {bricks.map(b => (
+          <div style="padding:28px;border-radius:16px;background:rgba(11,11,11,0.04);border:1px solid rgba(11,11,11,0.18);display:flex;flex-direction:column;gap:16px;min-height:220px;">
+            <div style="width:56px;height:56px;border-radius:14px;background:var(--ink);color:var(--accent-zone);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:26px;">{b.letter}</div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;color:var(--ink);font-weight:700;margin-bottom:6px;">{b.name}</div>
+              <div style="font-family:var(--font-body);font-size:14px;color:rgba(11,11,11,0.72);line-height:1.5;">{b.d}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="tr-section" style="background:var(--n-50);">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Stack technique</div>
+      <h2 style="font-size:36px;font-weight:800;margin-bottom:12px;max-width:720px;">Outils éprouvés. Pas de stack exotique.</h2>
+      <p style="font-size:16px;color:var(--n-600);max-width:620px;margin-bottom:48px;">
+        Tout ce que je construis tient sur des outils que tu peux maintenir toi-même, ou faire reprendre par n'importe quel freelance no-code sérieux.
+      </p>
+      <div class="stack-grid">
+        {tools.map(t => (
+          <div class="stack-card">
+            <div style="font-family:var(--font-display);font-weight:800;font-size:17px;color:var(--ink);letter-spacing:-0.015em;">{t.n}</div>
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--n-500);text-transform:uppercase;letter-spacing:0.05em;">{t.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mini cases -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div class="tr-eyebrow" style="margin-bottom:14px;">Preuves · projets sur-mesure</div>
+          <h2 style="font-size:36px;font-weight:800;max-width:720px;">Des chiffres, pas des témoignages.</h2>
+        </div>
+        <a href="/portfolio" style="font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+          Voir tous les cas <Icon name="arrow-right" />
+        </a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        {cases.map(c => (
+          <a href={c.href} class="tr-card" style="padding:28px;display:flex;flex-direction:column;gap:16px;min-height:240px;text-decoration:none;color:var(--ink);">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);font-weight:600;margin-bottom:6px;">{c.sector}</div>
+              <div style="font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--n-600);">{c.client}</div>
+            </div>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-0.015em;">{c.wf}</div>
+            <div style="margin-top:auto;padding:16px;background:var(--n-50);border-radius:10px;">
+              <div class="tr-num" style="font-size:36px;color:var(--ink);line-height:0.95;">{c.metric}</div>
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--n-500);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">{c.unit}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section style="background:var(--accent-zone);padding:80px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(11,11,11,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(11,11,11,0.06) 1px, transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+    <div class="tr-container" style="position:relative;text-align:center;">
+      <h2 style="font-size:44px;font-weight:800;color:var(--ink);max-width:720px;margin:0 auto 16px;letter-spacing:-0.025em;">
+        On démarre par 30 minutes. Devis sous 48h.
+      </h2>
+      <p style="font-size:17px;color:rgba(11,11,11,0.72);max-width:540px;margin:0 auto 32px;line-height:1.5;">
+        Tu décris, je qualifie, je chiffre. Pas de pitch, pas de relance.
+      </p>
+      <a href="mailto:thomas@tomrichard.com?subject=Sur-mesure%20%E2%80%93%20appel%20d%C3%A9couverte" class="tr-btn" style="padding:18px 28px;font-size:16px;background:var(--ink);color:var(--paper);">
+        Réserver un appel découverte <Icon name="arrow-right" />
+      </a>
+    </div>
+  </section>
+
+</Page>
+
+<style>
+  .offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+  .offer-card {
+    padding: 32px; border-radius: 16px;
+    background: var(--white); color: var(--ink);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 460px; position: relative;
+    box-shadow: var(--shadow-1);
+  }
+  .offer-card--dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .offer-card--featured { transform: translateY(-8px); box-shadow: var(--shadow-3); }
+  .offer-card__badge {
+    position: absolute; top: -12px; left: 24px;
+    padding: 4px 12px; background: var(--amber); color: var(--ink);
+    border-radius: 999px; font-family: var(--font-mono);
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;
+  }
+  .offer-card__size {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--ink); color: var(--paper);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 18px;
+  }
+  .offer-card--dark .offer-card__size {
+    background: rgba(245,174,42,0.2); color: var(--amber);
+  }
+  .offer-card__duration {
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--n-500);
+  }
+  .offer-card--dark .offer-card__duration { color: var(--n-400); }
+  .offer-card__pitch { font-size: 15px; line-height: 1.5; color: var(--n-600); margin: 0; }
+  .offer-card--dark .offer-card__pitch { color: var(--n-300); }
+  .offer-card__sep { height: 1px; background: var(--border); }
+  .offer-card--dark .offer-card__sep { background: rgba(250,250,250,0.1); }
+  .offer-card__bullets {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px; flex: 1;
+  }
+  .offer-card__bullets li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-family: var(--font-body); font-size: 14px; color: var(--n-700); line-height: 1.45;
+  }
+  .offer-card--dark .offer-card__bullets li { color: var(--n-300); }
+  .offer-card__check { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+  .offer-card__footer {
+    margin-top: 8px; padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .offer-card--dark .offer-card__footer { border-top-color: rgba(250,250,250,0.1); }
+  .offer-card__from {
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--n-500); margin-bottom: 4px;
+  }
+  .offer-card--dark .offer-card__from { color: var(--n-400); }
+  .offer-card__price { font-size: 28px; color: var(--ink); }
+  .offer-card--dark .offer-card__price { color: var(--paper); }
+  .offer-card__cta {
+    font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    color: var(--ink); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .offer-card--dark .offer-card__cta { color: var(--amber); }
+
+  .custom-block {
+    padding: 40px; background: var(--n-50);
+    border: 1px solid var(--border); border-radius: 16px;
+    display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
+  }
+
+  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .stack-card {
+    padding: 22px; background: var(--white);
+    border: 1px solid var(--border); border-radius: 12px;
+    display: flex; flex-direction: column; gap: 6px; min-height: 88px;
+  }
+
+  @media (max-width: 1000px) {
+    .offers-grid { grid-template-columns: 1fr; }
+    .offer-card--featured { transform: none; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .custom-block { grid-template-columns: 1fr; }
+  }
+</style>

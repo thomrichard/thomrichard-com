@@ -1,0 +1,35 @@
+---
+import '../styles/tokens.css';
+import '../styles/site.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: string;
+}
+const { title, description = "Thomas Richard — j'installe l'IA chez les PME qui veulent arrêter de subir leur opérationnel.", active = '' } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body data-accent="teal">
+  <div class="tr-page">
+    <Nav active={active} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</body>
+</html>
+<style is:global>
+  html, body { margin: 0; padding: 0; }
+</style>

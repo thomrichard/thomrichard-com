@@ -1,0 +1,284 @@
+---
+import Page from '../layouts/Page.astro';
+import Icon from '../components/Icon.astro';
+
+const heroStats = [
+  { num: '7', label: 'jours' },
+  { num: '2h', label: 'audit visio' },
+  { num: '1', label: 'quick-win en prod' },
+  { num: '60j', label: 'garantie ROI' },
+];
+
+const yes = [
+  { t: 'Dirigeant PME', d: "Tu sens que l'IA pourrait t'aider, mais tu ne sais pas par quel bout commencer." },
+  { t: 'Solopreneur en surchauffe', d: "Tu travailles 60h/semaine sur de l'opérationnel répétitif." },
+  { t: "Responsable d'équipe", d: 'Ton équipe est submergée. Tu cherches des leviers concrets.' },
+];
+
+const no = [
+  "Tu cherches une formation théorique sur l'IA.",
+  "Tu veux qu'on te livre clé-en-main sans t'impliquer.",
+  "Tu attends une transformation digitale en 7 jours (ce n'est pas magique).",
+];
+
+const deliverables = [
+  { t: 'Cartographie process', d: 'Visuelle, claire. Tu vois enfin où le temps part.', icon: 'map' as const },
+  { t: 'Roadmap priorisée', d: '3-5 chantiers, chiffrés en gain de temps et €.', icon: 'route' as const },
+  { t: 'Quick-win en prod', d: 'Le premier système, installé, qui tourne dès J6.', icon: 'zap' as const },
+  { t: 'Calculette ROI', d: 'Personnalisée à ton activité, à tes volumes.', icon: 'calculator' as const },
+  { t: 'Guides outils', d: 'Make, n8n, Airtable, Claude API — versions à jour.', icon: 'file-text' as const },
+  { t: 'Système réunion → action', d: "Comment transformer chaque réunion en plan d'action.", icon: 'settings' as const },
+  { t: 'Accès à vie au Club', d: 'Tu rejoins la communauté Club SMART, sans abonnement.', icon: 'users' as const },
+];
+
+const days = [
+  { d: 'J1', t: 'Audit 2h', desc: 'Visio. Je découvre ton activité, tes process, tes irritants.' },
+  { d: 'J2-J5', t: 'Analyse + roadmap', desc: 'Je cartographie, je priorise, je chiffre les gains. Je prépare le quick-win.' },
+  { d: 'J6', t: 'Restitution + install', desc: "2h ensemble. Je présente la roadmap, j'installe le quick-win." },
+  { d: 'J7', t: 'Remise des livrables', desc: 'Tous les documents, accès Club SMART, calculette ROI.' },
+];
+
+const faqs = [
+  { q: "Je n'y connais rien en IA. C'est pour moi ?", a: "Oui — c'est même le profil idéal. Le Diag-IA est conçu pour démarrer de zéro. Pas de pré-requis technique. Si tu sais utiliser un mail et un Google Doc, on travaille ensemble." },
+  { q: 'Je suis solo / freelance. Ça vaut le coup ?', a: "Probablement encore plus que pour une PME. Quand tu es seul, chaque heure récupérée est directement convertie en CA ou en temps libre. La calculette ROI te le montre." },
+  { q: 'Tu utilises quels outils ?', a: 'Make.com et n8n pour les automatisations, Airtable pour la donnée, Claude API pour l\'IA. Pas de stack exotique : tout est documenté, transférable, maintenable.' },
+  { q: 'Et après le Diag, on travaille comment ensemble ?', a: "Tu n'es engagé à rien. Si tu veux qu'on continue sur les chantiers de la roadmap, on bascule sur une offre Sur-mesure (Sprint, Build ou Programme — voir /sur-mesure)." },
+  { q: 'Combien de temps ça me prend, à moi ?', a: '2h en J1 (audit visio), 2h en J6 (restitution + install). Entre les deux, tu peux vivre ta vie — je travaille en autonomie.' },
+  { q: 'Tu travailles à distance ou sur site ?', a: 'Distance, exclusivement. Visio + Loom + Notion partagé. Ça va plus vite, ça coûte moins cher, et ça marche aussi bien.' },
+];
+---
+<Page title="Diag-IA — 7 jours pour cartographier l'IA dans ton activité" active="diag">
+
+  <!-- Hero -->
+  <section style="background:var(--ink);color:var(--paper);padding:80px 0 96px;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(250,250,250,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(250,250,250,0.04) 1px, transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+    <div class="tr-container" style="position:relative;">
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:6px 14px;background:rgba(245,174,42,0.15);border:1px solid rgba(245,174,42,0.3);border-radius:999px;margin-bottom:28px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--amber);"></span>
+        <span style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);font-weight:600;">Offre phare · 500€</span>
+      </div>
+      <h1 style="font-size:64px;font-weight:800;color:var(--paper);max-width:900px;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;">
+        Diag-IA — 7 jours pour savoir exactement où l'IA peut <span style="color:var(--accent);">te faire gagner du temps</span>.
+      </h1>
+      <p style="font-size:19px;color:var(--n-300);max-width:720px;line-height:1.5;margin-bottom:36px;">
+        500€. Cartographie de tes process, roadmap priorisée, gains chiffrés, et un premier système qui tourne avant la fin de la semaine.
+      </p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;">
+        <a href="https://tidycal.com/thomrichard/diagia-decouverte" class="tr-btn tr-btn--primary">Réserver mon Diag-IA <Icon name="arrow-right" /></a>
+        <a href="#deroule" class="tr-btn tr-btn--secondary on-dark">Voir le déroulé en 7 jours</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(250,250,250,0.1);border:1px solid rgba(250,250,250,0.1);border-radius:12px;overflow:hidden;">
+        {heroStats.map(s => (
+          <div style="background:var(--ink);padding:24px;display:flex;flex-direction:column;gap:6px;">
+            <div class="tr-num" style="font-size:36px;color:var(--paper);">{s.num}</div>
+            <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--n-400);">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- For who -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Pour qui c'est</div>
+      <h2 style="font-size:36px;font-weight:800;margin-bottom:48px;max-width:720px;">Conçu pour trois profils. Trois autres, ce n'est pas pour toi.</h2>
+      <div class="forwho-grid">
+        <div style="display:grid;gap:12px;">
+          {yes.map(y => (
+            <div style="display:flex;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;align-items:flex-start;">
+              <div style="width:32px;height:32px;border-radius:8px;background:color-mix(in oklch, var(--accent) 20%, transparent);color:color-mix(in oklch, var(--accent) 70%, var(--ink));display:grid;place-items:center;flex-shrink:0;">
+                <Icon name="check" />
+              </div>
+              <div>
+                <div style="font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--ink);margin-bottom:4px;">{y.t}</div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--n-600);line-height:1.5;">{y.d}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style="background:var(--n-50);padding:28px;border-radius:16px;border:1px solid var(--border);">
+          <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--n-500);margin-bottom:16px;">Ce n'est PAS pour toi si</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;">
+            {no.map(n => (
+              <li style="display:flex;gap:12px;align-items:flex-start;">
+                <div style="width:22px;height:22px;color:var(--n-500);flex-shrink:0;margin-top:2px;"><Icon name="x" /></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--n-700);line-height:1.5;">{n}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="tr-section" style="background:var(--n-50);">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Livrables tangibles</div>
+      <h2 style="font-size:36px;font-weight:800;margin-bottom:12px;max-width:720px;">Ce que tu obtiens en repartant.</h2>
+      <p style="font-size:16px;color:var(--n-600);max-width:620px;margin-bottom:48px;">
+        Pas de PDF de 80 pages. Des livrables que tu utilises lundi matin.
+      </p>
+      <div class="deliv-row-4">
+        {deliverables.slice(0, 4).map(it => (
+          <div class="deliv-card">
+            <div class="deliv-card__icon"><Icon name={it.icon} /></div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-0.01em;">{it.t}</div>
+            <div style="font-family:var(--font-body);font-size:13px;color:var(--n-600);line-height:1.5;margin-top:-4px;">{it.d}</div>
+          </div>
+        ))}
+      </div>
+      <div class="deliv-row-3" style="margin-top:12px;">
+        {deliverables.slice(4).map(it => (
+          <div class="deliv-card">
+            <div class="deliv-card__icon"><Icon name={it.icon} /></div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-0.01em;">{it.t}</div>
+            <div style="font-family:var(--font-body);font-size:13px;color:var(--n-600);line-height:1.5;margin-top:-4px;">{it.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section id="deroule" class="tr-section">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Le déroulé en 7 jours</div>
+      <h2 style="font-size:36px;font-weight:800;margin-bottom:56px;max-width:720px;">Une semaine. Quatre temps. Zéro flou.</h2>
+      <div class="timeline">
+        <div class="timeline__bar"></div>
+        <div class="timeline__bar timeline__bar--filled"></div>
+        {days.map((d, i) => (
+          <div class="timeline__step">
+            <div class={`timeline__circle ${i === 0 ? 'timeline__circle--first' : ''}`}>{d.d}</div>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:18px;color:var(--ink);margin-bottom:8px;letter-spacing:-0.015em;">{d.t}</div>
+            <div style="font-family:var(--font-body);font-size:13px;color:var(--n-600);line-height:1.5;max-width:220px;">{d.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee -->
+  <section class="tr-section--tight" style="padding:64px 0;">
+    <div class="tr-container">
+      <div style="background:var(--accent-zone);color:var(--ink);padding:56px;border-radius:24px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(11,11,11,0.08);"></div>
+        <div style="width:96px;height:96px;border-radius:24px;background:var(--ink);color:var(--accent-zone);display:grid;place-items:center;flex-shrink:0;position:relative;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div style="position:relative;">
+          <div style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);font-weight:700;margin-bottom:12px;">Garantie ROI 500</div>
+          <h3 style="font-size:28px;font-weight:800;color:var(--ink);margin-bottom:12px;letter-spacing:-0.02em;line-height:1.15;">
+            Si dans les 60 jours tu ne récupères pas l'équivalent de 500€/mois en temps ou en CA, je rembourse intégralement.
+          </h3>
+          <p style="color:rgba(11,11,11,0.72);font-size:15px;line-height:1.55;margin:0;max-width:700px;">
+            Pas de petits caractères, pas de conditions cachées. Tu testes le quick-win pendant 2 mois, tu mesures, tu décides.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price -->
+  <section class="tr-section--tight" style="padding:64px 0;">
+    <div class="tr-container">
+      <div class="price-grid" style="padding:48px;background:var(--white);border:1px solid var(--border);border-radius:16px;align-items:center;">
+        <div>
+          <div class="tr-eyebrow" style="margin-bottom:14px;">Prix · TTC, tout compris</div>
+          <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:12px;">
+            <div class="tr-num" style="font-size:80px;color:var(--ink);">500€</div>
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--n-500);text-transform:uppercase;letter-spacing:0.08em;">TTC · paiement unique</div>
+          </div>
+          <p style="font-size:15px;color:var(--n-600);max-width:540px;margin:0;line-height:1.55;">
+            Tout est inclus : audit, analyse, livrables, installation du quick-win, accès à vie au Club SMART, garantie 60 jours.
+          </p>
+        </div>
+        <a href="https://tidycal.com/thomrichard/diagia-decouverte" class="tr-btn tr-btn--primary" style="padding:20px 28px;font-size:16px;">
+          Réserver mon Diag-IA <Icon name="arrow-right" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="tr-section" style="background:var(--n-50);">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Questions fréquentes</div>
+      <h2 style="font-size:36px;font-weight:800;margin-bottom:40px;max-width:720px;">Les vraies questions qu'on me pose.</h2>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        {faqs.map(it => (
+          <div style="padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;">
+            <div style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em;">{it.q}</div>
+            <div style="font-family:var(--font-body);font-size:14px;color:var(--n-600);line-height:1.55;">{it.a}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section style="background:var(--accent-zone);padding:80px 0;">
+    <div class="tr-container" style="text-align:center;">
+      <h2 style="font-size:48px;font-weight:800;color:var(--ink);max-width:760px;margin:0 auto 20px;letter-spacing:-0.03em;line-height:1.05;">
+        7 jours. 500€. Une roadmap. Un système qui tourne.
+      </h2>
+      <p style="font-size:18px;color:rgba(11,11,11,0.78);max-width:580px;margin:0 auto 32px;line-height:1.5;">
+        Si dans 2 mois tu ne récupères pas tes 500€, je rembourse. Tu n'as rien à perdre.
+      </p>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" style="display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);padding:18px 28px;border-radius:10px;font-family:var(--font-display);font-weight:700;font-size:16px;text-decoration:none;">
+        <Icon name="calendar" /> Réserver mon Diag-IA <Icon name="arrow-right" />
+      </a>
+    </div>
+  </section>
+
+</Page>
+
+<style>
+  .forwho-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; }
+  .deliv-row-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .deliv-row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .deliv-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; display: flex; flex-direction: column; gap: 12px; min-height: 160px;
+  }
+  .deliv-card__icon {
+    width: 36px; height: 36px; border-radius: 8px; background: var(--n-50);
+    display: grid; place-items: center; color: var(--ink);
+  }
+  .price-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; }
+
+  .timeline {
+    position: relative;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .timeline__bar {
+    position: absolute; top: 32px; left: 12.5%; right: 12.5%;
+    height: 2px; background: var(--border);
+  }
+  .timeline__bar--filled {
+    right: auto; width: 40%; background: var(--accent);
+  }
+  .timeline__step {
+    position: relative; padding: 0 12px; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+  }
+  .timeline__circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--white); color: var(--ink); border: 2px solid var(--ink);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 14px;
+    margin-bottom: 20px; position: relative; z-index: 1;
+  }
+  .timeline__circle--first { background: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .forwho-grid,
+    .deliv-row-4,
+    .deliv-row-3 { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr; gap: 32px; }
+    .timeline__bar { display: none; }
+  }
+</style>

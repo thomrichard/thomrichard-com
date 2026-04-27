@@ -1,0 +1,215 @@
+---
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Icon from '../../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('portfolio');
+  return all
+    .filter(p => p.data.detail && !p.data.draft)
+    .map(p => ({ params: { slug: p.id }, props: { entry: p } }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const detail = data.detail!;
+const { Content } = await render(entry);
+
+// Other cases (top 3 not current, with detail-or-not)
+const others = (await getCollection('portfolio'))
+  .filter(p => p.id !== entry.id && !p.data.draft)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+<Page title={`${data.client} — Portfolio Thomas Richard`} active="portfolio">
+
+  <!-- Case Hero -->
+  <section style="background:var(--ink);color:var(--paper);padding:64px 0 80px;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(250,250,250,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(250,250,250,0.04) 1px, transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+    <div class="tr-container" style="position:relative;">
+      <a href="/portfolio" style="font-family:var(--font-mono);font-size:12px;color:var(--n-400);text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;">
+        ← Tous les cas clients
+      </a>
+      <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;">
+        {[data.sector, ...data.tags].filter((v, i, a) => a.indexOf(v) === i).map(t => (
+          <span style="font-family:var(--font-mono);font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(250,250,250,0.08);color:var(--n-300);font-weight:500;letter-spacing:0.05em;">{t}</span>
+        ))}
+      </div>
+      <div style="font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;">
+        {data.client} · {detail.period}
+      </div>
+      <h1 style="font-size:60px;font-weight:800;color:var(--paper);max-width:920px;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;">
+        {detail.hero.titleBefore} <span style="color:var(--accent);">{detail.hero.titleAccent}</span>{detail.hero.titleAfter}
+      </h1>
+      <p style="font-size:19px;color:var(--n-300);max-width:760px;line-height:1.5;margin:0;">
+        {detail.hero.subtitle}
+      </p>
+    </div>
+  </section>
+
+  <!-- 01 · Le défi -->
+  <section class="tr-section">
+    <div class="tr-container case-row">
+      <div><div class="tr-eyebrow">01 · Le défi</div></div>
+      <div>
+        <h2 style="font-size:32px;font-weight:800;margin-bottom:20px;max-width:720px;letter-spacing:-0.02em;">{detail.challenge.title}</h2>
+        {detail.challenge.paragraphs.map(p => (
+          <p style="font-size:17px;color:var(--n-700);max-width:720px;line-height:1.6;">{p}</p>
+        ))}
+        {detail.challenge.metrics.length > 0 && (
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px;">
+            {detail.challenge.metrics.map(s => (
+              <div style="padding:20px;background:var(--n-50);border-radius:12px;border:1px solid var(--border);">
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--n-500);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">{s.label}</div>
+                <div class="tr-num" style="font-size:24px;color:var(--ink);">{s.value}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Ce que j'ai construit -->
+  <section class="tr-section" style="background:var(--n-50);">
+    <div class="tr-container case-row">
+      <div><div class="tr-eyebrow">02 · Ce que j'ai construit</div></div>
+      <div>
+        <h2 style="font-size:32px;font-weight:800;margin-bottom:12px;max-width:720px;letter-spacing:-0.02em;">{detail.build.title}</h2>
+        <p style="font-size:16px;color:var(--n-600);max-width:720px;margin-bottom:40px;line-height:1.55;">{detail.build.intro}</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {detail.build.steps.map(s => (
+            <div style="padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:flex-start;">
+              <div style="font-family:var(--font-mono);font-weight:600;font-size:14px;color:var(--accent);letter-spacing:0.08em;min-width:36px;">{s.n}</div>
+              <div>
+                <div style="font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink);margin-bottom:6px;letter-spacing:-0.015em;">{s.t}</div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--n-600);line-height:1.55;">{s.d}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {detail.build.architecture && (
+          <div style="margin-top:32px;padding:32px;background:var(--ink);border-radius:16px;border:1px solid var(--border);min-height:220px;position:relative;overflow:hidden;">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(250,250,250,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(250,250,250,0.04) 1px, transparent 1px);background-size:32px 32px;"></div>
+            <div style="position:relative;">
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--n-400);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:24px;">
+                {detail.build.architecture.eyebrow}
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:12px;align-items:center;">
+                {detail.build.architecture.blocks.map(b => (
+                  <div style="padding:16px;background:rgba(63,164,177,0.1);border:1px solid rgba(63,164,177,0.3);border-radius:10px;text-align:center;">
+                    <div style="font-family:var(--font-display);font-weight:800;font-size:14px;color:var(--paper);">{b.t}</div>
+                    <div style="font-family:var(--font-mono);font-size:10px;color:var(--n-400);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;">{b.d}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Stack -->
+  <section class="tr-section--tight" style="padding:64px 0;">
+    <div class="tr-container case-row">
+      <div><div class="tr-eyebrow">03 · Stack</div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        {detail.stack.map(t => (
+          <span style="font-family:var(--font-mono);font-size:13px;font-weight:500;padding:10px 18px;border-radius:10px;background:var(--white);border:1px solid var(--border);color:var(--ink);">{t}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Résultats -->
+  <section class="tr-section tr-section--dark">
+    <div class="tr-container">
+      <div class="tr-eyebrow on-dark" style="margin-bottom:14px;color:var(--n-400);">04 · Résultats</div>
+      <h2 style="color:var(--paper);font-size:36px;font-weight:800;margin-bottom:56px;max-width:720px;letter-spacing:-0.025em;">
+        {detail.results.title}
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        {detail.results.items.map(r => {
+          const accent = r.accent;
+          return (
+            <div style={`padding:28px;border-radius:16px;background:${accent ? 'var(--accent-zone)' : 'rgba(250,250,250,0.04)'};border:1px solid ${accent ? 'var(--accent-zone)' : 'rgba(250,250,250,0.1)'};color:${accent ? 'var(--ink)' : 'var(--paper)'};display:flex;flex-direction:column;gap:12px;min-height:240px;`}>
+              <div style={`font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:${accent ? 'rgba(11,11,11,0.7)' : 'var(--n-400)'};font-weight:600;`}>{r.label}</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style={`font-family:var(--font-mono);font-size:12px;color:${accent ? 'rgba(11,11,11,0.6)' : 'var(--n-500)'};text-transform:uppercase;letter-spacing:0.05em;`}>Avant</div>
+                <div style={`font-family:var(--font-display);font-weight:600;font-size:18px;color:${accent ? 'rgba(11,11,11,0.7)' : 'var(--n-300)'};text-decoration:line-through;text-decoration-thickness:1px;`}>{r.before}</div>
+              </div>
+              <div style="margin-top:auto;">
+                <div style={`font-family:var(--font-mono);font-size:12px;color:${accent ? 'rgba(11,11,11,0.7)' : 'var(--accent)'};text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;font-weight:600;`}>Après</div>
+                <div class="tr-num" style={`font-size:36px;color:${accent ? 'var(--ink)' : 'var(--paper)'};line-height:1;`}>{r.after}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {detail.results.quote && (
+        <div style="margin-top:32px;padding:32px;background:rgba(250,250,250,0.03);border:1px solid rgba(250,250,250,0.1);border-radius:16px;">
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:600;">{detail.results.quote.eyebrow}</div>
+          <p style="font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.4;color:var(--paper);margin:0;letter-spacing:-0.015em;max-width:900px;">
+            {detail.results.quote.text}
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Optional markdown body -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div class="case-extra">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- Other cases -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Autres cas</div>
+      <h2 style="font-size:32px;font-weight:800;margin-bottom:32px;letter-spacing:-0.02em;">D'autres systèmes que j'ai construits.</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        {others.map(c => (
+          <a href={c.data.detail ? `/portfolio/${c.id}` : '/portfolio'} class="tr-card" style="padding:24px;display:flex;flex-direction:column;gap:12px;min-height:200px;text-decoration:none;color:var(--ink);">
+            <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);font-weight:600;">{c.data.sector}</div>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-0.015em;">{c.data.workflow}</div>
+            <div style="font-family:var(--font-body);font-size:13px;color:var(--n-500);">{c.data.client}</div>
+            <div style="margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);">
+              <div class="tr-num" style="font-size:22px;color:var(--ink);">{c.data.metric} <span style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--n-500);letter-spacing:0.05em;text-transform:uppercase;">{c.data.unit}</span></div>
+              <Icon name="arrow-right" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section style="background:var(--accent-zone);padding:72px 0;border-top:1px solid rgba(11,11,11,0.1);">
+    <div class="tr-container" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);font-weight:700;margin-bottom:12px;">Discutons de ton projet</div>
+        <h2 style="font-size:36px;font-weight:800;color:var(--ink);max-width:720px;letter-spacing:-0.025em;line-height:1.1;">
+          Tu as un programme qui ne tient pas la croissance ? Décrivons-le ensemble.
+        </h2>
+      </div>
+      <a href="/diag-ia" style="display:inline-flex;align-items:center;gap:10px;padding:18px 26px;border-radius:10px;font-family:var(--font-display);font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);text-decoration:none;white-space:nowrap;">
+        Réserver un appel <Icon name="arrow-right" />
+      </a>
+    </div>
+  </section>
+
+</Page>
+
+<style>
+  .case-row { display: grid; grid-template-columns: 180px 1fr; gap: 64px; }
+  @media (max-width: 900px) { .case-row { grid-template-columns: 1fr; gap: 24px; } }
+  .case-extra:empty { display: none; }
+  .case-extra :global(p) { font-size: 16px; color: var(--n-700); line-height: 1.6; max-width: 720px; }
+</style>

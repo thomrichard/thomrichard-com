@@ -1,0 +1,31 @@
+---
+interface Props { active?: string }
+const { active = '' } = Astro.props;
+
+// Seuls les liens vers des pages réellement publiées sont actifs.
+// Ajoute une entrée { id, label, href } quand la page correspondante existe.
+const items = [
+  { id: 'diag', label: 'Diag-IA', href: '/diag-ia' },
+  { id: 'sur-mesure', label: 'Sur-mesure', href: '/sur-mesure' },
+  { id: 'portfolio', label: 'Portfolio', href: '/portfolio' },
+];
+---
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="/" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links">
+      {items.map(it => (
+        <a href={it.href} class={`tr-nav__link ${active === it.id ? 'tr-nav__link--active' : ''}`}>
+          {it.label}
+        </a>
+      ))}
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+  </div>
+</header>

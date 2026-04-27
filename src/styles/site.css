@@ -1,0 +1,362 @@
+/* tomrichard.com — site-specific CSS layered over Club SMART tokens.
+   Two accent tokens, swapped together by data-accent on <body>:
+     --accent       → text highlights, eyebrows, small marks, icons (the "in-text" pop)
+     --accent-zone  → large filled zones (CTA bands, big cards, opaque circles/squares)
+   Default = teal text + amber zones. The Tweak swaps the pair. */
+
+:root {
+  --accent: var(--teal);
+  --accent-zone: var(--amber);
+  --accent-fg: var(--ink);
+  --accent-zone-fg: var(--ink);
+}
+
+[data-accent="teal"] {
+  --accent: var(--teal);
+  --accent-zone: var(--amber);
+  --accent-fg: var(--ink);
+  --accent-zone-fg: var(--ink);
+}
+[data-accent="amber"] {
+  --accent: var(--amber);
+  --accent-zone: var(--teal);
+  --accent-fg: var(--ink);
+  --accent-zone-fg: var(--ink);
+}
+
+/* Reset inside the artboard: scoped */
+.tr-page {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  width: 100%;
+}
+.tr-page *,
+.tr-page *::before,
+.tr-page *::after {
+  box-sizing: border-box;
+}
+.tr-page p { margin: 0 0 14px 0; color: var(--n-600); }
+.tr-page h1, .tr-page h2, .tr-page h3, .tr-page h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.tr-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* === Eyebrow === */
+.tr-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--n-500);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tr-eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+.tr-eyebrow.on-dark { color: var(--n-400); }
+
+/* === Buttons === */
+.tr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: -0.005em;
+  transition: transform 150ms var(--ease-out), background 150ms var(--ease-out);
+  white-space: nowrap;
+}
+.tr-btn:active { transform: scale(0.98); }
+.tr-btn--primary {
+  background: var(--amber);
+  color: var(--ink);
+}
+.tr-btn--primary:hover { background: color-mix(in oklch, var(--amber) 90%, white); }
+
+.tr-btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.tr-btn--secondary:hover { background: var(--ink); color: var(--paper); }
+
+.tr-btn--secondary.on-dark {
+  color: var(--paper);
+  border-color: rgba(250,250,250,0.3);
+}
+.tr-btn--secondary.on-dark:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.tr-btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid color-mix(in oklch, var(--ink) 15%, transparent);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 18px;
+}
+.tr-btn--ghost:hover { border-color: var(--ink); }
+
+.tr-btn--accent {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+/* === Nav === */
+.tr-nav {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+.tr-nav__sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--n-500);
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-700);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: var(--ink); }
+.tr-nav__link--active {
+  color: var(--ink);
+  font-weight: 600;
+}
+.tr-nav__cta {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--amber);
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* === Footer === */
+.tr-footer {
+  background: var(--ink);
+  color: var(--n-300);
+  padding: 80px 0 40px;
+}
+.tr-footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+.tr-footer__brand-block { max-width: 320px; }
+.tr-footer__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--paper);
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+}
+.tr-footer__bio {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--n-400);
+}
+.tr-footer__col-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--n-500);
+  margin-bottom: 16px;
+}
+.tr-footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tr-footer__list a {
+  color: var(--n-300);
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-footer__list a:hover { color: var(--paper); }
+.tr-footer__bottom {
+  border-top: 1px solid rgba(250,250,250,0.08);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--n-500);
+  letter-spacing: 0.05em;
+}
+
+/* === Mono / number formatting === */
+.tr-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+.tr-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.tr-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: rgba(11,11,11,0.06);
+  color: var(--n-700);
+}
+.tr-tag--accent {
+  background: color-mix(in oklch, var(--accent) 15%, transparent);
+  color: color-mix(in oklch, var(--accent) 85%, var(--ink));
+}
+
+/* === Cards === */
+.tr-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.tr-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+/* Section helpers */
+.tr-section {
+  padding: 96px 0;
+}
+.tr-section--tight {
+  padding: 64px 0;
+}
+.tr-section--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+.tr-section--dark h1, .tr-section--dark h2, .tr-section--dark h3 { color: var(--paper); }
+.tr-section--dark p { color: var(--n-300); }
+
+.tr-section--navy {
+  background: var(--navy);
+  color: var(--paper);
+}
+.tr-section--navy h1, .tr-section--navy h2, .tr-section--navy h3 { color: var(--paper); }
+.tr-section--navy p { color: var(--n-300); }
+
+/* Geometric motif (subtle, in-spec) */
+.tr-motif {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Inline arrow in CTAs */
+.tr-arrow {
+  display: inline-block;
+  transition: transform 200ms var(--ease-out);
+}
+.tr-btn:hover .tr-arrow { transform: translateX(3px); }
+
+/* Lucide icon stroke override (for inline svgs) */
+.tr-icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}

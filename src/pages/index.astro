@@ -1,0 +1,297 @@
+---
+import Page from '../layouts/Page.astro';
+import Icon from '../components/Icon.astro';
+
+const clients = ['RONA', 'Auchan', 'Leroy Merlin', 'Decathlon', 'Néocarte'];
+
+const doors = [
+  {
+    tag: '500€ · 7 jours',
+    tagAccent: true,
+    title: 'Diag-IA',
+    desc: "Tu veux savoir où l'IA peut te faire gagner du temps ? Je cartographie tes process et je te livre une roadmap chiffrée + un premier système qui tourne.",
+    cta: 'En savoir plus',
+    href: '/diag-ia',
+    icon: 'map' as const,
+    featured: true,
+  },
+  {
+    tag: 'Sprint · Build · Programme',
+    title: 'Sur-mesure',
+    desc: "Tu sais ce qu'il te faut, mais pas comment le construire ? Je conçois et j'installe le système, du POC à la prod.",
+    cta: 'Voir les offres',
+    href: '/sur-mesure',
+    icon: 'wrench' as const,
+  },
+  {
+    tag: '12+ projets livrés',
+    title: 'Portfolio',
+    desc: "Néocarte (50→350 magasins), Leroy Merlin (+17% CA), Decathlon, Auchan. Chiffres à l'appui.",
+    cta: 'Voir les cas clients',
+    href: '/portfolio',
+    icon: 'trending-up' as const,
+  },
+];
+
+const principles = [
+  { n: '01', t: 'Je code et je vends.', d: "Pas de slides creux, pas de 'discovery' à rallonge. Je construis sous tes yeux." },
+  { n: '02', t: 'Build-in-public.', d: "Je partage mes chiffres, mes templates, mes échecs. Tu sais à qui tu parles." },
+  { n: '03', t: 'Garantie résultat.', d: "Si tu ne récupères pas tes 500€/mois après le Diag-IA, je rembourse. Net." },
+  { n: '04', t: "Tu dois pouvoir t'en passer.", d: "Je te forme, je documente, je versionne. Pas de dépendance." },
+];
+
+const bigStats = [
+  { num: '+150K', unit: 'chèques / mois', desc: 'Néocarte (RONA) — passé de 50 à 350 magasins, 20K à 150K chèques. 2 ETP redéployés.' },
+  { num: '+17%', unit: 'de CA', desc: 'Leroy Merlin — A/B test sur les pages produit, déployé dans 4-5 pays.', accent: true },
+  { num: '300', unit: 'rapports PDF / cycle', desc: 'Agence immobilière Nouméa — automatisation complète du reporting trimestriel.' },
+];
+---
+<Page title="Thomas Richard — Automation & IA pour PME" active="">
+
+  <!-- ====== Hero ====== -->
+  <section style="position:relative;overflow:hidden;background:var(--paper);">
+    <svg style="position:absolute;top:80px;right:-40px;width:360px;height:360px;opacity:.6;pointer-events:none;" viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="200" cy="200" r="160" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.25" />
+      <circle cx="200" cy="200" r="100" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4" />
+      <rect x="160" y="160" width="80" height="80" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.12" />
+    </svg>
+
+    <div class="tr-container" style="position:relative;padding:88px 48px 72px;">
+      <div class="hero-grid">
+        <div>
+          <div class="tr-eyebrow" style="margin-bottom:24px;">Salut · Thomas Richard · Québec</div>
+          <h1 style="font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;">
+            J'installe l'IA chez les PME qui veulent <span style="color:var(--accent);">arrêter de subir</span> leur opérationnel.
+          </h1>
+          <p style="font-size:19px;line-height:1.5;color:var(--n-600);max-width:620px;margin-bottom:36px;">
+            25 ans à concevoir des systèmes digitaux. Aujourd'hui, j'aide les dirigeants
+            à passer de la curiosité IA à des process qui tournent — concrètement, sans jargon.
+          </p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <a href="/diag-ia" class="tr-btn tr-btn--primary">
+              Découvrir le Diag-IA <span class="tr-arrow"><Icon name="arrow-right" /></span>
+            </a>
+            <a href="/portfolio" class="tr-btn tr-btn--secondary">Voir mes réalisations</a>
+          </div>
+
+          <div style="margin-top:56px;display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
+            <div>
+              <div class="tr-num" style="font-size:32px;color:var(--ink);">100+</div>
+              <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--n-500);margin-top:4px;">automatisations livrées</div>
+            </div>
+            <div style="width:1px;height:32px;background:var(--border);"></div>
+            <div>
+              <div class="tr-num" style="font-size:32px;color:var(--ink);">25 ans</div>
+              <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--n-500);margin-top:4px;">d'expérience digital</div>
+            </div>
+            <div style="width:1px;height:32px;background:var(--border);"></div>
+            <div>
+              <div class="tr-num" style="font-size:32px;color:var(--ink);">×17</div>
+              <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--n-500);margin-top:4px;">d'activité, même équipe</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <div style="position:relative;width:240px;height:240px;">
+            <div style="position:absolute;inset:-8px;border-radius:50%;background:var(--accent-zone);opacity:.1;"></div>
+            <img src="/assets/thomas.png" alt="Thomas Richard"
+                 style="width:240px;height:240px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:4px solid var(--paper);box-shadow:var(--shadow-2);" />
+            <div style="position:absolute;bottom:-6px;right:-6px;background:var(--ink);color:var(--paper);padding:6px 12px;border-radius:999px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.05em;">
+              ● Disponible · Q2 2026
+            </div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--n-500);text-align:center;">
+            Build-in-public · depuis 2024
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Cred band ====== -->
+  <section style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--n-50);">
+    <div class="tr-container" style="padding:24px 48px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+      <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--n-500);flex-shrink:0;">
+        25 ans digital · Ex / partenaire
+      </div>
+      <div style="flex:1;display:flex;gap:36px;flex-wrap:wrap;justify-content:flex-end;">
+        {clients.map(c => (
+          <div style="font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--n-600);letter-spacing:-0.01em;">{c}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Three doors ====== -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;">
+        <div>
+          <div class="tr-eyebrow" style="margin-bottom:14px;">Trois portes</div>
+          <h2 style="font-size:40px;font-weight:800;max-width:620px;">Choisissez celle qui correspond à où vous en êtes.</h2>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        {doors.map(d => {
+          const featured = !!d.featured;
+          const cardStyle = `padding:32px;background:${featured ? 'var(--ink)' : 'var(--white)'};color:${featured ? 'var(--paper)' : 'var(--ink)'};border-color:${featured ? 'var(--ink)' : 'var(--border)'};min-height:380px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;`;
+          const tagBg = d.tagAccent ? 'var(--amber)' : (featured ? 'rgba(250,250,250,0.08)' : 'var(--n-100)');
+          const tagColor = d.tagAccent ? 'var(--ink)' : (featured ? 'var(--n-300)' : 'var(--n-600)');
+          const iconBg = featured ? 'rgba(245,174,42,0.15)' : 'var(--n-50)';
+          const iconColor = featured ? 'var(--amber)' : 'var(--ink)';
+          return (
+            <article class="tr-card" style={cardStyle}>
+              {featured && (
+                <div style="position:absolute;top:24px;right:24px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);">★ Offre phare</div>
+              )}
+              <div style={`width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:${iconBg};color:${iconColor};`}>
+                <Icon name={d.icon} />
+              </div>
+              <div>
+                <div style={`display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:${tagBg};color:${tagColor};margin-bottom:4px;`}>{d.tag}</div>
+              </div>
+              <h3 style="font-size:28px;font-weight:800;color:inherit;letter-spacing:-0.02em;">{d.title}</h3>
+              <p style={`color:${featured ? 'var(--n-300)' : 'var(--n-600)'};font-size:15px;line-height:1.55;flex:1;`}>{d.desc}</p>
+              <a href={d.href} style={`font-family:var(--font-display);font-weight:700;font-size:14px;color:${featured ? 'var(--amber)' : 'var(--ink)'};text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-top:8px;`}>
+                {d.cta} <Icon name="arrow-right" />
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== How I work ====== -->
+  <section class="tr-section" style="background:var(--accent-zone);">
+    <div class="tr-container">
+      <div style="margin-bottom:48px;">
+        <div class="tr-eyebrow" style="margin-bottom:14px;color:rgba(11,11,11,0.6);">Comment je travaille</div>
+        <h2 style="color:var(--ink);font-size:40px;font-weight:800;max-width:720px;">
+          Quatre principes. Tu les retrouves dans <span style="color:var(--ink);border-bottom:3px solid rgba(11,11,11,0.35);">chaque livraison</span>.
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        {principles.map(p => (
+          <div style="padding:28px;border:1px solid rgba(11,11,11,0.18);border-radius:16px;background:rgba(11,11,11,0.04);">
+            <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink);font-weight:700;letter-spacing:0.1em;margin-bottom:16px;">{p.n}</div>
+            <h3 style="color:var(--ink);font-size:19px;font-weight:800;margin-bottom:10px;letter-spacing:-0.015em;">{p.t}</h3>
+            <p style="color:rgba(11,11,11,0.72);font-size:14px;line-height:1.55;margin:0;">{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Social proof ====== -->
+  <section class="tr-section">
+    <div class="tr-container">
+      <div class="tr-eyebrow" style="margin-bottom:14px;">Preuve · chiffres réels</div>
+      <h2 style="font-size:40px;font-weight:800;margin-bottom:56px;max-width:740px;">
+        Pas de témoignages génériques. Des chiffres tirés des projets.
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        {bigStats.map(s => {
+          const accent = !!s.accent;
+          const style = `padding:28px;background:${accent ? 'var(--ink)' : 'var(--white)'};color:${accent ? 'var(--paper)' : 'var(--ink)'};border:1px solid ${accent ? 'var(--ink)' : 'var(--border)'};border-radius:16px;display:flex;flex-direction:column;gap:12px;min-height:220px;`;
+          return (
+            <div style={style}>
+              <div class="tr-num" style={`font-size:64px;color:${accent ? 'var(--accent)' : 'var(--ink)'};line-height:0.9;`}>{s.num}</div>
+              <div style={`font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;color:${accent ? 'var(--n-300)' : 'var(--n-500)'};text-transform:uppercase;`}>{s.unit}</div>
+              <p style={`color:${accent ? 'var(--n-300)' : 'var(--n-600)'};font-size:14px;line-height:1.5;margin:0;margin-top:4px;`}>{s.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div style="margin-top:32px;padding:32px;background:var(--n-50);border:1px solid var(--border);border-radius:16px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;">
+        <div>
+          <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--n-500);margin-bottom:8px;">Témoignage · Nouméa Immobilier</div>
+          <p style="font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.35;color:var(--ink);margin:0;letter-spacing:-0.015em;">
+            « On passait deux semaines par trimestre à compiler les rapports PDF. Thomas a livré le système en 6 jours. Aujourd'hui ça tourne tout seul, et j'ai récupéré 1 ETP. »
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:160px;">
+          <div style="font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--ink);">Marc V.</div>
+          <div style="font-family:var(--font-body);font-size:13px;color:var(--n-500);">Dirigeant, agence imm.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Newsletter ====== -->
+  <section style="background:var(--amber);padding:80px 0;">
+    <div class="tr-container">
+      <div class="newsletter-grid">
+        <div>
+          <div style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);font-weight:600;margin-bottom:16px;">
+            Newsletter · 1 envoi tous les 15 jours
+          </div>
+          <h2 style="font-size:40px;font-weight:800;color:var(--ink);max-width:540px;margin-bottom:16px;letter-spacing:-0.025em;">
+            Je partage ce que je teste. Et les templates qui vont avec.
+          </h2>
+          <p style="color:rgba(11,11,11,0.78);font-size:16px;line-height:1.55;max-width:480px;margin:0;">
+            Make, n8n, Airtable, Claude API. Mes vrais workflows, mes vrais chiffres, mes vrais templates — directement dans ta boîte mail.
+          </p>
+        </div>
+        <form action="#" method="post" style="background:var(--ink);padding:28px;border-radius:16px;display:flex;flex-direction:column;gap:12px;">
+          <label style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--n-300);font-weight:600;">
+            Ton email
+            <input type="email" name="email" placeholder="toi@entreprise.co" required
+                   style="margin-top:6px;width:100%;padding:14px 16px;background:var(--ink-2);border:1px solid rgba(250,250,250,0.15);border-radius:10px;color:var(--paper);font-family:var(--font-body);font-size:15px;outline:none;" />
+          </label>
+          <button type="submit" style="font-family:var(--font-display);font-weight:700;font-size:15px;background:var(--amber);color:var(--ink);border:none;padding:14px 18px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;">
+            Recevoir la newsletter <Icon name="arrow-right" />
+          </button>
+          <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--n-500);text-transform:uppercase;text-align:center;margin-top:4px;">
+            Pas de spam. Désinscription en 1 clic.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Club SMART ghost ====== -->
+  <section style="padding:64px 0;background:var(--paper);">
+    <div class="tr-container">
+      <div style="padding:32px;border:1px solid var(--border);border-radius:16px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;background:var(--white);">
+        <div style="display:flex;align-items:center;gap:20px;">
+          <div style="width:48px;height:48px;border-radius:10px;background:var(--n-50);display:grid;place-items:center;flex-shrink:0;">
+            <Icon name="users" />
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--n-500);margin-bottom:4px;">Communauté</div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--ink);letter-spacing:-0.015em;margin-bottom:4px;">
+              Et si tu veux apprendre l'IA en l'appliquant à tes propres cas, il y a le Club SMART.
+            </div>
+            <div style="font-family:var(--font-body);font-size:14px;color:var(--n-600);">
+              La communauté francophone que j'anime sur Skool.
+            </div>
+          </div>
+        </div>
+        <a href="https://www.skool.com/club-smart" target="_blank" rel="noopener" class="tr-btn tr-btn--ghost">Découvrir le Club →</a>
+      </div>
+    </div>
+  </section>
+
+</Page>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 64px;
+    align-items: start;
+  }
+  .newsletter-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-grid,
+    .newsletter-grid { grid-template-columns: 1fr; }
+  }
+</style>
