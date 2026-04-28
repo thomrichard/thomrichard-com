@@ -60,7 +60,7 @@ const bigStats = [
       <div class="hero-grid">
         <div>
           <div class="tr-eyebrow" style="margin-bottom:24px;">Salut · Thomas Richard · Québec</div>
-          <h1 style="font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;">
+          <h1 style="font-size:clamp(34px,6vw,64px);font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;">
             J'installe l'IA chez les PME qui veulent <span style="color:var(--accent);">arrêter de subir</span> leur opérationnel.
           </h1>
           <p style="font-size:19px;line-height:1.5;color:var(--n-600);max-width:620px;margin-bottom:36px;">
@@ -132,7 +132,7 @@ const bigStats = [
           <h2 style="font-size:40px;font-weight:800;max-width:620px;">Choisissez celle qui correspond à où vous en êtes.</h2>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="tr-grid-3" style="gap:16px;">
         {doors.map(d => {
           const featured = !!d.featured;
           const cardStyle = `padding:32px;background:${featured ? 'var(--ink)' : 'var(--white)'};color:${featured ? 'var(--paper)' : 'var(--ink)'};border-color:${featured ? 'var(--ink)' : 'var(--border)'};min-height:380px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;`;
@@ -172,7 +172,7 @@ const bigStats = [
           Quatre principes. Tu les retrouves dans <span style="color:var(--ink);border-bottom:3px solid rgba(11,11,11,0.35);">chaque livraison</span>.
         </h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div class="tr-grid-4" style="gap:16px;">
         {principles.map(p => (
           <div style="padding:28px;border:1px solid rgba(11,11,11,0.18);border-radius:16px;background:rgba(11,11,11,0.04);">
             <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink);font-weight:700;letter-spacing:0.1em;margin-bottom:16px;">{p.n}</div>
@@ -191,7 +191,7 @@ const bigStats = [
       <h2 style="font-size:40px;font-weight:800;margin-bottom:56px;max-width:740px;">
         Pas de témoignages génériques. Des chiffres tirés des projets.
       </h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="tr-grid-3" style="gap:16px;">
         {bigStats.map(s => {
           const accent = !!s.accent;
           const style = `padding:28px;background:${accent ? 'var(--ink)' : 'var(--white)'};color:${accent ? 'var(--paper)' : 'var(--ink)'};border:1px solid ${accent ? 'var(--ink)' : 'var(--border)'};border-radius:16px;display:flex;flex-direction:column;gap:12px;min-height:220px;`;
@@ -205,7 +205,7 @@ const bigStats = [
         })}
       </div>
 
-      <div style="margin-top:32px;padding:32px;background:var(--n-50);border:1px solid var(--border);border-radius:16px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;">
+      <div class="tr-grid-cta" style="margin-top:32px;padding:32px;background:var(--n-50);border:1px solid var(--border);border-radius:16px;gap:32px;">
         <div>
           <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--n-500);margin-bottom:8px;">Témoignage · Nouméa Immobilier</div>
           <p style="font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.35;color:var(--ink);margin:0;letter-spacing:-0.015em;">
@@ -255,7 +255,7 @@ const bigStats = [
   <!-- ====== Club SMART ghost ====== -->
   <section style="padding:64px 0;background:var(--paper);">
     <div class="tr-container">
-      <div style="padding:32px;border:1px solid var(--border);border-radius:16px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;background:var(--white);">
+      <div class="tr-grid-cta" style="padding:32px;border:1px solid var(--border);border-radius:16px;gap:32px;background:var(--white);">
         <div style="display:flex;align-items:center;gap:20px;">
           <div style="width:48px;height:48px;border-radius:10px;background:var(--n-50);display:grid;place-items:center;flex-shrink:0;">
             <Icon name="users" />

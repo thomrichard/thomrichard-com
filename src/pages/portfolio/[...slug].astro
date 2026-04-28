@@ -38,7 +38,7 @@ const others = (await getCollection('portfolio'))
       <div style="font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;">
         {data.client} · {detail.period}
       </div>
-      <h1 style="font-size:60px;font-weight:800;color:var(--paper);max-width:920px;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;">
+      <h1 style="font-size:clamp(32px,5.5vw,60px);font-weight:800;color:var(--paper);max-width:920px;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;">
         {detail.hero.titleBefore} <span style="color:var(--accent);">{detail.hero.titleAccent}</span>{detail.hero.titleAfter}
       </h1>
       <p style="font-size:19px;color:var(--n-300);max-width:760px;line-height:1.5;margin:0;">
@@ -57,7 +57,7 @@ const others = (await getCollection('portfolio'))
           <p style="font-size:17px;color:var(--n-700);max-width:720px;line-height:1.6;">{p}</p>
         ))}
         {detail.challenge.metrics.length > 0 && (
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px;">
+          <div class="tr-grid-3" style="gap:12px;margin-top:32px;">
             {detail.challenge.metrics.map(s => (
               <div style="padding:20px;background:var(--n-50);border-radius:12px;border:1px solid var(--border);">
                 <div style="font-family:var(--font-mono);font-size:11px;color:var(--n-500);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">{s.label}</div>
@@ -130,7 +130,7 @@ const others = (await getCollection('portfolio'))
       <h2 style="color:var(--paper);font-size:36px;font-weight:800;margin-bottom:56px;max-width:720px;letter-spacing:-0.025em;">
         {detail.results.title}
       </h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="tr-grid-3" style="gap:16px;">
         {detail.results.items.map(r => {
           const accent = r.accent;
           return (
@@ -174,7 +174,7 @@ const others = (await getCollection('portfolio'))
     <div class="tr-container">
       <div class="tr-eyebrow" style="margin-bottom:14px;">Autres cas</div>
       <h2 style="font-size:32px;font-weight:800;margin-bottom:32px;letter-spacing:-0.02em;">D'autres systèmes que j'ai construits.</h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="tr-grid-3" style="gap:16px;">
         {others.map(c => (
           <a href={c.data.detail ? `/portfolio/${c.id}` : '/portfolio'} class="tr-card" style="padding:24px;display:flex;flex-direction:column;gap:12px;min-height:200px;text-decoration:none;color:var(--ink);">
             <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);font-weight:600;">{c.data.sector}</div>
@@ -192,7 +192,7 @@ const others = (await getCollection('portfolio'))
 
   <!-- Final CTA -->
   <section style="background:var(--accent-zone);padding:72px 0;border-top:1px solid rgba(11,11,11,0.1);">
-    <div class="tr-container" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;">
+    <div class="tr-container tr-grid-cta" style="gap:32px;">
       <div>
         <div style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);font-weight:700;margin-bottom:12px;">Discutons de ton projet</div>
         <h2 style="font-size:36px;font-weight:800;color:var(--ink);max-width:720px;letter-spacing:-0.025em;line-height:1.1;">

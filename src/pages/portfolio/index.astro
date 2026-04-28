@@ -27,7 +27,7 @@ const globals = [
     </svg>
     <div class="tr-container" style="position:relative;">
       <div class="tr-eyebrow" style="margin-bottom:24px;">Portfolio · 2014 → 2026</div>
-      <h1 style="font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:20px;max-width:900px;">
+      <h1 style="font-size:clamp(34px,6vw,64px);font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:20px;max-width:900px;">
         12+ systèmes livrés. <span style="color:var(--accent);">Voici les chiffres.</span>
       </h1>
       <p style="font-size:19px;color:var(--n-600);max-width:680px;line-height:1.5;margin:0;">
@@ -38,7 +38,7 @@ const globals = [
 
   <!-- Global stats -->
   <section style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-    <div class="tr-container" style="padding:40px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;">
+    <div class="tr-container tr-grid-4" style="padding:40px 48px;gap:32px;">
       {globals.map((s, i) => (
         <div style={`border-left:${i === 0 ? 'none' : '1px solid var(--border)'};padding-left:${i === 0 ? '0' : '24px'};`}>
           <div class="tr-num" style="font-size:44px;color:var(--ink);line-height:.95;">{s.n}</div>
@@ -101,7 +101,7 @@ const globals = [
 
   <!-- Final CTA -->
   <section style="background:var(--accent-zone);padding:72px 0;">
-    <div class="tr-container" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;">
+    <div class="tr-container tr-grid-cta" style="gap:32px;">
       <div>
         <div style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);font-weight:600;margin-bottom:12px;">Tu veux le même genre de résultat ?</div>
         <h2 style="font-size:36px;font-weight:800;color:var(--ink);max-width:720px;letter-spacing:-0.025em;line-height:1.1;">

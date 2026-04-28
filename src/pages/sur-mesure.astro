@@ -61,7 +61,7 @@ const cases = [
     </svg>
     <div class="tr-container" style="position:relative;">
       <div class="tr-eyebrow" style="margin-bottom:24px;">Automation Builders · sur-mesure</div>
-      <h1 style="font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;max-width:900px;">
+      <h1 style="font-size:clamp(34px,6vw,64px);font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:24px;max-width:900px;">
         Tu sais ce que tu veux automatiser. <span style="color:var(--accent);">Moi, je le construis.</span>
       </h1>
       <p style="font-size:19px;line-height:1.5;color:var(--n-600);max-width:680px;margin-bottom:36px;">
@@ -137,7 +137,7 @@ const cases = [
       <p style="color:rgba(11,11,11,0.78);font-size:16px;max-width:640px;margin-bottom:48px;">
         Chaque système qu'on construit s'inscrit dans une de ces 4 briques. Pas de chantiers orphelins.
       </p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div class="tr-grid-4" style="gap:16px;">
         {bricks.map(b => (
           <div style="padding:28px;border-radius:16px;background:rgba(11,11,11,0.04);border:1px solid rgba(11,11,11,0.18);display:flex;flex-direction:column;gap:16px;min-height:220px;">
             <div style="width:56px;height:56px;border-radius:14px;background:var(--ink);color:var(--accent-zone);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:26px;">{b.letter}</div>
@@ -182,7 +182,7 @@ const cases = [
           Voir tous les cas <Icon name="arrow-right" />
         </a>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="tr-grid-3" style="gap:16px;">
         {cases.map(c => (
           <a href={c.href} class="tr-card" style="padding:28px;display:flex;flex-direction:column;gap:16px;min-height:240px;text-decoration:none;color:var(--ink);">
             <div>
@@ -204,7 +204,7 @@ const cases = [
   <section style="background:var(--accent-zone);padding:80px 0;position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(11,11,11,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(11,11,11,0.06) 1px, transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
     <div class="tr-container" style="position:relative;text-align:center;">
-      <h2 style="font-size:44px;font-weight:800;color:var(--ink);max-width:720px;margin:0 auto 16px;letter-spacing:-0.025em;">
+      <h2 style="font-size:clamp(28px,4.5vw,44px);font-weight:800;color:var(--ink);max-width:720px;margin:0 auto 16px;letter-spacing:-0.025em;">
         On démarre par 30 minutes. Devis sous 48h.
       </h2>
       <p style="font-size:17px;color:rgba(11,11,11,0.72);max-width:540px;margin:0 auto 32px;line-height:1.5;">
