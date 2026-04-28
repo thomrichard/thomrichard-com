@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Devis — Verbatim IA SST · AB-2026-VERBATIM-SST</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --navy: #233039;
+    --teal: #3FA4B1;
+    --amber: #F5AE2A;
+    --paper: #FAFAFA;
+    --muted: #6b7480;
+    --border: #e5e8eb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #ffffff;
+    color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, system-ui, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  body {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 18mm 16mm;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Manrope', sans-serif;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 28pt;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 14pt;
+    margin: 24px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 11pt;
+    margin: 14px 0 6px;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  p { margin-bottom: 8px; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--navy);
+    margin-bottom: 24px;
+  }
+
+  .brand {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 13pt;
+    color: var(--navy);
+    letter-spacing: 0.5px;
+  }
+  .brand .accent { color: var(--teal); }
+
+  .meta-block {
+    text-align: right;
+    font-size: 9.5pt;
+    color: var(--muted);
+  }
+  .meta-block strong { color: var(--navy); display: block; font-size: 10pt; }
+
+  /* PARTIES */
+  .parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 18px;
+  }
+  .party {
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding: 12px 14px;
+    border-radius: 2px;
+  }
+  .party.client { border-left-color: var(--amber); }
+  .party-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .party-name {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .party-details {
+    font-size: 9.5pt;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .placeholder {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* OBJET */
+  .objet {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .objet .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .objet p { color: var(--paper); margin: 0; }
+
+  /* PRESTATION */
+  .prestation {
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding: 18px 22px;
+    border-radius: 0 4px 4px 0;
+    margin: 12px 0;
+  }
+  .prestation h3 {
+    margin-top: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 12pt;
+    color: var(--navy);
+  }
+  .prestation ul {
+    margin: 8px 0 0 18px;
+    font-size: 10pt;
+  }
+  .prestation li { margin-bottom: 3px; }
+
+  /* TOTAL BOX */
+  .total-box {
+    margin: 16px 0 18px;
+    border: 2px solid var(--navy);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .total-box .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10pt;
+  }
+  .total-box .row:last-child { border-bottom: none; }
+  .total-box .row .label { color: var(--ink); }
+  .total-box .row .amount {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+  }
+  .total-box .row.grand {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 14px 16px;
+  }
+  .total-box .row.grand .label { color: var(--amber); font-family: 'Manrope', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 10.5pt; }
+  .total-box .row.grand .amount { color: var(--paper); font-size: 18pt; }
+
+  /* PAIEMENT */
+  .paiement {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .paiement .step {
+    border: 2px solid var(--teal);
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+  }
+  .paiement .step .pct {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 22pt;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .paiement .step .label {
+    font-size: 9pt;
+    color: var(--ink);
+    margin-top: 4px;
+  }
+
+  /* PHASES */
+  ol.phases {
+    list-style: none;
+    counter-reset: phase;
+    padding: 0;
+    margin: 8px 0;
+  }
+  ol.phases li {
+    counter-increment: phase;
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding: 8px 12px 8px 60px;
+    margin-bottom: 6px;
+    position: relative;
+    border-radius: 0 2px 2px 0;
+    font-size: 10pt;
+  }
+  ol.phases li::before {
+    content: "S" counter(phase);
+    position: absolute;
+    left: 14px;
+    top: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    color: var(--teal);
+    font-size: 11pt;
+  }
+
+  /* CONDITIONS */
+  ol.conditions {
+    counter-reset: cond;
+    list-style: none;
+    padding: 0;
+    margin: 6px 0;
+  }
+  ol.conditions li {
+    counter-increment: cond;
+    padding: 4px 0 4px 28px;
+    position: relative;
+    font-size: 10pt;
+    color: var(--ink);
+  }
+  ol.conditions li::before {
+    content: counter(cond);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: var(--teal);
+    color: var(--paper);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  table thead th {
+    background: var(--navy);
+    color: var(--paper);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    text-align: left;
+    padding: 9px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  table thead th.right { text-align: right; }
+  table tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table tbody tr:nth-child(even) { background: var(--paper); }
+  table tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  table tbody tr.subtotal {
+    background: #eaf6f7 !important;
+    font-weight: 600;
+  }
+  table tbody tr.subtotal td {
+    border-bottom: 2px solid var(--teal);
+    color: var(--navy);
+  }
+
+  /* LIVRABLES */
+  ul.livrables {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    column-gap: 24px;
+  }
+  ul.livrables li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+    font-size: 10pt;
+    break-inside: avoid;
+  }
+  ul.livrables li::before {
+    content: "■";
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 8pt;
+    top: 7px;
+  }
+
+  /* ECHANGE */
+  .echange {
+    background: var(--amber);
+    color: var(--ink);
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin: 18px 0;
+  }
+  .echange-button {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 10.5pt;
+    letter-spacing: 0.3px;
+  }
+  .echange-link-info {
+    display: block;
+    margin-top: 6px;
+    color: var(--navy);
+    opacity: 0.7;
+    font-size: 9pt;
+  }
+  .echange .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .echange h3 {
+    color: var(--navy);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 14pt;
+    margin: 0 0 8px 0;
+  }
+  .echange p {
+    color: var(--ink);
+    margin: 0 0 6px 0;
+    font-size: 10pt;
+  }
+
+  /* SIGNATURE */
+  .signature {
+    margin-top: 28px;
+    border-top: 3px solid var(--navy);
+    padding-top: 16px;
+  }
+  .signature h2 {
+    border: none;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .sig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 18px;
+  }
+  .sig-block {
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 4px;
+    min-height: 38px;
+  }
+  .sig-block .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+  }
+
+  .footer {
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 8.5pt;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .small { font-size: 9pt; color: var(--muted); }
+
+  @media print {
+    body { padding: 12mm; max-width: none; }
+    h2 { page-break-after: avoid; }
+    .total-box, .paiement, .signature, .echange, .prestation { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div>
+      <div class="brand">Automation <span class="accent">Builders</span></div>
+      <div class="small">Conseil & développement IA · No-code · Automatisation</div>
+    </div>
+    <div class="meta-block">
+      <strong>DEVIS</strong>
+      Référence : AB-2026-VERBATIM-SST<br>
+      Date d'émission : 27 avril 2026<br>
+      Validité : 30 jours
+    </div>
+  </header>
+
+  <section class="parties">
+    <div class="party">
+      <div class="party-label">Émetteur</div>
+      <div class="party-name">Thomas Richard — Automation Builders</div>
+      <div class="party-details">
+        <span class="placeholder">[Adresse]</span><br>
+        <span class="placeholder">[Email]</span> · <span class="placeholder">[Téléphone]</span><br>
+        <span class="placeholder">NEQ : [num] · TPS : [num] · TVQ : [num]</span>
+      </div>
+    </div>
+    <div class="party client">
+      <div class="party-label">Client</div>
+      <div class="party-name">Association de la construction du Québec (ACQ)</div>
+      <div class="party-details">
+        Geneviève St-Onge<br>
+        <span class="placeholder">[Adresse]</span><br>
+        <span class="placeholder">[Email]</span> · acq.org
+      </div>
+    </div>
+  </section>
+
+  <section class="objet">
+    <div class="label">Objet du devis</div>
+    <p>Conception et développement d'une solution de <strong>verbatim IA pour conseillers SST construction</strong> — dictée terrain, structuration IA, association des articles du Code de sécurité pour les travaux de construction (CSTC), intégration au CRM client.</p>
+  </section>
+
+  <h2>Prestation</h2>
+  <div class="prestation">
+    <h3>Forfait — Verbatim IA SST · version 1 complète</h3>
+    <p class="small">Solution livrée clé en main, prête à utiliser sur le terrain.</p>
+    <ul>
+      <li>Cadrage fonctionnel et spécifications</li>
+      <li>Mise en place de l'infrastructure (hébergement Canada — Supabase et orchestrateur)</li>
+      <li>Application installable pour le conseiller (consultation, validation, correction des observations sur mobile)</li>
+      <li>Workflow IA complet (récupération du transcript, structuration, association des articles CSTC)</li>
+      <li>Indexation des articles CSTC dans la base de connaissance</li>
+      <li>Connexion au CRM client pour remplir la grille de prévention</li>
+      <li>Tests, recette, formation des conseillers</li>
+      <li>Documentation utilisateur et technique</li>
+      <li>30 jours de support après livraison</li>
+    </ul>
+  </div>
+
+  <h2>Total</h2>
+  <div class="total-box">
+    <div class="row">
+      <span class="label">Forfait global — Verbatim IA SST v1</span>
+      <span class="amount">14 000 CAD</span>
+    </div>
+    <div class="row">
+      <span class="label small">TPS (5 %) et TVQ (9,975 %) à appliquer sur le montant HT</span>
+      <span class="amount small">selon barème</span>
+    </div>
+    <div class="row grand">
+      <span class="label">Total HT</span>
+      <span class="amount">14 000 CAD</span>
+    </div>
+  </div>
+
+  <h2>Modalités de paiement</h2>
+  <div class="paiement">
+    <div class="step">
+      <div class="pct">30 %</div>
+      <div class="label">à la signature du devis</div>
+    </div>
+    <div class="step">
+      <div class="pct">40 %</div>
+      <div class="label">livraison de la solution (fin S4)</div>
+    </div>
+    <div class="step">
+      <div class="pct">30 %</div>
+      <div class="label">à la recette finale</div>
+    </div>
+  </div>
+  <p class="small">Paiement par virement bancaire à 15 jours net après facturation.</p>
+
+  <h2>Échéancier de livraison</h2>
+  <p><strong>6 semaines</strong> à compter de la signature du devis.</p>
+  <ol class="phases">
+    <li>Cadrage, mise en place infrastructure, audit du CRM</li>
+    <li>Indexation des articles CSTC, workflow IA, base de données</li>
+    <li>Suite indexation et workflow · Application conseiller en parallèle</li>
+    <li>Finalisation application conseiller</li>
+    <li>Connexion CRM, tests bout-en-bout</li>
+    <li>Recette, formation, mise en production</li>
+  </ol>
+  <p class="small">Une livraison plus rapide est envisageable selon les conditions du contrat.</p>
+
+  <h2>Conditions et hypothèses</h2>
+  <p>Ce devis est établi sous réserve des conditions suivantes :</p>
+  <ol class="conditions">
+    <li>Le CRM client expose une <strong>API REST documentée</strong> permettant l'écriture dans la grille de prévention. Audit confirmatoire en début de mission.</li>
+    <li>Le client fournit la <strong>liste des articles du CSTC</strong> à indexer. La récupération des contenus se fait depuis sources publiques (LégisQuébec, CNESST) sur la base de cette liste.</li>
+    <li>La langue de la version 1 est le <strong>français québécois</strong>. L'anglais peut être ajouté en version 2 (hors devis).</li>
+    <li>Les observations consignées ne contiennent pas de données nominatives sensibles.</li>
+    <li>La <strong>validation humaine</strong> sur mobile précède le push CRM.</li>
+    <li>Le <strong>mode hors ligne robuste</strong> n'est pas inclus dans cette v1. Il peut être proposé en option v1.5 après tests de la v1.</li>
+  </ol>
+  <p class="small">Si l'une de ces conditions ne se vérifie pas (notamment l'API CRM), un avenant est proposé après échange.</p>
+
+  <h2>Coûts récurrents (à charge du client, hors devis)</h2>
+  <p class="small">Abonnement VPS et services tiers à la charge du client.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th class="right">CAD / mois</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Hébergement infrastructure (VPS Canada)</td><td class="right">15 à 35</td></tr>
+      <tr><td>Otter.ai — capture audio + transcription (plan Business)</td><td class="right">~ 24</td></tr>
+      <tr><td>Claude API (Anthropic) — structuration et association CSTC</td><td class="right">50 à 150</td></tr>
+      <tr class="subtotal"><td><strong>Total mensuel estimé</strong></td><td class="right"><strong>90 à 210</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Livrables inclus</h2>
+  <ul class="livrables">
+    <li>Code source de l'application</li>
+    <li>Workflows n8n exportés</li>
+    <li>Scripts SQL et configuration Supabase</li>
+    <li>Documentation technique complète</li>
+    <li>Documentation utilisateur (conseiller + admin)</li>
+    <li>Session de formation (technique + conseillers pilotes)</li>
+    <li>30 jours de support post-livraison (bug fix)</li>
+    <li>Schémas d'architecture et workflow métier</li>
+  </ul>
+
+  <section class="echange">
+    <div class="label">Avant la signature</div>
+    <h3>Je propose un échange pour valider ensemble</h3>
+    <p>Plutôt que de figer le devis sans dialogue, je préfère qu'on prenne le temps de présenter la solution dans le contexte de l'ACQ, de montrer les composants clés en démo, de répondre à vos questions techniques et fonctionnelles, et d'ajuster le périmètre si besoin avant de signer.</p>
+    <a href="https://tidycal.com/thomrichard/vos-besoins" class="echange-button">Réserver un échange →</a>
+    <span class="echange-link-info">tidycal.com/thomrichard/vos-besoins</span>
+  </section>
+
+  <section class="signature">
+    <h2>Acceptation</h2>
+    <p>En signant ce devis, le client accepte les conditions ci-dessus et autorise le démarrage des travaux après réception du premier acompte de 30 %.</p>
+    <div class="sig-grid">
+      <div>
+        <div class="sig-block"></div>
+        <div class="label">Date</div>
+      </div>
+      <div>
+        <div class="sig-block"></div>
+        <div class="label">Signature client</div>
+      </div>
+      <div>
+        <div class="sig-block"></div>
+        <div class="label">Cachet</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Automation Builders · Thomas Richard · Devis AB-2026-VERBATIM-SST · Page 1<br>
+    <a href="https://www.thomrichard.com" style="color: var(--teal); text-decoration: none; font-weight: 600;">www.thomrichard.com</a>
+  </footer>
+
+</body>
+</html>

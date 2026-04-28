@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Soumission — Verbatim IA SST · AB-2026-VERBATIM-SST</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --navy: #233039;
+    --teal: #3FA4B1;
+    --amber: #F5AE2A;
+    --paper: #FAFAFA;
+    --muted: #6b7480;
+    --border: #e5e8eb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #ffffff;
+    color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, system-ui, sans-serif;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+
+  body {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 18mm 16mm;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Manrope', sans-serif;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 30pt;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  h1 .accent { color: var(--teal); }
+
+  h2 {
+    font-weight: 700;
+    font-size: 16pt;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--teal);
+  }
+  h2 .num {
+    color: var(--teal);
+    font-weight: 800;
+    margin-right: 8px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 11.5pt;
+    margin: 14px 0 6px;
+    color: var(--navy);
+  }
+
+  p { margin-bottom: 10px; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 4px; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt;
+    background: var(--paper);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--navy);
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 28px 28px;
+    border-radius: 6px;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 180px; height: 180px;
+    background: var(--teal);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .hero .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+  .hero h1 { color: var(--paper); margin-bottom: 8px; position: relative; z-index: 1; }
+  .hero .sub {
+    font-size: 12pt;
+    color: var(--paper);
+    opacity: 0.85;
+    position: relative; z-index: 1;
+  }
+
+  /* META */
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .meta .cell {
+    border-left: 3px solid var(--teal);
+    padding: 4px 12px;
+  }
+  .meta .cell:nth-child(2) { border-left-color: var(--amber); }
+  .meta .cell-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .meta .cell-value {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 10.5pt;
+  }
+
+  /* PERIMETRE */
+  .perimetre {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 12px 0;
+  }
+  .perimetre .col {
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .perimetre .col.inclus {
+    background: #eaf6f7;
+    border-left: 3px solid var(--teal);
+  }
+  .perimetre .col.exclus {
+    background: #fef4dc;
+    border-left: 3px solid var(--amber);
+  }
+  .perimetre h3 {
+    margin-top: 0;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .perimetre ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 10pt;
+  }
+  .perimetre li { margin-bottom: 3px; }
+
+  /* SCHEMA */
+  .schema-figure {
+    margin: 18px 0 22px;
+    text-align: center;
+  }
+  .schema-figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #ffffff;
+  }
+  .schema-figure figcaption {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  /* SOLUTION STEPS */
+  ol.steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 12px 0;
+  }
+  ol.steps li {
+    counter-increment: step;
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding: 12px 16px 12px 56px;
+    margin-bottom: 8px;
+    position: relative;
+    border-radius: 0 4px 4px 0;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    width: 30px;
+    height: 30px;
+    background: var(--teal);
+    color: var(--paper);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 13pt;
+  }
+  ol.steps li strong {
+    color: var(--navy);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    display: block;
+    font-size: 11pt;
+    margin-bottom: 2px;
+  }
+
+  /* BENEFICES */
+  .benefices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .benefices .card {
+    background: var(--paper);
+    border-top: 3px solid var(--amber);
+    padding: 14px;
+    border-radius: 0 0 4px 4px;
+  }
+  .benefices .card .title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+  }
+  .benefices .card .desc {
+    font-size: 9.5pt;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* PRICING */
+  .pricing {
+    background: var(--amber);
+    color: var(--ink);
+    padding: 22px 24px;
+    border-radius: 6px;
+    margin: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pricing .left .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .pricing .left .what {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 12pt;
+  }
+  .pricing .right {
+    text-align: right;
+  }
+  .pricing .price {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 30pt;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .pricing .small {
+    font-size: 9pt;
+    color: var(--ink);
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  table thead th {
+    background: var(--navy);
+    color: var(--paper);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    text-align: left;
+    padding: 9px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  table thead th.right { text-align: right; }
+  table thead th.center { text-align: center; }
+  table tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table tbody tr:nth-child(even) { background: var(--paper); }
+  table tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  table tbody td.center { text-align: center; }
+  table tbody tr.subtotal {
+    background: #eaf6f7 !important;
+    font-weight: 600;
+  }
+  table tbody tr.subtotal td {
+    border-bottom: 2px solid var(--teal);
+    color: var(--navy);
+  }
+
+  /* GARANTIES */
+  .garanties {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .garanties .card {
+    background: var(--paper);
+    border: 1.5px solid var(--teal);
+    padding: 14px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .garanties .card .icon {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    color: var(--teal);
+    font-size: 20pt;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .garanties .card .title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 10pt;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .garanties .card .desc {
+    font-size: 9.5pt;
+    color: var(--ink);
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 26px;
+    border-radius: 6px;
+    margin: 24px 0 12px;
+  }
+  .cta-button {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--amber);
+    color: var(--navy);
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 11.5pt;
+    letter-spacing: 0.3px;
+  }
+  .cta-button:hover { opacity: 0.92; }
+  .cta-link-info {
+    display: block;
+    margin-top: 8px;
+    color: var(--paper);
+    opacity: 0.65;
+    font-size: 9pt;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .cta .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+  .cta h3 {
+    color: var(--paper);
+    font-size: 17pt;
+    margin-bottom: 12px;
+  }
+  .cta p {
+    color: var(--paper);
+    opacity: 0.88;
+    margin-bottom: 12px;
+  }
+  .cta ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cta ul li {
+    color: var(--paper);
+    padding: 4px 0 4px 26px;
+    position: relative;
+    font-size: 10.5pt;
+  }
+  .cta ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+  }
+
+  /* GLOSSAIRE */
+  .glossaire {
+    background: var(--paper);
+    border-left: 3px solid var(--muted);
+    padding: 18px 22px;
+    margin-top: 28px;
+    border-radius: 0 4px 4px 0;
+  }
+  .glossaire h2 {
+    border: none;
+    margin-top: 0;
+    color: var(--navy);
+    font-size: 13pt;
+  }
+  .glossaire dl {
+    margin: 0;
+  }
+  .glossaire dt {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 10pt;
+    margin-top: 10px;
+  }
+  .glossaire dd {
+    margin: 2px 0 0 0;
+    font-size: 9.5pt;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  .footer {
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 8.5pt;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .small { font-size: 9pt; color: var(--muted); }
+
+  @media print {
+    body { padding: 12mm; max-width: none; }
+    h2 { page-break-after: avoid; }
+    .hero, .perimetre, ol.steps li, table, .garanties, .cta, .pricing, .benefices, .glossaire { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="label">Soumission · AB-2026-VERBATIM-SST</div>
+    <h1>Verbatim IA<br><span class="accent">SST Construction</span></h1>
+    <div class="sub">Vos conseillers dictent leurs observations sur le chantier. L'IA structure, identifie les articles du Code de sécurité, et la grille de prévention de votre CRM se remplit toute seule.</div>
+  </section>
+
+  <section class="meta">
+    <div class="cell">
+      <div class="cell-label">De</div>
+      <div class="cell-value">Thomas Richard</div>
+      <div class="small">Automation Builders</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Pour</div>
+      <div class="cell-value">ACQ</div>
+      <div class="small">Geneviève St-Onge</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Date</div>
+      <div class="cell-value">27 avril 2026</div>
+      <div class="small">Validité 30 jours</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Délai</div>
+      <div class="cell-value">6 semaines</div>
+      <div class="small">à compter de la signature</div>
+    </div>
+  </section>
+
+  <h2><span class="num">01</span>Ce qu'on a compris de votre besoin</h2>
+  <p>À l'<strong>Association de la construction du Québec</strong>, vos conseillers en prévention SST se déplacent sur les chantiers et doivent consigner leurs observations dans la grille de prévention de votre CRM. La saisie sur le terrain ralentit le travail et limite la qualité des observations.</p>
+  <p>Vous voulez un processus de <strong>verbatim IA</strong> dans lequel le conseiller <strong>dicte ses observations</strong>, l'IA les <strong>structure en points</strong> conformes aux règles SST construction, <strong>associe les articles du CSTC</strong> pertinents (par exemple l'article 3.25.3 lorsqu'il est question de silice), puis <strong>renseigne directement la grille de prévention</strong> dans votre CRM.</p>
+
+  <h2><span class="num">02</span>Comment la solution fonctionne au quotidien</h2>
+  <ol class="steps">
+    <li>
+      <strong>Le conseiller dicte son observation sur le chantier</strong>
+      Il utilise une application de notes vocales déjà éprouvée pour enregistrer l'audio. Pas de saisie clavier sur le terrain. Pas d'apprentissage nouveau pour le conseiller.
+    </li>
+    <li>
+      <strong>L'observation est centralisée et traitée par l'IA</strong>
+      L'audio est transcrit en français québécois, puis structuré automatiquement en points distincts. L'IA reconnaît les sujets SST et associe les articles du CSTC pertinents (silice, hauteur, échafaudage, EPI, etc.).
+    </li>
+    <li>
+      <strong>Le conseiller relit, corrige et valide depuis son téléphone</strong>
+      Une application installable sur l'écran d'accueil lui présente la fiche prête à valider. Il ajuste si besoin, puis confirme d'un geste.
+    </li>
+    <li>
+      <strong>La grille de prévention du CRM se remplit automatiquement</strong>
+      Une fois validée, l'observation est poussée dans la grille de votre CRM. Le conseiller passe à l'observation suivante.
+    </li>
+  </ol>
+
+  <figure class="schema-figure">
+    <img src="workflow_metier.png" alt="Schéma du workflow métier — parcours du conseiller terrain de la dictée à la grille CRM">
+    <figcaption>Schéma — Parcours du conseiller terrain, de la dictée à la grille CRM</figcaption>
+  </figure>
+
+  <h2><span class="num">03</span>Ce que ça apporte concrètement</h2>
+  <div class="benefices">
+    <div class="card">
+      <div class="title">Du temps gagné sur chaque visite</div>
+      <div class="desc">Plus de saisie au clavier sur le téléphone. Le conseiller parle, l'IA transcrit et structure.</div>
+    </div>
+    <div class="card">
+      <div class="title">Des observations plus complètes</div>
+      <div class="desc">Sans contrainte de frappe, le conseiller décrit ce qu'il voit en détail. La qualité de la grille s'améliore.</div>
+    </div>
+    <div class="card">
+      <div class="title">Une conformité réglementaire renforcée</div>
+      <div class="desc">L'IA associe systématiquement les bons articles du CSTC. Moins d'oublis, moins d'erreurs.</div>
+    </div>
+  </div>
+
+  <h2><span class="num">04</span>Ce que vous obtenez (périmètre)</h2>
+  <div class="perimetre">
+    <div class="col inclus">
+      <h3>Inclus</h3>
+      <ul>
+        <li>Cadrage fonctionnel et spécifications</li>
+        <li>Application installable pour le conseiller (consultation, validation, correction)</li>
+        <li>Mise en place de l'infrastructure (hébergement Canada)</li>
+        <li>Workflow IA complet (transcription, structuration, association des articles CSTC)</li>
+        <li>Indexation des articles CSTC dans la base de connaissance</li>
+        <li>Connexion à votre CRM pour remplir la grille de prévention</li>
+        <li>Tests, recette, formation des conseillers</li>
+        <li>Documentation utilisateur et technique</li>
+        <li>30 jours de support après livraison</li>
+      </ul>
+    </div>
+    <div class="col exclus">
+      <h3>Non inclus</h3>
+      <ul>
+        <li>Abonnement VPS et services tiers à la charge du client</li>
+        <li>Contenu CSTC à lister par le client. Récupération du contenu depuis sources publiques (LégisQuébec, CNESST) sur la base de cette liste</li>
+        <li>Maintenance évolutive au-delà des 30 jours de support (forfait à discuter)</li>
+        <li>Version anglaise (proposée en v2)</li>
+        <li>Mode hors ligne robuste (proposé en option v1.5 après tests v1)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><span class="num">05</span>Investissement</h2>
+  <div class="pricing">
+    <div class="left">
+      <div class="label">Forfait global</div>
+      <div class="what">Verbatim IA SST — version 1 complète</div>
+    </div>
+    <div class="right">
+      <div class="price">14 000 CAD</div>
+      <div class="small">HT · hors taxes (TPS / TVQ)</div>
+    </div>
+  </div>
+  <p class="small">Ce forfait inclut l'intégration de votre CRM sous condition d'API REST documentée. Si l'audit révèle un cas spécifique, un avenant est proposé.</p>
+
+  <h3>Modalités de paiement</h3>
+  <ul>
+    <li><strong>30 %</strong> à la signature</li>
+    <li><strong>40 %</strong> à la livraison de la solution (fin S4)</li>
+    <li><strong>30 %</strong> à la recette finale</li>
+  </ul>
+
+  <h2><span class="num">06</span>Échéancier</h2>
+  <p><strong>Livraison cible : 6 semaines</strong> à compter de la signature.</p>
+  <table>
+    <thead>
+      <tr>
+        <th class="center">Sem.</th>
+        <th>Phase</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="center"><strong>S1</strong></td><td>Cadrage, mise en place infrastructure, audit du CRM</td></tr>
+      <tr><td class="center"><strong>S2-S3</strong></td><td>Indexation des articles CSTC, workflow IA, base de données</td></tr>
+      <tr><td class="center"><strong>S2-S4</strong></td><td>Application conseiller (en parallèle)</td></tr>
+      <tr><td class="center"><strong>S5</strong></td><td>Connexion CRM, tests bout-en-bout</td></tr>
+      <tr><td class="center"><strong>S6</strong></td><td>Recette, formation, mise en production</td></tr>
+    </tbody>
+  </table>
+  <p class="small">Une livraison plus rapide est envisageable selon les conditions du contrat.</p>
+
+  <h2><span class="num">07</span>Coûts récurrents (à charge du client)</h2>
+  <p>Ces coûts couvrent les services tiers nécessaires au fonctionnement de la solution. Ils sont indépendants du forfait ci-dessus.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Rôle</th>
+        <th class="right">CAD / mois</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Hébergement infrastructure (VPS Canada)</td><td>Application + base de données + orchestrateur</td><td class="right">15 à 35</td></tr>
+      <tr><td>Otter.ai (plan Business)</td><td>Capture audio + transcription</td><td class="right">~ 24</td></tr>
+      <tr><td>Claude API (Anthropic)</td><td>Structuration et association CSTC</td><td class="right">50 à 150</td></tr>
+      <tr class="subtotal"><td colspan="2"><strong>Total mensuel estimé</strong></td><td class="right"><strong>90 à 210</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">08</span>Garanties</h2>
+  <div class="garanties">
+    <div class="card">
+      <div class="icon">30j</div>
+      <div class="title">Support inclus</div>
+      <div class="desc">Correction de bugs pendant 30 jours après la livraison.</div>
+    </div>
+    <div class="card">
+      <div class="icon">↺</div>
+      <div class="title">Code source remis</div>
+      <div class="desc">Pas de verrou propriétaire. Vos équipes ou un autre prestataire peuvent reprendre la solution.</div>
+    </div>
+    <div class="card">
+      <div class="icon">CA</div>
+      <div class="title">Données au Canada</div>
+      <div class="desc">Hébergement permanent au Québec sur infrastructure self-hosted.</div>
+    </div>
+  </div>
+
+  <section class="cta">
+    <div class="label">Prochaine étape</div>
+    <h3>Échangeons avant de signer, Geneviève</h3>
+    <p>Plutôt que de figer le devis sans dialogue, je préfère qu'on prenne le temps de valider ensemble.</p>
+    <ul>
+      <li>Présentation détaillée de la solution dans le contexte de l'ACQ</li>
+      <li>Démonstration des composants clés (transcription, structuration IA, association CSTC)</li>
+      <li>Audit rapide de votre CRM pour confirmer l'intégration</li>
+      <li>Réponses à toutes vos questions techniques et fonctionnelles</li>
+      <li>Ajustement du périmètre et du devis si vos besoins évoluent pendant l'échange</li>
+    </ul>
+    <a href="https://tidycal.com/thomrichard/vos-besoins" class="cta-button">Réserver un échange →</a>
+    <span class="cta-link-info">tidycal.com/thomrichard/vos-besoins</span>
+  </section>
+
+  <section class="glossaire">
+    <h2>Annexe — Glossaire technique</h2>
+    <p class="small">Pour celles et ceux qui veulent comprendre la stack technique sous-jacente. La compréhension de ces termes n'est pas nécessaire pour valider la soumission.</p>
+    <dl>
+      <dt>PWA (Progressive Web App)</dt>
+      <dd>Application web qui s'installe sur l'écran d'accueil du téléphone (iOS et Android) et fonctionne comme une app native, sans passer par l'App Store ni le Play Store. Mises à jour instantanées, accès au micro et aux notifications.</dd>
+
+      <dt>Otter.ai</dt>
+      <dd>Service tiers de notes vocales et transcription automatique. Le conseiller utilise l'app Otter pour enregistrer son observation. Le transcript est ensuite récupéré automatiquement par notre solution via l'API Otter.</dd>
+
+      <dt>Supabase (self-hosted)</dt>
+      <dd>Plateforme open source qui regroupe base de données PostgreSQL, authentification, stockage de fichiers et règles de sécurité. Hébergée sur un VPS au Québec, vos données ne quittent pas le Canada.</dd>
+
+      <dt>n8n (self-hosted)</dt>
+      <dd>Orchestrateur de workflows open source. C'est lui qui pilote la chaîne : récupération du transcript, appel à Claude, association des articles CSTC, écriture dans votre CRM.</dd>
+
+      <dt>Claude API (Anthropic)</dt>
+      <dd>Modèle d'intelligence artificielle qui structure le transcript en points et identifie les articles du CSTC pertinents.</dd>
+
+      <dt>RAG (Retrieval-Augmented Generation)</dt>
+      <dd>Technique qui permet à l'IA de s'appuyer sur une base documentaire spécifique. Ici, la base contient les articles du Code de sécurité pour les travaux de construction. L'IA y cherche les références pertinentes avant de structurer l'observation.</dd>
+
+      <dt>pgvector</dt>
+      <dd>Extension PostgreSQL qui stocke les articles CSTC sous une forme exploitable par l'IA pour la recherche de similarité.</dd>
+
+      <dt>API REST</dt>
+      <dd>Standard d'échange de données entre applications. Si votre CRM expose une API REST documentée, l'intégration est directe. Sinon, un audit est nécessaire pour proposer une alternative.</dd>
+
+      <dt>VPS (Virtual Private Server)</dt>
+      <dd>Serveur virtuel hébergé chez un prestataire (OVHcloud Beauharnois ou équivalent au Québec). C'est l'infrastructure sur laquelle tournent Supabase et n8n.</dd>
+    </dl>
+  </section>
+
+  <footer class="footer">
+    Automation Builders · Thomas Richard · Soumission AB-2026-VERBATIM-SST · 27 avril 2026<br>
+    <a href="https://www.thomrichard.com" style="color: var(--teal); text-decoration: none; font-weight: 600;">www.thomrichard.com</a>
+  </footer>
+
+</body>
+</html>
