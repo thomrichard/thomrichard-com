@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Candidature — Écosystème Communauté · Mentorat Neurosomatique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --navy: #233039;
+    --teal: #3FA4B1;
+    --amber: #F5AE2A;
+    --paper: #FAFAFA;
+    --muted: #6b7480;
+    --border: #e5e8eb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #ffffff;
+    color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, system-ui, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  body {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 18mm 16mm;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Manrope', sans-serif;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 30pt;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  h1 .accent { color: var(--teal); }
+
+  h2 {
+    font-weight: 700;
+    font-size: 16pt;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--teal);
+  }
+  h2 .num {
+    color: var(--teal);
+    font-weight: 800;
+    margin-right: 8px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 11.5pt;
+    margin: 14px 0 6px;
+    color: var(--navy);
+  }
+
+  p { margin-bottom: 10px; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  a { color: var(--teal); text-decoration: none; font-weight: 500; }
+  a:hover { text-decoration: underline; }
+
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 4px; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 32px 30px;
+    border-radius: 6px;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -50px; top: -50px;
+    width: 200px; height: 200px;
+    background: var(--teal);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .hero .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+  .hero h1 { color: var(--paper); margin-bottom: 10px; position: relative; z-index: 1; }
+  .hero .sub {
+    font-size: 12pt;
+    color: var(--paper);
+    opacity: 0.88;
+    position: relative; z-index: 1;
+    line-height: 1.5;
+  }
+
+  /* AXES MATCH */
+  .axes-match {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .axes-match .axe {
+    background: var(--paper);
+    border-left: 4px solid var(--teal);
+    padding: 16px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+  .axes-match .axe.outil {
+    border-left-color: var(--amber);
+    background: #fef9eb;
+  }
+  .axes-match .axe-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .axes-match .axe-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 11.5pt;
+    margin-bottom: 6px;
+  }
+  .axes-match .axe-desc {
+    font-size: 10pt;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* PILIERS */
+  ol.steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 12px 0;
+  }
+  ol.steps li {
+    counter-increment: step;
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding: 14px 18px 14px 60px;
+    margin-bottom: 8px;
+    position: relative;
+    border-radius: 0 4px 4px 0;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 32px;
+    height: 32px;
+    background: var(--teal);
+    color: var(--paper);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 14pt;
+  }
+  ol.steps li strong {
+    color: var(--navy);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    display: block;
+    font-size: 11.5pt;
+    margin-bottom: 4px;
+  }
+
+  /* SCHEMA */
+  .schema-figure {
+    margin: 18px 0 22px;
+    text-align: center;
+  }
+  .schema-figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #ffffff;
+    cursor: zoom-in;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .schema-figure img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(35, 48, 57, 0.15);
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 11, 11, 0.92);
+    z-index: 9999;
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 92vh;
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--amber);
+    color: var(--navy);
+    border: none;
+    border-radius: 50%;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 22pt;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(250, 250, 250, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt;
+    letter-spacing: 0.5px;
+  }
+  .schema-figure figcaption {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .schema-placeholder {
+    background: #fef9eb;
+    border: 2px dashed var(--amber);
+    padding: 30px 20px;
+    border-radius: 6px;
+    color: var(--muted);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+  }
+  .schema-placeholder strong { color: var(--navy); }
+
+  /* HIGHLIGHT NEWSLETTER */
+  .newsletter-block {
+    background: var(--amber);
+    color: var(--ink);
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin: 14px 0;
+  }
+  .newsletter-block .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .newsletter-block h3 {
+    color: var(--navy);
+    font-size: 13pt;
+    margin: 0 0 8px 0;
+  }
+  .newsletter-block p {
+    color: var(--ink);
+    margin: 0 0 6px 0;
+    font-size: 10.5pt;
+  }
+  .newsletter-block p:last-child { margin-bottom: 0; }
+
+  /* STATS */
+  .stats-section {
+    background: var(--paper);
+    padding: 20px 24px;
+    border-radius: 6px;
+    margin: 14px 0;
+    border: 1px solid var(--border);
+  }
+  .stats-section h3 {
+    margin-top: 0;
+    font-size: 12pt;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 12px 0 14px;
+  }
+  .stat-card {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 14px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-card .number {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 22pt;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .stat-card .label {
+    font-size: 9pt;
+    color: var(--paper);
+    margin-top: 6px;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .traffic-list {
+    margin-top: 10px;
+    font-size: 10pt;
+  }
+  .traffic-list .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .traffic-list .row:last-child { border: none; }
+  .traffic-list .row .channel {
+    font-weight: 500;
+  }
+  .traffic-list .row .pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* REFERENCES SOCIALES */
+  .social-refs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .social-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    padding: 14px;
+    border-radius: 4px;
+    text-align: center;
+    transition: border 0.2s;
+  }
+  .social-card:hover { border-color: var(--teal); }
+  .social-card .platform {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 11pt;
+    margin-bottom: 4px;
+  }
+  .social-card .handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt;
+    color: var(--muted);
+    word-break: break-all;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 28px;
+    border-radius: 6px;
+    margin: 24px 0 12px;
+    text-align: center;
+  }
+  .cta .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+  .cta h3 {
+    color: var(--paper);
+    font-size: 18pt;
+    margin-bottom: 12px;
+  }
+  .cta p {
+    color: var(--paper);
+    opacity: 0.88;
+    margin-bottom: 18px;
+    font-size: 11pt;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--navy);
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    letter-spacing: 0.3px;
+  }
+  .cta-link-info {
+    display: block;
+    margin-top: 10px;
+    color: var(--paper);
+    opacity: 0.65;
+    font-size: 9pt;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ENVELOPE */
+  .envelope {
+    background: var(--paper);
+    border: 2px solid var(--teal);
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin: 18px 0;
+    text-align: center;
+  }
+  .envelope .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .envelope .amount {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 28pt;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .envelope .note {
+    font-size: 9.5pt;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 8.5pt;
+    color: var(--muted);
+    text-align: center;
+  }
+  .footer a {
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  .small { font-size: 9pt; color: var(--muted); }
+  .quote-italic { font-style: italic; color: var(--muted); font-size: 10.5pt; padding: 6px 0; border-left: 3px solid var(--border); padding-left: 14px; margin: 10px 0; }
+
+  @media print {
+    body { padding: 12mm; max-width: none; }
+    h2 { page-break-after: avoid; }
+    .hero, .axes-match, ol.steps li, .stats-section, .cta, .envelope, .schema-figure, .newsletter-block, .social-refs { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="label">Candidature · Mission Écosystème Communauté</div>
+    <h1>Un système où le contenu attire,<br>la communauté retient,<br><span class="accent">les offres convertissent.</span></h1>
+    <div class="sub">Votre brief décrit ce que peu de marques savent vraiment articuler. Voici comment je peux vous aider à le construire — avec un outil qui tient la voix sur toutes vos plateformes, et une expérience concrète de la mécanique communautaire.</div>
+  </section>
+
+  <h2><span class="num">01</span>Pourquoi je vous écris en particulier</h2>
+  <p>Quand j'ai relu votre brief, deux de vos cinq axes décrivent <strong>exactement</strong> l'outil que j'ai développé.</p>
+
+  <div class="axes-match">
+    <div class="axe outil">
+      <div class="axe-num">Axe 3 de votre brief</div>
+      <div class="axe-title">Connexion entre les écosystèmes</div>
+      <div class="axe-desc">Mon studio Automation Builders construit ces passerelles tous les jours. Mon outil + ManyChat couvrent l'intégralité de cet axe : captation lead Instagram, conversation flows, redirection communauté, mesure des conversions.</div>
+    </div>
+    <div class="axe outil">
+      <div class="axe-num">Axe 4 de votre brief</div>
+      <div class="axe-title">Création de contenu multi-plateformes</div>
+      <div class="axe-desc">C'est exactement ce que mon outil fait. Pipeline Sources → Concepts → Remix → Publications, avec un agent IA qui apprend votre style éditorial et produit des drafts dans votre voix, sur toutes les plateformes, à grande échelle.</div>
+    </div>
+  </div>
+
+  <p class="quote-italic">C'est ce que j'utilise pour mes propres publications. C'est ce qui me permet de tenir LinkedIn, TikTok et YouTube en parallèle sans diluer le ton. C'est ce que je peux installer chez vous.</p>
+
+  <h2><span class="num">02</span>L'outil de production de contenu</h2>
+  <p>Le cœur du dispositif. Une chaîne en 4 temps qui transforme tout ce que vous absorbez (vidéos, podcasts, livres, vocaux) en publications cohérentes et différenciantes sur toutes vos plateformes — dans <strong>votre</strong> voix, pas dans une voix générique.</p>
+
+  <figure class="schema-figure">
+    <img src="outil_production_contenu.png" alt="Schéma de l'outil de production de contenu — Sources, Extraction, Remix, Publications">
+    <figcaption>Schéma — L'outil de production de contenu en 4 étapes</figcaption>
+  </figure>
+
+  <h2><span class="num">03</span>Comment je me positionne sur la mission</h2>
+  <p>J'apporte trois choses, pas plus, pas moins :</p>
+
+  <ol class="steps">
+    <li>
+      <strong>L'outil sur mesure</strong>
+      Calibré sur votre voix sur 20 à 30 textes représentatifs (vos meilleurs posts, vos vidéos transcrites, votre manifeste). Une fois calibré, il produit en quelques minutes ce qui vous prendrait des heures à la main, dans votre univers, sans que vous ayez à recommencer le travail à chaque plateforme.
+    </li>
+    <li>
+      <strong>La structure de la communauté</strong>
+      J'opère <a href="https://www.skool.com/club-smart">Club SMART</a> sur Skool depuis plusieurs mois. Skool n'est pas Mighty Networks, mais 80 % des principes de plateforme communautaire sont transférables : parcours d'onboarding, dynamiques d'engagement, mécaniques d'activation, organisation des espaces.
+    </li>
+    <li>
+      <strong>Le liant entre vos plateformes</strong>
+      Automatisations, intégrations, funnels ManyChat, mesure des conversions. C'est mon métier dans Automation Builders depuis le début.
+    </li>
+  </ol>
+
+  <figure class="schema-figure">
+    <img src="flywheel_ecosysteme.png" alt="Schéma de l'écosystème — Attirer, Retenir, Convertir, avec l'outil de production de contenu au centre">
+    <figcaption>Schéma — L'écosystème complet · attirer · retenir · convertir</figcaption>
+  </figure>
+
+  <h2><span class="num">04</span>Sur la voix éditoriale de votre marque</h2>
+  <p>Je serai transparent : votre univers (mentorat neurosomatique, leadership incarné, transformationnel, identitaire) n'est pas le mien. Je suis pragmatique, build in public, tech & IA. Si vous cherchez quelqu'un qui va écrire vos posts dans votre voix de manière native, en solo, je ne suis pas la bonne personne.</p>
+
+  <p><strong>Mais l'outil que je vous installe la réplique.</strong> Vous me fournissez vos textes représentatifs, je calibre l'agent, et il devient capable d'écrire des drafts Instagram, des carrousels, des posts communauté, des newsletters dans votre ton, à une cohérence que vous ne pouvez pas tenir à la main quand le rythme s'accélère.</p>
+
+  <p>C'est précisément l'intérêt de ma proposition : <strong>vous gardez le pilotage de la voix, l'outil exécute à votre place.</strong></p>
+
+  <section class="newsletter-block">
+    <div class="label">Une remarque sur votre brief</div>
+    <h3>La newsletter manque — et c'est la brique qui tient l'écosystème dans la durée</h3>
+    <p>Votre brief parle d'Instagram, de Mighty Networks, de funnels, mais pas de newsletter. À mon avis c'est la brique manquante essentielle :</p>
+    <p>– elle capte les leads Insta qui ne basculent pas immédiatement dans la communauté<br>
+       – elle reste indépendante des algorithmes (canal possédé)<br>
+       – elle ré-active régulièrement votre audience vers vos offres</p>
+    <p>Je peux l'intégrer dès le départ au dispositif, sans coût supplémentaire — l'outil produit des drafts newsletter au même titre que les posts.</p>
+  </section>
+
+  <h2><span class="num">05</span>Mes références</h2>
+
+  <h3 style="margin-top: 14px">Présence éditoriale personnelle</h3>
+  <p>Je publie quotidiennement sur 3 plateformes — voici comment je tiens la cohérence de voix grâce à l'outil :</p>
+
+  <div class="social-refs">
+    <a class="social-card" href="https://www.linkedin.com/in/thomas-richard-48212618/">
+      <div class="platform">LinkedIn</div>
+      <div class="handle">/in/thomas-richard-48212618</div>
+    </a>
+    <a class="social-card" href="https://www.tiktok.com/@thomrichard_monplanv">
+      <div class="platform">TikTok</div>
+      <div class="handle">@thomrichard_monplanv</div>
+    </a>
+    <a class="social-card" href="https://www.youtube.com/@thomasrichard1978">
+      <div class="platform">YouTube</div>
+      <div class="handle">@thomasrichard1978</div>
+    </a>
+  </div>
+
+  <section class="stats-section">
+    <h3>Club SMART · Communauté Skool autour de l'IA appliquée</h3>
+    <p class="small">Soyons honnêtes : la communauté démarre. Je l'ai reprise il y a environ un mois, c'est une <strong>communauté payante</strong>, et nous en sommes aujourd'hui à <strong>102 membres actifs</strong>. Les chiffres ci-dessous sont publics et extraits du dashboard Skool — ils donnent un ordre d'idée de ce que je sais faire en termes de capture multi-canal et de conversion, sur une base modeste mais qui croît de manière saine.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number">102</div>
+        <div class="label">Membres actifs</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">54%</div>
+        <div class="label">Engagement</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">36,4%</div>
+        <div class="label">Taux conversion</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">6</div>
+        <div class="label">Modules de parcours</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 14px; font-size: 11pt">Sources de signups · 30 derniers jours</h3>
+    <div class="traffic-list">
+      <div class="row"><span class="channel">YouTube</span><span class="pct">37,2 %</span></div>
+      <div class="row"><span class="channel">Direct</span><span class="pct">32,6 %</span></div>
+      <div class="row"><span class="channel">LinkedIn</span><span class="pct">11,6 %</span></div>
+      <div class="row"><span class="channel">Skool network</span><span class="pct">9,3 %</span></div>
+      <div class="row"><span class="channel">Affiliate</span><span class="pct">4,7 %</span></div>
+      <div class="row"><span class="channel">Newsletter (Kit)</span><span class="pct">2,3 %</span></div>
+    </div>
+    <p class="small" style="margin-top: 10px"><strong>Lecture rapide :</strong> ce qui marche le mieux n'est pas une seule plateforme, c'est l'<em>orchestration</em> entre plusieurs canaux qui s'alimentent. C'est exactement ce que vous voulez construire.</p>
+  </section>
+
+  <p class="small">Honnêtement : pas de référence Mighty Networks en production, ni de gros volume Instagram à montrer. Je préfère le dire d'entrée plutôt qu'enjoliver. <strong>Mais l'outil compense parce qu'il fait le travail.</strong></p>
+
+  <section class="envelope">
+    <div class="label">Enveloppe budgétaire</div>
+    <div class="amount">2 000 $ CAD HT</div>
+    <div class="note">Mise en place complète du dispositif. Détails du périmètre et conditions à valider en RDV.</div>
+  </section>
+
+  <section class="cta">
+    <div class="label">Prochaine étape</div>
+    <h3>Je vous propose une démo de l'outil</h3>
+    <p>30 minutes ensemble. Je fais tourner le pipeline sur un de vos textes existants, dans votre univers. Vous jugez si la voix est tenue. On décide ensuite si on va plus loin.</p>
+    <a href="https://tidycal.com/thomrichard/vos-besoins" class="cta-button">Réserver la démo →</a>
+    <span class="cta-link-info">tidycal.com/thomrichard/vos-besoins</span>
+  </section>
+
+  <footer class="footer">
+    Thomas Richard · Automation Builders · Club SMART<br>
+    <a href="https://www.thomrichard.com">www.thomrichard.com</a>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Fermer">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-hint">Cliquez n'importe où ou appuyez sur Échap pour fermer</div>
+  </div>
+
+  <script>
+    (function() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const schemaImages = document.querySelectorAll('.schema-figure img');
+
+      schemaImages.forEach(img => {
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      lightbox.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
