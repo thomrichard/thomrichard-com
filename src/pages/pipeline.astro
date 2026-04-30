@@ -1,0 +1,98 @@
+---
+import Page from '../layouts/Page.astro';
+
+type Entry = {
+  slug: string;
+  type: 'Devis' | 'Mission';
+  client: string;
+  titre: string;
+  montant: string;
+  statut: string;
+  envoye: string;
+  href: string;
+};
+
+const entries: Entry[] = [
+  {
+    slug: 'verbatim-ia-sst',
+    type: 'Devis',
+    client: 'ACQ — Geneviève St-Onge',
+    titre: 'Verbatim IA SST (ACQ #1)',
+    montant: '14 000 CAD HT',
+    statut: 'Prêt à envoyer',
+    envoye: '—',
+    href: '/devis/verbatim-ia-sst/soumission.html',
+  },
+  {
+    slug: 'plateforme-documents-acq',
+    type: 'Devis',
+    client: 'ACQ — Geneviève St-Onge',
+    titre: 'Plateforme génération documents (ACQ #2)',
+    montant: '14 000 CAD HT (bundle 25 000 avec ACQ #1)',
+    statut: 'Prêt à envoyer',
+    envoye: '—',
+    href: '/devis/plateforme-documents-acq/soumission.html',
+  },
+  {
+    slug: 'ecosysteme-mentor',
+    type: 'Mission',
+    client: 'OmBodhi — mentorat neurosomatique',
+    titre: 'Écosystème mentorat (Mighty Networks + Insta)',
+    montant: '2 000 CAD HT',
+    statut: 'Prête à envoyer (relance prévue à envoi+6 sem)',
+    envoye: '—',
+    href: '/devis/ecosysteme-mentor/index.html',
+  },
+];
+---
+<Page title="Pipeline — Thomas Richard" description="Pipeline interne — devis et missions envoyés.">
+  <section class="tr-section">
+    <div class="tr-container">
+      <h1>Pipeline</h1>
+      <p class="tr-lead">Vue interne des devis et missions. Cliquer sur une ligne ouvre le document.</p>
+
+      <div class="pipeline-table-wrap">
+        <table class="pipeline-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Client</th>
+              <th>Titre</th>
+              <th>Montant</th>
+              <th>Statut</th>
+              <th>Envoyé</th>
+              <th>Lien</th>
+            </tr>
+          </thead>
+          <tbody>
+            {entries.map((e) => (
+              <tr>
+                <td><span class={`pipeline-badge pipeline-badge--${e.type.toLowerCase()}`}>{e.type}</span></td>
+                <td>{e.client}</td>
+                <td><a href={e.href}>{e.titre}</a></td>
+                <td>{e.montant}</td>
+                <td>{e.statut}</td>
+                <td>{e.envoye}</td>
+                <td><a href={e.href} class="pipeline-link">Ouvrir →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .pipeline-table-wrap { overflow-x: auto; margin-top: 2rem; }
+    .pipeline-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .pipeline-table th, .pipeline-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); vertical-align: top; }
+    .pipeline-table th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; }
+    .pipeline-table tbody tr:hover { background: rgba(63, 164, 177, 0.06); }
+    .pipeline-table a { color: var(--tr-teal, #3FA4B1); text-decoration: none; }
+    .pipeline-table a:hover { text-decoration: underline; }
+    .pipeline-link { white-space: nowrap; font-size: 0.9rem; }
+    .pipeline-badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .pipeline-badge--devis { background: rgba(63, 164, 177, 0.15); color: #3FA4B1; }
+    .pipeline-badge--mission { background: rgba(245, 174, 42, 0.15); color: #F5AE2A; }
+  </style>
+</Page>
