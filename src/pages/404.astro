@@ -1,0 +1,219 @@
+---
+import Page from '../layouts/Page.astro';
+---
+<Page title="Page introuvable — Thomas Richard" description="Cette page n'existe pas (ou plus). Voici par où continuer.">
+  <section class="nf-hero">
+    <div class="tr-container nf-hero__inner">
+      <span class="nf-eyebrow">Erreur 404</span>
+      <h1 class="nf-title">Cette page n'existe pas <span class="nf-title__accent">(ou plus).</span></h1>
+      <p class="nf-lead">
+        Pas grave — tu es au bon endroit pour avancer. Voici les deux portes d'entrée du moment.
+      </p>
+    </div>
+  </section>
+
+  <section class="nf-offers">
+    <div class="tr-container nf-offers__grid">
+      <article class="nf-card nf-card--diag">
+        <span class="nf-card__tag">Accompagnement</span>
+        <h2 class="nf-card__title">Le Diag-IA</h2>
+        <p class="nf-card__hook">
+          Un accompagnement one-to-one pour passer de "j'aimerais bien utiliser l'IA" à "elle tourne dans mon activité".
+        </p>
+        <ul class="nf-card__bullets">
+          <li>Une cartographie claire de tes process et de tes points de friction</li>
+          <li>Une roadmap priorisée des chantiers IA à plus fort impact</li>
+          <li>Un premier système livré et fonctionnel</li>
+          <li>Du coaching à l'application pour que tu puisses le faire tourner sans moi</li>
+        </ul>
+        <a class="nf-cta nf-cta--teal" href="/diag-ia">Découvrir le Diag-IA →</a>
+      </article>
+
+      <article class="nf-card nf-card--smart">
+        <span class="nf-card__tag">Communauté</span>
+        <h2 class="nf-card__title">Le Club SMART</h2>
+        <p class="nf-card__hook">
+          Une communauté pour apprendre l'IA en l'appliquant à tes propres cas d'usage.
+        </p>
+        <ul class="nf-card__bullets">
+          <li>Un parcours complet d'autodiagnostic pour savoir par où commencer</li>
+          <li>Des conseils dans chacun des piliers : automatisation, IA, side business, no-code</li>
+          <li>Des échanges avec des membres qui construisent vraiment</li>
+          <li>Les coulisses de mes projets en build-in-public</li>
+        </ul>
+        <a class="nf-cta nf-cta--amber" href="https://www.skool.com/club-smart" target="_blank" rel="noopener">Rejoindre le Club SMART →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="nf-explore">
+    <div class="tr-container">
+      <p class="nf-explore__label">Ou explore le reste du site :</p>
+      <ul class="nf-explore__links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/sur-mesure">Missions sur-mesure</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <style>
+    .nf-hero {
+      padding: clamp(48px, 8vw, 96px) 0 24px;
+    }
+    .nf-hero__inner {
+      max-width: 760px;
+    }
+    .nf-eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--t-caption);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 4px 10px;
+      border: 1px solid color-mix(in oklch, var(--teal) 40%, transparent);
+      border-radius: var(--r-pill);
+      margin-bottom: var(--sp-5);
+    }
+    .nf-title {
+      font-family: var(--font-display);
+      font-weight: var(--fw-black);
+      font-size: clamp(36px, 6vw, var(--t-display-l));
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-display);
+      margin: 0 0 var(--sp-5);
+    }
+    .nf-title__accent { color: var(--teal); }
+    .nf-lead {
+      font-size: var(--t-h3);
+      color: var(--fg-2);
+      max-width: 56ch;
+    }
+
+    .nf-offers {
+      padding: var(--sp-7) 0 var(--sp-8);
+    }
+    .nf-offers__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--sp-6);
+    }
+    @media (max-width: 760px) {
+      .nf-offers__grid { grid-template-columns: 1fr; }
+    }
+
+    .nf-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      transition: transform var(--dur-std) var(--ease-out), box-shadow var(--dur-std) var(--ease-out);
+    }
+    .nf-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    .nf-card--diag { border-top: 4px solid var(--teal); }
+    .nf-card--smart { border-top: 4px solid var(--amber); }
+
+    .nf-card__tag {
+      font-family: var(--font-mono);
+      font-size: var(--t-caption);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+    }
+    .nf-card__title {
+      font-family: var(--font-display);
+      font-size: var(--t-display-s);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-display);
+      margin: 0;
+    }
+    .nf-card__hook {
+      color: var(--fg-1);
+      font-size: var(--t-h3);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-snug);
+      margin: 0;
+    }
+    .nf-card__bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      flex: 1;
+    }
+    .nf-card__bullets li {
+      position: relative;
+      padding-left: var(--sp-5);
+      color: var(--fg-2);
+      line-height: var(--lh-normal);
+    }
+    .nf-card__bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      border-radius: var(--r-pill);
+      background: currentColor;
+      opacity: 0.6;
+    }
+    .nf-card--diag .nf-card__bullets li::before { background: var(--teal); opacity: 1; }
+    .nf-card--smart .nf-card__bullets li::before { background: var(--amber); opacity: 1; }
+
+    .nf-cta {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 12px 22px;
+      border-radius: var(--r-pill);
+      font-weight: var(--fw-semibold);
+      font-family: var(--font-body);
+      text-decoration: none;
+      transition: transform var(--dur-micro) var(--ease-out), filter var(--dur-micro) var(--ease-out);
+      margin-top: var(--sp-3);
+    }
+    .nf-cta:hover { transform: translateY(-1px); filter: brightness(1.05); text-decoration: none; }
+    .nf-cta--teal { background: var(--teal); color: var(--ink); }
+    .nf-cta--amber { background: var(--amber); color: var(--ink); }
+
+    .nf-explore {
+      padding: 0 0 var(--sp-9);
+    }
+    .nf-explore__label {
+      font-family: var(--font-mono);
+      font-size: var(--t-caption);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+      margin: 0 0 var(--sp-4);
+    }
+    .nf-explore__links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-5);
+    }
+    .nf-explore__links a {
+      color: var(--fg-1);
+      font-weight: var(--fw-medium);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+    .nf-explore__links a:hover {
+      color: var(--teal);
+      border-color: var(--teal);
+      text-decoration: none;
+    }
+  </style>
+</Page>
