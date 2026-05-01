@@ -1,0 +1,26 @@
+---
+import Page from '../layouts/Page.astro';
+---
+<Page title="Build-in-public — Thomas Richard"
+      description="Le dashboard public de la chaîne YouTube Club SMART : vues, watch time, abonnés, top vidéos. Mis à jour chaque semaine."
+      active="building-public">
+  <link rel="stylesheet" href="/build-in-public/styles.css" />
+
+  <div id="dash-root"></div>
+
+  <script is:inline src="/build-in-public/data.js"></script>
+  <script is:inline src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script is:inline src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script is:inline src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+  <script is:inline type="text/babel" src="/build-in-public/charts.jsx"></script>
+  <script is:inline type="text/babel" src="/build-in-public/components.jsx"></script>
+  <script is:inline type="text/babel" src="/build-in-public/tweaks-panel.jsx"></script>
+  <script is:inline type="text/babel" src="/build-in-public/app.jsx" data-presets="env,react"></script>
+
+  <style is:inline>
+    /* Le dashboard a son propre header sticky qui doit rester en dessous de la nav du site. */
+    #dash-root .dash-header { position: sticky; top: 0; z-index: 50; }
+    /* Cache le panneau Tweaks (réservé à Claude Design) */
+    .tweaks-toggle, .tweaks-panel { display: none !important; }
+  </style>
+</Page>
