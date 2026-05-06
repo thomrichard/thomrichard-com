@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Club SMART — Design System</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --ink: #0B0B0B;
+  --navy: #233039;
+  --teal: #3FA4B1;
+  --amber: #F5AE2A;
+  --paper: #FAFAFA;
+  --white: #FFFFFF;
+  --ink-2: #1A1F24;
+
+  --n-50: #F6F7F8; --n-100: #EBEDEF; --n-200: #D9DDE1; --n-300: #B8BFC6;
+  --n-400: #8A949D; --n-500: #5F6A74; --n-600: #43505B; --n-700: #2E3943;
+  --n-800: #1F2830; --n-900: #12181D;
+
+  --success: #2E8F6E; --warning: #F5AE2A; --danger: #C5463A; --info: #3FA4B1;
+
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter Tight', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --r-xs: 4px; --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px; --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgba(11,11,11,.06), 0 1px 1px rgba(11,11,11,.04);
+  --shadow-2: 0 4px 12px rgba(11,11,11,.08), 0 2px 4px rgba(11,11,11,.04);
+  --shadow-3: 0 12px 32px rgba(11,11,11,.12), 0 4px 8px rgba(11,11,11,.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--amber); color: var(--ink); }
+
+.page { max-width: 1240px; margin: 0 auto; padding: 64px 32px 128px; }
+
+/* ── Header ── */
+.hero {
+  padding: 32px 0 64px;
+  border-bottom: 1px solid var(--n-200);
+  margin-bottom: 64px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--n-500);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.hero .lead {
+  font-size: 20px;
+  color: var(--n-600);
+  max-width: 640px;
+  line-height: 1.5;
+}
+
+/* ── Section ── */
+section { margin-bottom: 96px; }
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  display: flex; align-items: baseline; gap: 16px;
+}
+.section-title .num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--teal);
+  font-weight: 500;
+}
+.section-desc {
+  color: var(--n-600);
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+
+/* ── Specimen cards ── */
+.grid { display: grid; gap: 16px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-6 { grid-template-columns: repeat(6, 1fr); }
+
+.specimen {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.specimen .demo {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  background: var(--n-50);
+  padding: 16px;
+  position: relative;
+}
+.specimen .meta {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.specimen .name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+}
+.specimen .props {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--n-500);
+  display: flex; flex-direction: column; gap: 2px;
+}
+
+/* ── Color swatches ── */
+.swatch {
+  height: 120px;
+  border-radius: var(--r-md);
+  position: relative;
+  overflow: hidden;
+}
+.swatch.bordered { border: 1px solid var(--n-200); }
+.swatch .hex {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(255,255,255,0.92);
+  color: var(--ink);
+  padding: 4px 8px;
+  border-radius: var(--r-xs);
+}
+
+/* ── Typography demo ── */
+.type-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 240px;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--n-100);
+  align-items: baseline;
+}
+.type-row:last-child { border-bottom: 0; }
+.type-row .label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--n-500);
+  font-weight: 500;
+}
+.type-row .specs {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--n-500);
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* Type styles */
+.t-display-xl { font-family: var(--font-display); font-weight: 800; font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); }
+.t-display-l  { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); }
+.t-display-m  { font-family: var(--font-display); font-weight: 700; font-size: 40px; line-height: 1.2;  letter-spacing: -0.02em; color: var(--ink); }
+.t-display-s  { font-family: var(--font-display); font-weight: 700; font-size: 32px; line-height: 1.2;  letter-spacing: -0.02em; color: var(--ink); }
+.t-h1 { font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 1.2; color: var(--ink); }
+.t-h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1.3; color: var(--ink); }
+.t-h3 { font-family: var(--font-display); font-weight: 600; font-size: 18px; line-height: 1.3; color: var(--ink); }
+.t-body { font-family: var(--font-body); font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--n-700); }
+.t-body-sm { font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.5; color: var(--n-600); }
+.t-caption { font-family: var(--font-body); font-weight: 400; font-size: 12px; line-height: 1.4; color: var(--n-500); }
+.t-mono { font-family: var(--font-mono); font-weight: 400; font-size: 14px; color: var(--ink); }
+.t-eyebrow { font-family: var(--font-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--n-500); }
+
+/* ── Radii demo ── */
+.radius-demo {
+  width: 80px; height: 80px;
+  background: var(--teal);
+}
+
+/* ── Shadow demo ── */
+.shadow-demo {
+  width: 100%; height: 80px;
+  background: var(--white);
+  border-radius: var(--r-md);
+}
+
+/* ── Spacing demo ── */
+.spacing-demo {
+  background: var(--teal);
+  height: 16px;
+  border-radius: var(--r-xs);
+}
+
+/* ── Components ── */
+.btn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  border: 0;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: var(--r-pill);
+  transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary { background: var(--teal); color: var(--white); }
+.btn-primary:hover { background: #348e9a; transform: translateY(-1px); }
+.btn-amber { background: var(--amber); color: var(--ink); }
+.btn-amber:hover { background: #e29e1f; }
+.btn-ink { background: var(--ink); color: var(--paper); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: var(--n-100); }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+}
+.badge-teal { background: rgba(63, 164, 177, 0.25); color: #1f6f78; }
+.badge-amber { background: rgba(245, 174, 42, 0.30); color: #6b4708; }
+.badge-success { background: rgba(46, 143, 110, 0.22); color: #1f6850; }
+.badge-danger { background: rgba(197, 70, 58, 0.22); color: #8a2e25; }
+.badge-neutral { background: var(--n-200); color: var(--n-700); }
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--n-100);
+}
+.card.dark {
+  background: var(--navy);
+  color: var(--paper);
+  border: 0;
+}
+.card.amber {
+  background: var(--amber);
+  color: var(--ink);
+  border: 0;
+}
+.card h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+.card p { font-size: 14px; line-height: 1.5; }
+
+/* ── Input ── */
+.input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--n-200);
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--ink);
+  transition: border 150ms;
+}
+.input:focus { outline: 0; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(63, 164, 177, 0.18); }
+
+/* ── Quote ── */
+.quote {
+  border-left: 3px solid var(--teal);
+  padding: 16px 0 16px 24px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink);
+  font-style: italic;
+}
+.quote .cite {
+  display: block;
+  margin-top: 12px;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--n-500);
+}
+
+/* ── Code block ── */
+.code-block {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 16px 20px;
+  border-radius: var(--r-md);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.code-block .comment { color: var(--n-400); }
+.code-block .keyword { color: var(--teal); }
+.code-block .string { color: var(--amber); }
+
+/* ── Stat ── */
+.stat {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.stat .num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+.stat .num.amber { color: var(--amber); }
+.stat .num.teal { color: var(--teal); }
+.stat .label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--n-500);
+}
+
+/* ── Divider ── */
+hr.divider { border: 0; border-top: 1px solid var(--n-200); margin: 32px 0; }
+
+/* ── Voice/Tone box ── */
+.voice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.voice .col {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  border: 1px solid var(--n-200);
+}
+.voice .col h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.voice .yes h4::before { content: '✓'; color: var(--success); font-weight: 800; }
+.voice .no h4::before  { content: '✕'; color: var(--danger); font-weight: 800; }
+.voice ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.voice li { font-size: 14px; color: var(--n-700); padding-left: 16px; position: relative; }
+.voice li::before { content: '·'; position: absolute; left: 0; }
+
+/* ── Icon tiles ── */
+.icon-tile {
+  width: 48px; height: 48px;
+  border-radius: var(--r-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.icon-tile.teal { background: rgba(63, 164, 177, 0.50); color: #0e4f57; }
+.icon-tile.amber { background: rgba(245, 174, 42, 0.55); color: #553700; }
+.icon-tile.ink { background: var(--n-200); color: var(--ink); }
+.icon-tile i, .icon-tile svg { width: 20px; height: 20px; stroke-width: 1.75; }
+
+/* ── Status badges (puce) ── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+}
+.status-badge .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.status-danger { background: rgba(197, 70, 58, 0.18); color: #8a2e25; }
+.status-danger .dot { background: var(--danger); }
+.status-teal { background: rgba(63, 164, 177, 0.22); color: #1f6f78; }
+.status-teal .dot { background: var(--teal); }
+.status-amber { background: rgba(245, 174, 42, 0.30); color: #6b4708; }
+.status-amber .dot { background: var(--amber); }
+.status-success { background: rgba(46, 143, 110, 0.20); color: #1f6850; }
+.status-success .dot { background: var(--success); }
+.status-neutral { background: var(--n-200); color: var(--n-700); }
+.status-neutral .dot { background: var(--n-500); }
+
+/* ── Check / cross list ── */
+.check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+}
+.check-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--n-700);
+  line-height: 1.4;
+}
+.check-list.dark li { color: var(--paper); }
+.mark {
+  width: 24px; height: 24px;
+  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.mark i, .mark svg { width: 14px; height: 14px; stroke-width: 2; }
+.mark-check { background: rgba(63, 164, 177, 0.50); color: #0e4f57; }
+.mark-cross { background: rgba(197, 70, 58, 0.40); color: #6b1e16; }
+
+/* ── Page header ── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 32px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--n-200);
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.logo-mark {
+  width: 28px; height: 28px;
+  background: var(--teal);
+  border-radius: var(--r-sm);
+  border: 2px solid var(--ink);
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.logo-text strong { font-weight: 800; }
+.nav {
+  display: flex;
+  gap: 32px;
+}
+.nav a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--n-700);
+  text-decoration: none;
+}
+.nav a:hover { color: var(--ink); }
+.page-header .btn { padding: 10px 20px; font-size: 14px; }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4, .grid-5, .grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .type-row { grid-template-columns: 1fr; gap: 8px; }
+  .type-row .specs { text-align: left; }
+  .voice { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="hero">
+    <div class="eyebrow">Club SMART · Design System</div>
+    <h1>L'identité visuelle, en un coup d'œil.</h1>
+    <p class="lead">Couleurs, typographies, composants et règles d'usage. La référence à consulter avant de produire un visuel ou une interface pour le Club SMART, Automation Builders ou la marque Thomas Richard.</p>
+  </header>
+
+  <!-- ============ COLORS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">01</span>Palette</h2>
+    <p class="section-desc">5 couleurs core + une échelle de neutres. Pas de rouge. Le Teal porte les accents techniques (IA, links, data), l'Amber porte l'humain et les CTAs.</p>
+
+    <div class="grid grid-5">
+      <div class="specimen">
+        <div class="swatch" style="background: var(--ink);"><span class="hex">#0B0B0B</span></div>
+        <div class="meta">
+          <span class="name">Ink</span>
+          <div class="props">
+            <span>Texte principal</span>
+            <span>Fonds premium / dark</span>
+          </div>
+        </div>
+      </div>
+      <div class="specimen">
+        <div class="swatch" style="background: var(--navy);"><span class="hex">#233039</span></div>
+        <div class="meta">
+          <span class="name">Navy</span>
+          <div class="props">
+            <span>Fond secondaire</span>
+            <span>Sections d'emphase</span>
+          </div>
+        </div>
+      </div>
+      <div class="specimen">
+        <div class="swatch" style="background: var(--teal);"><span class="hex">#3FA4B1</span></div>
+        <div class="meta">
+          <span class="name">Teal</span>
+          <div class="props">
+            <span>Accent primaire</span>
+            <span>Liens · IA · data</span>
+          </div>
+        </div>
+      </div>
+      <div class="specimen">
+        <div class="swatch" style="background: var(--amber);"><span class="hex">#F5AE2A</span></div>
+        <div class="meta">
+          <span class="name">Amber</span>
+          <div class="props">
+            <span>Accent humain</span>
+            <span>CTAs · métriques</span>
+          </div>
+        </div>
+      </div>
+      <div class="specimen">
+        <div class="swatch bordered" style="background: var(--paper);"><span class="hex">#FAFAFA</span></div>
+        <div class="meta">
+          <span class="name">Paper</span>
+          <div class="props">
+            <span>Fond clair par défaut</span>
+            <span>Texte sur fond foncé</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="t-h3" style="margin-top: 48px; margin-bottom: 16px;">Échelle de neutres</h3>
+    <div class="grid grid-5">
+      <div class="swatch bordered" style="background: var(--n-50); height: 64px;"><span class="hex">n-50</span></div>
+      <div class="swatch" style="background: var(--n-100); height: 64px;"><span class="hex">n-100</span></div>
+      <div class="swatch" style="background: var(--n-200); height: 64px;"><span class="hex">n-200</span></div>
+      <div class="swatch" style="background: var(--n-300); height: 64px;"><span class="hex">n-300</span></div>
+      <div class="swatch" style="background: var(--n-400); height: 64px;"><span class="hex">n-400</span></div>
+      <div class="swatch" style="background: var(--n-500); height: 64px;"><span class="hex">n-500</span></div>
+      <div class="swatch" style="background: var(--n-600); height: 64px;"><span class="hex">n-600</span></div>
+      <div class="swatch" style="background: var(--n-700); height: 64px;"><span class="hex">n-700</span></div>
+      <div class="swatch" style="background: var(--n-800); height: 64px;"><span class="hex">n-800</span></div>
+      <div class="swatch" style="background: var(--n-900); height: 64px;"><span class="hex">n-900</span></div>
+    </div>
+
+    <h3 class="t-h3" style="margin-top: 48px; margin-bottom: 16px;">Couleurs sémantiques</h3>
+    <div class="grid grid-4">
+      <div class="specimen">
+        <div class="swatch" style="background: var(--success); height: 64px;"><span class="hex">#2E8F6E</span></div>
+        <div class="meta"><span class="name">Success</span><span class="props">Confirmations · états OK</span></div>
+      </div>
+      <div class="specimen">
+        <div class="swatch" style="background: var(--warning); height: 64px;"><span class="hex">#F5AE2A</span></div>
+        <div class="meta"><span class="name">Warning</span><span class="props">= Amber, alertes douces</span></div>
+      </div>
+      <div class="specimen">
+        <div class="swatch" style="background: var(--danger); height: 64px;"><span class="hex">#C5463A</span></div>
+        <div class="meta"><span class="name">Danger</span><span class="props">Erreurs · destructif</span></div>
+      </div>
+      <div class="specimen">
+        <div class="swatch" style="background: var(--info); height: 64px;"><span class="hex">#3FA4B1</span></div>
+        <div class="meta"><span class="name">Info</span><span class="props">= Teal, infos neutres</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TYPOGRAPHY ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">02</span>Typographie</h2>
+    <p class="section-desc">3 familles : <strong>Manrope</strong> pour la voix forte (display), <strong>Inter Tight</strong> pour la voix courante (body), <strong>JetBrains Mono</strong> pour la voix technique (code, eyebrows, captions).</p>
+
+    <div class="card" style="padding: 0 32px;">
+
+      <div class="type-row">
+        <div class="label">Display XL</div>
+        <div class="t-display-xl">Ton business, en pilote auto.</div>
+        <div class="specs">Manrope · 800 · 72px<br>line 1.05 · spacing -0.03em</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Display L</div>
+        <div class="t-display-l">Apprendre l'IA en l'appliquant.</div>
+        <div class="specs">Manrope · 700 · 56px<br>line 1.05 · spacing -0.03em</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Display M</div>
+        <div class="t-display-m">Section d'accroche</div>
+        <div class="specs">Manrope · 700 · 40px<br>line 1.2 · spacing -0.02em</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Display S</div>
+        <div class="t-display-s">Titre de section</div>
+        <div class="specs">Manrope · 700 · 32px<br>line 1.2 · spacing -0.02em</div>
+      </div>
+      <div class="type-row">
+        <div class="label">H1</div>
+        <div class="t-h1">Titre de page</div>
+        <div class="specs">Manrope · 700 · 28px<br>line 1.2</div>
+      </div>
+      <div class="type-row">
+        <div class="label">H2</div>
+        <div class="t-h2">Sous-titre</div>
+        <div class="specs">Manrope · 700 · 22px<br>line 1.3</div>
+      </div>
+      <div class="type-row">
+        <div class="label">H3</div>
+        <div class="t-h3">En-tête de bloc</div>
+        <div class="specs">Manrope · 600 · 18px<br>line 1.3</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Body</div>
+        <div class="t-body">Texte courant de paragraphe. Ce qui doit se lire confortablement, sans fatigue, en français comme en anglais.</div>
+        <div class="specs">Inter Tight · 400 · 16px<br>line 1.6</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Body SM</div>
+        <div class="t-body-sm">Texte secondaire, descriptions, cartes — plus compact mais lisible.</div>
+        <div class="specs">Inter Tight · 400 · 14px<br>line 1.5</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Caption</div>
+        <div class="t-caption">Légende, métadonnée, date — texte de support.</div>
+        <div class="specs">Inter Tight · 400 · 12px<br>line 1.4</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Mono</div>
+        <div class="t-mono">apply_ai(ton_business)</div>
+        <div class="specs">JetBrains Mono · 400 · 14px</div>
+      </div>
+      <div class="type-row">
+        <div class="label">Eyebrow</div>
+        <div class="t-eyebrow">Build · in · public</div>
+        <div class="specs">JetBrains Mono · 500 · 12px<br>uppercase · spacing 0.08em</div>
+      </div>
+
+    </div>
+
+    <h3 class="t-h3" style="margin-top: 48px; margin-bottom: 16px;">Mapping Canva Brand Kit</h3>
+    <div class="card">
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--n-200);">
+            <th style="text-align: left; padding: 12px 8px; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--n-500);">Slot Canva</th>
+            <th style="text-align: left; padding: 12px 8px; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--n-500);">Police</th>
+            <th style="text-align: left; padding: 12px 8px; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--n-500);">Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--n-100);"><td style="padding: 10px 8px;"><strong>Heading</strong></td><td style="padding: 10px 8px;">Manrope</td><td style="padding: 10px 8px;">ExtraBold (800)</td></tr>
+          <tr style="border-bottom: 1px solid var(--n-100);"><td style="padding: 10px 8px;"><strong>Subheading</strong></td><td style="padding: 10px 8px;">Manrope</td><td style="padding: 10px 8px;">Bold (700)</td></tr>
+          <tr style="border-bottom: 1px solid var(--n-100);"><td style="padding: 10px 8px;"><strong>Subtitle</strong></td><td style="padding: 10px 8px;">Inter Tight</td><td style="padding: 10px 8px;">SemiBold (600)</td></tr>
+          <tr style="border-bottom: 1px solid var(--n-100);"><td style="padding: 10px 8px;"><strong>Section header</strong></td><td style="padding: 10px 8px;">Inter Tight</td><td style="padding: 10px 8px;">SemiBold (600)</td></tr>
+          <tr style="border-bottom: 1px solid var(--n-100);"><td style="padding: 10px 8px;"><strong>Body</strong></td><td style="padding: 10px 8px;">Inter Tight</td><td style="padding: 10px 8px;">Regular (400)</td></tr>
+          <tr style="border-bottom: 1px solid var(--n-100);"><td style="padding: 10px 8px;"><strong>Quote</strong></td><td style="padding: 10px 8px;">Inter Tight</td><td style="padding: 10px 8px;">Medium Italic (500)</td></tr>
+          <tr><td style="padding: 10px 8px;"><strong>Caption</strong></td><td style="padding: 10px 8px;">JetBrains Mono</td><td style="padding: 10px 8px;">Regular (400)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ SPACING ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">03</span>Espacement</h2>
+    <p class="section-desc">Échelle base 4px. Toujours utiliser un step de l'échelle, jamais une valeur libre.</p>
+
+    <div class="card">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-1</span><div class="spacing-demo" style="width: 4px;"></div><span class="t-caption">4px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-2</span><div class="spacing-demo" style="width: 8px;"></div><span class="t-caption">8px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-3</span><div class="spacing-demo" style="width: 12px;"></div><span class="t-caption">12px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-4</span><div class="spacing-demo" style="width: 16px;"></div><span class="t-caption">16px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-5</span><div class="spacing-demo" style="width: 24px;"></div><span class="t-caption">24px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-6</span><div class="spacing-demo" style="width: 32px;"></div><span class="t-caption">32px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-7</span><div class="spacing-demo" style="width: 48px;"></div><span class="t-caption">48px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-8</span><div class="spacing-demo" style="width: 64px;"></div><span class="t-caption">64px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-9</span><div class="spacing-demo" style="width: 96px;"></div><span class="t-caption">96px</span></div>
+        <div style="display: grid; grid-template-columns: 80px 1fr 80px; gap: 16px; align-items: center;"><span class="t-mono">sp-10</span><div class="spacing-demo" style="width: 128px;"></div><span class="t-caption">128px</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RADII ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">04</span>Radii (arrondis)</h2>
+    <p class="section-desc">Du carré net (xs) au full pill, en passant par les cards (lg) et les boutons (pill).</p>
+    <div class="grid grid-6">
+      <div class="specimen"><div class="demo"><div class="radius-demo" style="border-radius: 4px;"></div></div><div class="meta"><span class="name">xs</span><span class="props">4px · code, tags</span></div></div>
+      <div class="specimen"><div class="demo"><div class="radius-demo" style="border-radius: 6px;"></div></div><div class="meta"><span class="name">sm</span><span class="props">6px · inputs petits</span></div></div>
+      <div class="specimen"><div class="demo"><div class="radius-demo" style="border-radius: 10px;"></div></div><div class="meta"><span class="name">md</span><span class="props">10px · inputs, code</span></div></div>
+      <div class="specimen"><div class="demo"><div class="radius-demo" style="border-radius: 16px;"></div></div><div class="meta"><span class="name">lg</span><span class="props">16px · cards</span></div></div>
+      <div class="specimen"><div class="demo"><div class="radius-demo" style="border-radius: 24px;"></div></div><div class="meta"><span class="name">xl</span><span class="props">24px · gros panels</span></div></div>
+      <div class="specimen"><div class="demo"><div class="radius-demo" style="border-radius: 999px;"></div></div><div class="meta"><span class="name">pill</span><span class="props">999px · boutons, badges</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ SHADOWS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">05</span>Ombres</h2>
+    <p class="section-desc">3 niveaux. Subtiles, jamais marquées — la profondeur vient de la structure, pas du blur.</p>
+    <div class="grid grid-3">
+      <div class="specimen"><div class="demo" style="background: var(--n-50);"><div class="shadow-demo" style="box-shadow: var(--shadow-1);"></div></div><div class="meta"><span class="name">shadow-1</span><span class="props">Cards reposantes · listes</span></div></div>
+      <div class="specimen"><div class="demo" style="background: var(--n-50);"><div class="shadow-demo" style="box-shadow: var(--shadow-2);"></div></div><div class="meta"><span class="name">shadow-2</span><span class="props">Élévation moyenne · hover</span></div></div>
+      <div class="specimen"><div class="demo" style="background: var(--n-50);"><div class="shadow-demo" style="box-shadow: var(--shadow-3);"></div></div><div class="meta"><span class="name">shadow-3</span><span class="props">Modales · floating panels</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ BUTTONS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">06</span>Boutons</h2>
+    <p class="section-desc">Toujours en pill (radius 999px), Manrope SemiBold. <strong>Primary Teal</strong> pour les actions principales, <strong>Amber</strong> pour les CTAs forts (conversion), <strong>Outline / Ghost</strong> pour les secondaires.</p>
+    <div class="card">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <button class="btn btn-primary">Action primaire</button>
+        <button class="btn btn-amber">CTA conversion</button>
+        <button class="btn btn-ink">Action neutre</button>
+        <button class="btn btn-outline">Secondaire</button>
+        <button class="btn btn-ghost">Ghost</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BADGES ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">07</span>Badges &amp; tags</h2>
+    <p class="section-desc">JetBrains Mono uppercase. Couleurs sémantiques en version désaturée (teinte sur fond opacité 12-16%).</p>
+    <div class="card">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <span class="badge badge-teal">IA</span>
+        <span class="badge badge-amber">Nouveau</span>
+        <span class="badge badge-success">En ligne</span>
+        <span class="badge badge-danger">Expiré</span>
+        <span class="badge badge-neutral">Brouillon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">08</span>Cards</h2>
+    <p class="section-desc">Container par défaut pour grouper du contenu. Radius lg (16px), shadow-1, border n-100.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="badge badge-teal" style="margin-bottom: 12px;">Tuto</span>
+        <h3>Connecter Make et Airtable</h3>
+        <p style="color: var(--n-600);">Le pas-à-pas pour automatiser ta saisie de leads en 12 minutes.</p>
+      </div>
+      <div class="card dark">
+        <span class="badge badge-teal" style="margin-bottom: 12px; background: rgba(63,164,177,0.2);">Premium</span>
+        <h3 style="color: var(--paper);">Workflow IA complet</h3>
+        <p style="color: var(--n-300);">Variante dark, pour les sections d'emphase ou les fonds Navy/Ink.</p>
+      </div>
+      <div class="card amber">
+        <span class="badge" style="margin-bottom: 12px; background: rgba(11,11,11,0.12); color: var(--ink);">Nouveau</span>
+        <h3>Communauté Skool</h3>
+        <p style="color: var(--n-700);">Variante Amber pour les CTAs conversion et highlights humains.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INPUTS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">09</span>Champs de formulaire</h2>
+    <p class="section-desc">Border 1.5px n-200. Focus = border Teal + ring 3px Teal opacity 18%. Radius md.</p>
+    <div class="card">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 400px;">
+        <input class="input" placeholder="ton@email.com" type="email">
+        <input class="input" placeholder="Champ avec focus (clique-le)">
+        <button class="btn btn-primary" style="align-self: flex-start;">Rejoindre le Club</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">10</span>Chiffres clés</h2>
+    <p class="section-desc">Manrope ExtraBold 56px. Teal pour les chiffres techniques, Amber pour les chiffres humains/résultats.</p>
+    <div class="card">
+      <div style="display: flex; gap: 64px; flex-wrap: wrap;">
+        <div class="stat"><span class="num amber">+5h</span><span class="label">Économisées / semaine</span></div>
+        <div class="stat"><span class="num teal">87</span><span class="label">Membres actifs</span></div>
+        <div class="stat"><span class="num">50+</span><span class="label">Tutos disponibles</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">11</span>Quote / mise en exergue</h2>
+    <p class="section-desc">Border-left Teal 3px, Manrope Medium italic 22px.</p>
+    <div class="card">
+      <blockquote class="quote">
+        L'IA n'a de valeur que si tu l'appliques à tes vrais problèmes.
+        <span class="cite">— Thomas Richard</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ CODE ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">12</span>Bloc de code</h2>
+    <p class="section-desc">Fond Ink, texte Paper, JetBrains Mono. Pour les workflows, prompts, snippets API.</p>
+    <div class="code-block">
+<span class="comment">// Workflow Make.com → Airtable</span>
+<span class="keyword">trigger</span>: webhook(<span class="string">"new_lead"</span>)
+<span class="keyword">filter</span>: lead.score &gt; <span class="string">70</span>
+<span class="keyword">action</span>: airtable.create(<span class="string">"Hot Leads"</span>, lead)
+    </div>
+  </section>
+
+  <!-- ============ VOICE ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">13</span>Ton &amp; voix</h2>
+    <p class="section-desc">La marque Club SMART parle direct, concret, sans jargon. Build-in-public, jamais coaching.</p>
+    <div class="voice">
+      <div class="col yes">
+        <h4>À faire</h4>
+        <ul>
+          <li>Tutoiement systématique</li>
+          <li>« le Club SMART » avec déterminant</li>
+          <li>Direct, concret, accessible</li>
+          <li>Build-in-public — montrer les chiffres, les coulisses</li>
+          <li>Apprendre l'IA <strong>en l'appliquant</strong> à son business</li>
+          <li>Verbes d'action : construire, brancher, appliquer</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h4>À éviter</h4>
+        <ul>
+          <li>Vouvoiement</li>
+          <li>« Ici on... », « Ici tu... »</li>
+          <li>« Penser système », « devenir autonome »</li>
+          <li>« Tu repars avec » (c'est une communauté, on reste)</li>
+          <li>Vocabulaire influenceur (« sans bullshit », « net »)</li>
+          <li>Emojis en UI ou slides</li>
+          <li>Le rouge — il n'est pas dans la palette</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ICON TILES ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">14</span>Icon tiles</h2>
+    <p class="section-desc">Carré arrondi 56×56 (radius lg), fond teinté à 12% de la couleur d'accent. Icône Lucide stroke 1.5, taille 24, couleur = couleur d'accent pure. Toujours en haut d'une card "feature".</p>
+    <div class="card">
+      <div style="display: flex; flex-wrap: wrap; gap: 32px;">
+        <div class="icon-tile teal"><i data-lucide="zap"></i></div>
+        <div class="icon-tile amber"><i data-lucide="rocket"></i></div>
+        <div class="icon-tile teal"><i data-lucide="bot"></i></div>
+        <div class="icon-tile amber"><i data-lucide="layers"></i></div>
+        <div class="icon-tile teal"><i data-lucide="workflow"></i></div>
+        <div class="icon-tile amber"><i data-lucide="sparkles"></i></div>
+      </div>
+      <hr class="divider">
+      <div class="grid grid-3">
+        <div>
+          <div class="icon-tile teal" style="margin-bottom: 16px;"><i data-lucide="search"></i></div>
+          <h3 class="t-h3" style="margin-bottom: 8px;">Cartographie</h3>
+          <p class="t-body-sm" style="color: var(--n-600);">Une icône Lucide simple, posée dans son tile teinté Teal.</p>
+        </div>
+        <div>
+          <div class="icon-tile amber" style="margin-bottom: 16px;"><i data-lucide="trending-up"></i></div>
+          <h3 class="t-h3" style="margin-bottom: 8px;">ROI estimé</h3>
+          <p class="t-body-sm" style="color: var(--n-600);">Variante Amber pour les features humaines / résultats.</p>
+        </div>
+        <div>
+          <div class="icon-tile teal" style="margin-bottom: 16px;"><i data-lucide="git-branch"></i></div>
+          <h3 class="t-h3" style="margin-bottom: 8px;">Workflows</h3>
+          <p class="t-body-sm" style="color: var(--n-600);">Le Teal porte tout ce qui est technique / data / IA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATUS BADGES (avec puce) ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">15</span>Status badges (avec puce)</h2>
+    <p class="section-desc">Variante badge avec un point coloré devant. Sert à marquer un état binaire (actif/inactif, manuel/automatisé, en cours/terminé). Fond teinté 8%, texte assombri.</p>
+    <div class="card">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <span class="status-badge status-danger"><span class="dot"></span>Manuel</span>
+        <span class="status-badge status-teal"><span class="dot"></span>Automatisé</span>
+        <span class="status-badge status-amber"><span class="dot"></span>En cours</span>
+        <span class="status-badge status-success"><span class="dot"></span>Live</span>
+        <span class="status-badge status-neutral"><span class="dot"></span>Brouillon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHECK / CROSS LIST ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">16</span>Listes check / cross</h2>
+    <p class="section-desc">Rangées avec une case carrée arrondie en début de ligne (24×24, radius sm). Check Teal sur dark, Cross Danger sur clair. Pour les comparatifs ou les listes d'arguments.</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div class="card">
+        <h4 class="t-h3" style="margin-bottom: 16px;">À éviter</h4>
+        <ul class="check-list">
+          <li><span class="mark mark-cross"><i data-lucide="x"></i></span>Saisir les leads à la main dans 3 outils</li>
+          <li><span class="mark mark-cross"><i data-lucide="x"></i></span>Reporting Excel le dimanche soir</li>
+          <li><span class="mark mark-cross"><i data-lucide="x"></i></span>Relancer chaque prospect un par un</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h4 class="t-h3" style="margin-bottom: 16px; color: var(--paper);">Ce qui tourne tout seul</h4>
+        <ul class="check-list dark">
+          <li><span class="mark mark-check"><i data-lucide="check"></i></span>Capture lead → Airtable → Slack en 4 min</li>
+          <li><span class="mark mark-check"><i data-lucide="check"></i></span>Dashboard qui se met à jour en temps réel</li>
+          <li><span class="mark mark-check"><i data-lucide="check"></i></span>Séquence de relance sur 3 touchpoints</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STAT HERO ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">17</span>Stat hero (chiffre dans card)</h2>
+    <p class="section-desc">Pattern : eyebrow Mono + chiffre Manrope ExtraBold géant (88px). Sert à clore une card de comparaison ou à ancrer une promesse chiffrée.</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div class="card" style="padding: 32px;">
+        <div class="t-eyebrow" style="margin-bottom: 12px;">Temps perdu / semaine</div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 88px; line-height: 1; letter-spacing: -0.04em; color: var(--ink);">~ 8 h</div>
+      </div>
+      <div class="card dark" style="padding: 32px;">
+        <div class="t-eyebrow" style="margin-bottom: 12px; color: var(--n-400);">Temps récupéré / semaine</div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 88px; line-height: 1; letter-spacing: -0.04em; color: var(--amber);">~ 6 h</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AVANT / APRÈS ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">18</span>Avant / Après</h2>
+    <p class="section-desc">Composition complète : 2 cards (clair vs Ink) avec status badge en haut, check-list, divider, stat hero en bas. Le pattern signature pour démontrer la transformation.</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div class="card" style="padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <span class="t-eyebrow">Avant</span>
+          <span class="status-badge status-danger"><span class="dot"></span>Manuel</span>
+        </div>
+        <hr style="border: 0; border-top: 1px solid var(--n-200); margin-bottom: 20px;">
+        <ul class="check-list" style="margin-bottom: 24px;">
+          <li><span class="mark mark-cross"><i data-lucide="x"></i></span>Saisie leads à la main, 3 fois/semaine</li>
+          <li><span class="mark mark-cross"><i data-lucide="x"></i></span>Onboarding client = 2h par signature</li>
+          <li><span class="mark mark-cross"><i data-lucide="x"></i></span>Reporting Excel chaque dimanche</li>
+        </ul>
+        <hr style="border: 0; border-top: 1px solid var(--n-200); margin-bottom: 16px;">
+        <div class="t-eyebrow" style="margin-bottom: 8px;">Temps perdu / semaine</div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.04em; color: var(--ink);">~ 8 h</div>
+      </div>
+      <div class="card dark" style="padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <span class="t-eyebrow" style="color: var(--n-400);">Après</span>
+          <span class="status-badge status-teal"><span class="dot"></span>Automatisé</span>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(250,250,250,0.1); margin-bottom: 20px;">
+        <ul class="check-list dark" style="margin-bottom: 24px;">
+          <li><span class="mark mark-check"><i data-lucide="check"></i></span>Capture lead → Airtable en 4 min</li>
+          <li><span class="mark mark-check"><i data-lucide="check"></i></span>Onboarding signé → tout se déclenche seul</li>
+          <li><span class="mark mark-check"><i data-lucide="check"></i></span>Dashboard live, accessible partout</li>
+        </ul>
+        <hr style="border: 0; border-top: 1px solid rgba(250,250,250,0.1); margin-bottom: 16px;">
+        <div class="t-eyebrow" style="margin-bottom: 8px; color: var(--n-400);">Temps récupéré / semaine</div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.04em; color: var(--amber);">~ 6 h</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STICKY HEADER ============ -->
+  <section>
+    <h2 class="section-title"><span class="num">19</span>Header de page (nav + CTA)</h2>
+    <p class="section-desc">Header sticky 72px, fond Paper avec border-bottom subtil. Logo à gauche, nav centrée (Inter Tight 500), CTA Teal à droite.</p>
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div class="page-header">
+        <div class="logo">
+          <span class="logo-mark"></span>
+          <span class="logo-text">Club <strong>SMART</strong></span>
+        </div>
+        <nav class="nav">
+          <a href="#">Diag-IA</a>
+          <a href="#">Process</a>
+          <a href="#">Cas clients</a>
+          <a href="#">FAQ</a>
+        </nav>
+        <button class="btn btn-primary">Réserve ton diag <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></button>
+      </div>
+      <div style="padding: 48px 32px; background: var(--paper); text-align: center;">
+        <p class="t-caption">Le contenu de la page commence ici, sous le header sticky.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="border-top: 1px solid var(--n-200); padding-top: 32px; margin-top: 64px;">
+    <div class="t-eyebrow" style="margin-bottom: 8px;">Design System Club SMART</div>
+    <p class="t-body-sm">Source : <code>.claude/skills/club-smart-design/colors_and_type.css</code> · Maintenu dans le Vault Obsidian.</p>
+  </footer>
+
+</div>
+
+<script>
+  if (window.lucide) lucide.createIcons();
+</script>
+
+</body>
+</html>
