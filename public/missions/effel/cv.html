@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Thomas Richard — CV Consultant IA</title>
+<style>
+  :root {
+    --accent: #1e3a5f;
+    --accent-soft: #eaf0f7;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --rule: #d8d8d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.45;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 44px 36px;
+    font-size: 13px;
+    background: #fff;
+  }
+  nav.toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+  nav.toggle a {
+    text-decoration: none;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-radius: 4px;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    transition: all 0.15s;
+  }
+  nav.toggle a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.toggle a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 18px; }
+  h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.3px; }
+  .tagline { color: var(--accent); font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+  .contact { color: var(--muted); font-size: 12px; }
+  .contact a { color: var(--muted); text-decoration: none; }
+  h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px;
+    margin: 22px 0 10px;
+  }
+  .positioning { background: var(--accent-soft); padding: 14px 16px; border-left: 3px solid var(--accent); margin-bottom: 4px; }
+  .role { display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px; }
+  .role h3 { margin: 0; font-size: 14px; }
+  .role .meta { color: var(--muted); font-size: 12px; }
+  ul { margin: 6px 0 10px; padding-left: 18px; }
+  li { margin-bottom: 3px; }
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+  .skills p { margin: 0; }
+  .skills strong { color: var(--accent); display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--accent); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+  .company { color: var(--muted); font-weight: 400; }
+  @media print {
+    nav.toggle { display: none; }
+    body { padding: 20px; font-size: 11.5px; max-width: none; }
+    h2 { margin-top: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="toggle">
+  <a href="./">Grille de positionnement</a>
+  <a href="cv.html" class="active">CV détaillé</a>
+</nav>
+
+<header>
+  <h1>Thomas Richard</h1>
+  <div class="tagline">Consultant senior — IA appliquée &amp; Automatisation intelligente</div>
+  <div class="contact">
+    Brossard, QC · thomas@thomrichard.com · +1 (579) 372&#8209;2023<br>
+    <a href="https://linkedin.com/in/thomas-richard-48212618">linkedin.com/in/thomas-richard-48212618</a> ·
+    <a href="https://youtube.com/@thomasrichard1978">youtube.com/@thomasrichard1978</a> ·
+    <a href="https://thomrichard.com">thomrichard.com</a>
+  </div>
+</header>
+
+<section>
+  <h2>Positionnement</h2>
+  <div class="positioning">
+    Consultant senior en transformation numérique — <strong>25 ans dans le digital et l'e-commerce</strong>, dont les <strong>5 dernières années focalisées sur l'IA générative et l'automatisation no-code/low-code</strong>. Profil hybride rare : technique (Claude API, LLM, Make, n8n, Airtable, Xano) + product management agile (PSPO I) + conseil senior auprès de grands comptes (ADEO, Auchan, Kiabi, Decathlon, Norauto) et de PME. Capable de cadrer, concevoir et livrer une solution IA en quelques jours, et d'embarquer les équipes métier autour.
+  </div>
+</section>
+
+<section>
+  <h2>Projets IA &amp; automatisation phares</h2>
+  <table>
+    <thead>
+      <tr><th style="width:25%">Projet</th><th style="width:28%">Stack</th><th>Résultats</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Decathlon France</strong><br><span class="company">Veille IA Marketing</span></td>
+        <td>Claude API + Make + WhatsApp + Airtable</td>
+        <td>Briefings IA quotidiens en production · adoption par l'équipe Marketing France · 15 min/jour de veille active</td>
+      </tr>
+      <tr>
+        <td><strong>Néocarte</strong><br><span class="company">Chèques-cadeaux B2B</span></td>
+        <td>Airtable + Make + Bubble</td>
+        <td>50 → 350 magasins partenaires · 20K → 150K chèques/an (×7) · charge ops divisée par 5 (de 2 ETP à 1 jour/semaine)</td>
+      </tr>
+      <tr>
+        <td><strong>Club SMART / YouTube</strong><br><span class="company">Build-in-public IA</span></td>
+        <td>Claude Code, n8n, Make, Airtable, Apps Script</td>
+        <td>60+ vidéos · 1 900 abonnés YouTube · 100+ membres Skool · bibliothèque publique de prompts et scripts</td>
+      </tr>
+      <tr>
+        <td><strong>MUVA</strong><br><span class="company">E-commerce Nouvelle-Calédonie</span></td>
+        <td>Bubble + Make</td>
+        <td>MVP e-commerce avec suggestions produits assistées par IA</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Compétences clés</h2>
+  <div class="skills">
+    <p><strong>IA &amp; LLM</strong>Claude API, OpenAI, prompt engineering, agents IA, RAG, NotebookLM, évaluation, intégration dans workflows métier</p>
+    <p><strong>Automatisation &amp; No-code</strong>Make (certifié Level 4), n8n, Zapier, Airtable, Xano, Supabase, WeWeb, Bubble, webhooks, API REST</p>
+    <p><strong>Code (lire &amp; modifier)</strong>Python, JavaScript, Google Apps Script, Node.js basique, Git, ligne de commande</p>
+    <p><strong>Product Management</strong>PSPO I (Scrum.org), backlog, user stories, roadmap, specs fonctionnelles, agile/Scrum, Jira, Confluence</p>
+    <p><strong>Architecture &amp; cloud</strong>MACH, micro-services, API, webhooks, headless, GCP, Sanity CMS</p>
+    <p><strong>E-commerce</strong>Shopify, Magento, Prestashop, FredHopper, Algolia, Target2Sell, Bazaarvoice</p>
+    <p><strong>Conseil &amp; change</strong>Audit, plan d'action, ateliers, formation, accompagnement à l'adoption</p>
+    <p><strong>Langues</strong>Français (natif), Anglais (professionnel)</p>
+  </div>
+</section>
+
+<section>
+  <h2>Expériences</h2>
+
+  <div class="role"><h3>Product Manager — Content System <span class="company">· RONA</span></h3><div class="meta">Avril 2024 — Présent · Brossard, QC</div></div>
+  <ul>
+    <li>Déploiement de Sanity CMS auprès des équipes content, business et studio : ateliers d'adoption, documentation, accompagnement au changement.</li>
+    <li>Traduction des besoins métier en specs actionnables pour la refonte front-end.</li>
+    <li>Gestion de la roadmap et des priorités sur la nouvelle plateforme web.</li>
+  </ul>
+
+  <div class="role"><h3>Fondateur — Automation Builders <span class="company">(ex-No Code Agency)</span></h3><div class="meta">Déc 2021 — Présent · Montréal / Nouméa</div></div>
+  <ul>
+    <li>Conception et livraison de workflows IA et d'applications no-code/low-code sur mesure pour PME : audit → POC → production → itération.</li>
+    <li>Usage quotidien de Claude API, Claude Code, scripts Python/JS/Apps Script, bibliothèques de prompts, pipelines d'automatisation.</li>
+    <li>Clients : Néocarte, Decathlon France, MUVA, agences immobilières, commerces locaux.</li>
+  </ul>
+
+  <div class="role"><h3>Product Owner — E-commerce <span class="company">· Novatize</span></h3><div class="meta">Sept 2023 — Avril 2024 · Montréal</div></div>
+  <ul>
+    <li>Gestion du backlog produit, animation des rituels agiles, projets Shopify (budgets jusqu'à 500 K$).</li>
+  </ul>
+
+  <div class="role"><h3>Product Owner — Configurateurs &amp; simulateurs <span class="company">· Leroy Merlin / ADEO</span></h3><div class="meta">Avril 2023 — Sept 2023 · Lille</div></div>
+  <ul>
+    <li>Pilotage du produit Core : intégration des simulateurs 3D (cuisine, volets) sur la plateforme e-commerce, déploiement multi-pays.</li>
+    <li>Stack : Jira, API, architecture MACH, Cloud GCP.</li>
+  </ul>
+
+  <div class="role"><h3>Consultant Product Owner <span class="company">· Zeliotin SASU — Leroy Merlin, Kiabi, Norauto</span></h3><div class="meta">Fév 2018 — Sept 2021 · Lille</div></div>
+  <ul>
+    <li><strong>Leroy Merlin (2,5 ans) :</strong> PO fiche produit + outil SaaS catalogue — 1 Md€ CA en ligne, 1M produits, 5 pays, 400+ magasins.</li>
+    <li><strong>Kiabi (9 mois) :</strong> innovations sur 8 sites internationaux — 300 M€ CA en ligne.</li>
+    <li><strong>Norauto (4 mois) :</strong> sélection PIM sur catalogue de 13M produits.</li>
+  </ul>
+
+  <div class="role"><h3>Responsable produit — Search &amp; Merchandising <span class="company">· Auchan.fr</span></h3><div class="meta">Nov 2015 — Fév 2018 · Lille</div></div>
+  <ul>
+    <li>Création du moteur de recherche et de l'e-merchandising sur nouvelle plateforme MACH : FredHopper, Target2Sell, Bazaarvoice.</li>
+    <li>+25% de CA sur les pages de recommandations.</li>
+  </ul>
+
+  <div class="role"><h3>Postes antérieurs <span class="company">· La Redoute, Orange, ADEO, Leroy Merlin</span></h3><div class="meta">2002 — 2015 · Lille</div></div>
+  <ul>
+    <li>Chef de projet web et category manager dans le retail et les télécoms.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Résultats notables</h2>
+  <table>
+    <tbody>
+      <tr><td>Decathlon France — veille IA Marketing</td><td>En production · adoption équipe · stack Claude API + Make + WhatsApp</td></tr>
+      <tr><td>Néocarte — automatisation ops</td><td>×7 volume avec 60% de charge ops en moins</td></tr>
+      <tr><td>Leroy Merlin — A/B test fiche produit</td><td>+17% de CA · déployé dans 4-5 pays</td></tr>
+      <tr><td>Auchan — recommandations</td><td>+25% de CA sur les surfaces concernées</td></tr>
+      <tr><td>Le Comptoir de Simba (e-commerce solo)</td><td>2 K€ → 400 K€ CA sur 10 ans</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Formation &amp; certifications</h2>
+  <ul>
+    <li><strong>SKEMA Business School</strong> — Lille, 2001 · Mémoire : « Dotcom vs Click &amp; Mortar »</li>
+    <li><strong>PSPO I</strong> — Scrum.org</li>
+    <li><strong>MAKE Certified Level 4</strong> — automatisation avancée</li>
+  </ul>
+</section>
+
+</body>
+</html>

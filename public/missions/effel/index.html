@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Thomas Richard — Positionnement Effel Technologies</title>
+<style>
+  :root {
+    --accent: #1e3a5f;
+    --accent-soft: #eaf0f7;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --rule: #d8d8d8;
+    --star: #c89211;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 48px 40px;
+    font-size: 13px;
+    background: #fff;
+  }
+  nav.toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+  nav.toggle a {
+    text-decoration: none;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-radius: 4px;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    transition: all 0.15s;
+  }
+  nav.toggle a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.toggle a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 16px; margin-bottom: 22px; }
+  h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.3px; }
+  .tagline { color: var(--accent); font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+  .contact { color: var(--muted); font-size: 12px; }
+  .contact a { color: var(--muted); text-decoration: none; }
+  h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px;
+    margin: 26px 0 12px;
+  }
+  .intro { background: var(--accent-soft); padding: 14px 18px; border-left: 3px solid var(--accent); margin-bottom: 4px; font-size: 13px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 4px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--accent); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; background: #fafafa; }
+  td.specialty { font-weight: 600; width: 28%; }
+  td.level { width: 22%; white-space: nowrap; }
+  .stars { color: var(--star); letter-spacing: 1px; }
+  .label { color: var(--muted); font-size: 11.5px; margin-left: 4px; }
+  ul.value { margin: 8px 0 0; padding-left: 18px; }
+  ul.value li { margin-bottom: 5px; }
+  footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 12px; }
+  @media print {
+    nav.toggle { display: none; }
+    body { padding: 22px 26px; font-size: 11.5px; max-width: none; }
+    h2 { margin-top: 16px; }
+    table { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="toggle">
+  <a href="./" class="active">Grille de positionnement</a>
+  <a href="cv.html">CV détaillé</a>
+</nav>
+
+<header>
+  <h1>Thomas Richard</h1>
+  <div class="tagline">Consultant senior — IA appliquée &amp; Automatisation intelligente</div>
+  <div class="contact">
+    Brossard, QC · thomas@thomrichard.com · +1 (579) 372&#8209;2023 ·
+    <a href="https://linkedin.com/in/thomas-richard-48212618">linkedin.com/in/thomas-richard-48212618</a> ·
+    <a href="https://youtube.com/@thomasrichard1978">youtube.com/@thomasrichard1978</a>
+  </div>
+</header>
+
+<div class="intro">
+  <strong>25 ans en transformation numérique, 5 ans focus IA générative et no-code/low-code.</strong>
+  Freelance via Automation Builders. Profil hybride : technique (Make, n8n, Airtable, Claude API, LLM) + Product Manager certifié (PSPO I) + conseil senior auprès de grands comptes (ADEO, Auchan, Kiabi, Decathlon, Norauto) et PME. Disponible immédiatement pour mandats hybrides au Québec.
+</div>
+
+<h2>Positionnement vs spécialités Effel Technologies</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spécialité</th>
+      <th>Niveau</th>
+      <th>Preuves concrètes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="specialty">IA générative (GenAI)</td>
+      <td class="level"><span class="stars">★★★</span><span class="label">Expert applicatif</span></td>
+      <td>Claude API en production · Decathlon Marketing France (veille IA quotidienne) · 60+ vidéos pédagogiques YouTube sur la GenAI</td>
+    </tr>
+    <tr>
+      <td class="specialty">Intégration OpenAI / LLM</td>
+      <td class="level"><span class="stars">★★★</span><span class="label">Expert</span></td>
+      <td>Orchestration LLM dans workflows métier · agents IA · prompting avancé · pipelines multi-étapes</td>
+    </tr>
+    <tr>
+      <td class="specialty">Automatisation intelligente</td>
+      <td class="level"><span class="stars">★★★</span><span class="label">Expert</span></td>
+      <td>Make (certifié Level 4), n8n, Airtable · Néocarte : 50→350 magasins, 20K→150K chèques/an, charge ops divisée par 5</td>
+    </tr>
+    <tr>
+      <td class="specialty">Architecture IA</td>
+      <td class="level"><span class="stars">★★★</span><span class="label">Expert</span></td>
+      <td>Conception d'architectures workflow + API + LLM · expérience headless, MACH et micro-services (ADEO, Auchan)</td>
+    </tr>
+    <tr>
+      <td class="specialty">Gouvernance &amp; stratégie IA</td>
+      <td class="level"><span class="stars">★★★</span><span class="label">Fort</span></td>
+      <td>Product Manager RONA (cadrage adoption IA équipes content/business/studio) · conseil PME sur roadmap IA</td>
+    </tr>
+    <tr>
+      <td class="specialty">Conseil &amp; accompagnement client</td>
+      <td class="level"><span class="stars">★★★</span><span class="label">25 ans</span></td>
+      <td>ADEO, Auchan, Kiabi, Decathlon, Norauto, PME · animation d'ateliers, formation, change management</td>
+    </tr>
+    <tr>
+      <td class="specialty">NLP appliqué</td>
+      <td class="level"><span class="stars">★★</span><span class="label">Applicatif via LLM</span></td>
+      <td>Extraction, classification, synthèse, résumé · pipelines de traitement de texte via Claude et OpenAI</td>
+    </tr>
+    <tr>
+      <td class="specialty">LLMOps</td>
+      <td class="level"><span class="stars">★★</span><span class="label">Opérationnel</span></td>
+      <td>Orchestration de LLM en production, monitoring de workflows IA, gestion de prompts versionnés</td>
+    </tr>
+    <tr>
+      <td class="specialty">Développement Python</td>
+      <td class="level"><span class="stars">★★</span><span class="label">Opérationnel</span></td>
+      <td>Scripts d'intégration et d'orchestration, automatisations · profil consultant, pas ML Engineer pur</td>
+    </tr>
+    <tr>
+      <td class="specialty">Data Engineering</td>
+      <td class="level"><span class="stars">★★</span><span class="label">No-code/low-code</span></td>
+      <td>Pipelines de données via Airtable, Make, n8n, webhooks, API · intégrations multi-sources</td>
+    </tr>
+    <tr>
+      <td class="specialty">Analytique avancée</td>
+      <td class="level"><span class="stars">★★</span><span class="label">Adjacent</span></td>
+      <td>25 ans de pilotage data e-commerce (Auchan, Leroy Merlin, Kiabi) · KPIs produit et marketing</td>
+    </tr>
+    <tr>
+      <td class="specialty">Google AI / GCP</td>
+      <td class="level"><span class="stars">★★</span><span class="label">Expérience</span></td>
+      <td>Plateforme ADEO sur GCP · architecture cloud headless</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Ce que j'apporte spécifiquement</h2>
+<ul class="value">
+  <li><strong>Profil hybride rare :</strong> technique IA/no-code + product management agile (PSPO I) + conseil senior — un seul interlocuteur pour cadrer, concevoir, livrer.</li>
+  <li><strong>Vitesse d'exécution :</strong> POC IA opérationnels en jours, pas en mois. Signature no-code/low-code = mise en valeur rapide pour le client.</li>
+  <li><strong>Pédagogie et autorité publique :</strong> 60+ vidéos YouTube, communauté Skool (Club SMART) sur l'IA appliquée — capable de vulgariser et d'embarquer les équipes métier.</li>
+  <li><strong>Track record grands comptes :</strong> Leroy Merlin PDP +17% CA en A/B test (déployé 4-5 pays) · Auchan recommandations +25% CA · Decathlon veille IA en production.</li>
+  <li><strong>Bilingue FR/EN</strong> · Brossard QC · télétravail ou hybride Montréal/Rive-Sud.</li>
+</ul>
+
+<h2>Stack maîtrisée</h2>
+<ul class="value">
+  <li><strong>IA &amp; LLM :</strong> Claude API, OpenAI, prompting avancé, agents, NotebookLM</li>
+  <li><strong>Automatisation :</strong> Make (Level 4 certifié), n8n, Zapier</li>
+  <li><strong>Data &amp; back :</strong> Airtable, Xano, Supabase, API REST, webhooks</li>
+  <li><strong>Front no-code :</strong> WeWeb, Bubble</li>
+  <li><strong>Product :</strong> Jira, Confluence, Scrum, PSPO I</li>
+  <li><strong>E-commerce &amp; CMS :</strong> Shopify, Magento, Sanity, FredHopper, Algolia</li>
+</ul>
+
+<footer>
+  Disponible pour échanger sur les besoins de vos clients. Réactif sous 24h.
+</footer>
+
+</body>
+</html>
