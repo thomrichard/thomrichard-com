@@ -548,11 +548,11 @@
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <div class="success-title" id="success-title">C'est parti !</div>
-      <p class="success-body">L'accès au pack est dans ta boîte mail dans les 2 prochaines minutes. Vérifie ton dossier <em>Promotions</em> au cas où — Gmail aime ranger ce genre de truc.</p>
+      <div class="success-title" id="success-title">Vérifie ta boîte mail.</div>
+      <p class="success-body">Je viens de t'envoyer un email avec un bouton de confirmation. Clique-le pour valider ton inscription et accéder au pack. Si tu ne vois rien dans 2 minutes, regarde dans <em>Promotions</em> ou <em>Indésirables</em>.</p>
       <div class="success-next">
         <span class="next-dot"></span>
-        <span>Tu vas être redirigé·e dans un instant…</span>
+        <span>En attente de ta confirmation par email…</span>
       </div>
     </div>
   </div>
@@ -644,13 +644,10 @@
       // Show success
       form.style.display = 'none';
       formHead.style.display = 'none';
-      successTitle.textContent = `Merci ${prenom} !`;
+      successTitle.textContent = `Merci ${prenom} — vérifie ta boîte mail.`;
       success.classList.add('show');
-
-      // Redirect to thank-you page with resources (after 2.5s)
-      setTimeout(() => {
-        window.location.href = './pack/';
-      }, 2500);
+      // Pas de redirect auto : on attend la confirmation par email (double opt-in)
+      // L'URL /pack/ est servie après clic du bouton de confirmation Kit.
 
     } catch (err) {
       alert('Une erreur est survenue. Réessaie dans un instant.');
