@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Des ressources pour maîtriser Claude — Thomas Richard</title>
+<meta name="description" content="5 ressources gratuites pour exploiter Claude à fond : cheat sheet settings, framework de prompts, MCP essentiels, skills prêts à fork. Le pack compagnon du tuto complet Claude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --navy: #233039;
+    --teal: #3FA4B1;
+    --amber: #F5AE2A;
+    --paper: #FAFAFA;
+    --white: #FFFFFF;
+    --n-100: #EBEDEF;
+    --n-300: #B8BFC6;
+    --n-400: #8A949D;
+    --n-500: #5F6A74;
+    --n-600: #43505B;
+    --n-700: #2E3943;
+    --n-800: #1F2830;
+    --danger: #C5463A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  @keyframes csPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  /* === Top nav === */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 64px;
+    border-bottom: 1px solid rgba(11,11,11,0.06);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ink); position: relative;
+    box-shadow: inset -6px -6px 0 var(--amber);
+  }
+  .brand-name {
+    font-family: 'Manrope', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: -0.01em;
+  }
+  .nav-right { display: flex; gap: 24px; font-size: 13px; color: var(--n-600); font-weight: 500; }
+  .nav-right a { color: inherit; text-decoration: none; cursor: pointer; }
+  .nav-right a:hover { color: var(--teal); }
+
+  /* === Hero === */
+  .hero { padding: 88px 64px 64px; }
+  .hero-inner {
+    max-width: 1152px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  .copy { display: flex; flex-direction: column; gap: 20px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--teal); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+  h1 {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 64px; line-height: 1.0; letter-spacing: -0.03em;
+  }
+  h1 .accent { color: var(--teal); }
+  .lede {
+    font-family: 'Inter Tight', sans-serif; font-size: 19px;
+    line-height: 1.55; color: var(--n-600); max-width: 540px;
+  }
+  .bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .bullet {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 15px; color: var(--n-800); font-weight: 500;
+  }
+  .check {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    color: var(--teal); font-size: 16px; line-height: 1.4;
+    flex-shrink: 0;
+  }
+  .art { display: flex; align-items: center; justify-content: center; }
+
+  /* === Ebook mockup === */
+  .ebook-wrap { position: relative; width: 360px; height: 480px; perspective: 1400px; }
+  .ebook-shadow {
+    position: absolute; inset: 40px 30px 0 50px;
+    background: radial-gradient(ellipse at 30% 100%, rgba(11,11,11,0.22), transparent 70%);
+    filter: blur(18px); border-radius: 12px; z-index: 0;
+  }
+  .ebook-cover {
+    position: relative; width: 100%; height: 100%;
+    background: var(--paper); border-radius: 6px;
+    transform: rotateY(-12deg) rotateX(2deg) rotate(-2deg);
+    box-shadow:
+      0 30px 60px -20px rgba(11,11,11,0.35),
+      0 18px 30px -16px rgba(11,11,11,0.2),
+      inset 0 0 0 1px rgba(11,11,11,0.06);
+    overflow: hidden;
+  }
+  .ebook-spine {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 14px;
+    background: linear-gradient(90deg, rgba(11,11,11,0.18), rgba(11,11,11,0) 70%);
+  }
+  .ebook-inner {
+    padding: 40px 32px 28px 38px; height: 100%;
+    display: flex; flex-direction: column; position: relative;
+  }
+  .ebook-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--n-500); font-weight: 500;
+  }
+  .ebook-title {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 40px; line-height: 0.98; letter-spacing: -0.035em;
+    color: var(--ink); margin-top: 18px;
+  }
+  .ebook-title .accent { color: var(--teal); }
+  .ebook-author {
+    font-family: 'Inter Tight', sans-serif; font-size: 14px;
+    color: var(--n-600); margin-top: 14px; font-weight: 500;
+  }
+  .ebook-shapes { position: absolute; right: 26px; bottom: 84px; width: 120px; height: 120px; }
+  .shape { position: absolute; }
+  .shape-circle { width: 72px; height: 72px; border-radius: 50%; border: 4px solid var(--ink); right: 32px; bottom: 28px; }
+  .shape-sq { width: 46px; height: 46px; background: var(--amber); right: 0; bottom: 0; }
+  .shape-tri {
+    width: 0; height: 0;
+    border-left: 28px solid transparent;
+    border-right: 28px solid transparent;
+    border-bottom: 48px solid var(--teal);
+    right: 60px; bottom: 60px;
+  }
+  .ebook-footer {
+    margin-top: auto;
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--n-500); letter-spacing: 0.04em;
+  }
+  .ebook-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+
+  /* === Form section === */
+  .form-section { padding: 8px 64px 80px; }
+  .form-card {
+    max-width: 640px; margin: 0 auto;
+    background: var(--white); border: 1px solid rgba(11,11,11,0.08);
+    border-radius: 16px; padding: 32px;
+    box-shadow: 0 4px 12px rgba(11,11,11,0.06);
+  }
+  .form-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 22px; }
+  .form-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--n-500); font-weight: 600;
+  }
+  .form-title {
+    font-family: 'Manrope', sans-serif; font-weight: 700;
+    font-size: 24px; letter-spacing: -0.02em;
+  }
+  form { display: flex; flex-direction: column; gap: 18px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--ink); display: flex; gap: 6px; align-items: center;
+  }
+  .field .err {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--danger); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .input {
+    font-family: 'Inter Tight', sans-serif; font-size: 15px;
+    padding: 12px 14px; border: 1px solid rgba(11,11,11,0.18);
+    border-radius: 10px; background: var(--white); color: var(--ink);
+    outline: none; transition: border-color 150ms, box-shadow 150ms;
+    width: 100%;
+  }
+  .input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(63,164,177,0.15); }
+  .input.err { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(197,70,58,0.15); }
+  .segment { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .seg-item {
+    background: var(--paper); border: 1px solid rgba(11,11,11,0.12);
+    border-radius: 10px; padding: 12px;
+    cursor: pointer; text-align: left; transition: all 150ms;
+    font-family: 'Inter Tight', sans-serif;
+  }
+  .seg-item.active { border-color: var(--teal); background: rgba(63,164,177,0.08); box-shadow: 0 0 0 1px var(--teal) inset; }
+  .seg-label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+  .seg-sub { font-family: 'Inter Tight', sans-serif; font-size: 12px; color: var(--n-500); margin-top: 2px; }
+  .cta {
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px;
+    color: var(--paper); background: var(--ink); border: none;
+    padding: 16px 22px; border-radius: 12px; cursor: pointer;
+    transition: transform 120ms, background 150ms;
+    margin-top: 4px;
+  }
+  .cta:hover { background: var(--navy); transform: translateY(-1px); }
+  .fineprint {
+    font-family: 'Inter Tight', sans-serif; font-size: 12px;
+    color: var(--n-500); text-align: center;
+  }
+
+  /* === Success state === */
+  .success { display: none; padding: 24px 8px; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .success.show { display: flex; }
+  .check-ring {
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 2.5px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .success-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.02em; color: var(--ink); }
+  .success-body { font-family: 'Inter Tight', sans-serif; font-size: 15px; line-height: 1.55; color: var(--n-600); max-width: 440px; }
+  .success-next {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--n-500); display: inline-flex; align-items: center; gap: 8px;
+  }
+  .next-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); animation: csPulse 1.2s ease-in-out infinite; }
+
+  /* === Social proof band === */
+  .proof { background: var(--ink); color: var(--paper); padding: 48px 64px; }
+  .proof-inner {
+    max-width: 1152px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1px auto 1px 1fr;
+    gap: 32px; align-items: center;
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-n { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 36px; color: var(--amber); letter-spacing: -0.02em; line-height: 1; }
+  .stat-n.teal { color: var(--teal); }
+  .stat-l { font-family: 'Inter Tight', sans-serif; font-size: 13px; color: var(--n-300); }
+  .stat-div { width: 1px; height: 48px; background: rgba(250,250,250,0.12); }
+  .testi { padding-left: 8px; }
+  .testi-q { font-family: 'Inter Tight', sans-serif; font-size: 14px; line-height: 1.5; color: var(--paper); font-style: italic; }
+  .testi-a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--n-400); margin-top: 8px; letter-spacing: 0.04em; }
+
+  /* === Footer === */
+  footer.foot {
+    display: flex; justify-content: space-between;
+    padding: 20px 64px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--n-500); border-top: 1px solid rgba(11,11,11,0.06);
+  }
+  .foot-right { color: var(--teal); }
+
+  /* === Responsive === */
+  @media (max-width: 820px) {
+    .nav, .hero, .form-section, .proof, footer.foot { padding-left: 24px; padding-right: 24px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    h1 { font-size: 44px; }
+    .ebook-wrap { width: 280px; height: 374px; }
+    .ebook-title { font-size: 32px; }
+    .proof-inner { grid-template-columns: 1fr; gap: 20px; }
+    .stat-div { display: none; }
+    .row2 { grid-template-columns: 1fr; }
+    .segment { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<!-- TR-NAV CSS -->
+<style>
+.tr-nav {
+  background: var(--paper, #FAFAFA);
+  border-bottom: 1px solid rgba(11,11,11,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .tr-nav__inner { padding: 0 20px; }
+  .tr-nav__sub { display: none; }
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0B0B0B;
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0B0B0B;
+  color: #FAFAFA;
+  display: grid;
+  place-items: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+}
+.tr-nav__sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #5F6A74;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2E3943;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: #0B0B0B; }
+.tr-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0B0B0B;
+  background: #F5AE2A;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tr-nav__cta--mobile { display: none; }
+.tr-nav__burger {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(11,11,11,0.10);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #0B0B0B;
+}
+.tr-nav__burger svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+@media (max-width: 720px) {
+  .tr-nav__burger { display: inline-flex; }
+  .tr-nav__cta { display: none; }
+  .tr-nav__links {
+    position: absolute;
+    top: 72px; left: 0; right: 0;
+    background: #FAFAFA;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .tr-nav__links.is-open { display: flex; }
+  .tr-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+  }
+  .tr-nav__link:last-child { border-bottom: none; }
+  .tr-nav__cta--mobile {
+    display: inline-flex !important;
+    align-items: center;
+    margin-top: 12px;
+    background: #F5AE2A;
+    color: #0B0B0B;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- TR-NAV HTML -->
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="https://thomrichard.com" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links" id="tr-nav-links" aria-label="Navigation principale">
+      <a href="https://thomrichard.com/diag-ia" class="tr-nav__link">Diag-IA</a>
+      <a href="https://thomrichard.com/sur-mesure" class="tr-nav__link">Sur-mesure</a>
+      <a href="https://thomrichard.com/portfolio" class="tr-nav__link">Portfolio</a>
+      <a href="https://thomrichard.com/build-in-public" class="tr-nav__link">Building public</a>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta--mobile">Réserver le Diag-IA →</a>
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+    <button type="button" class="tr-nav__burger" id="tr-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="tr-nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<script>
+(function () {
+  const btn = document.getElementById('tr-nav-burger');
+  const menu = document.getElementById('tr-nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="copy">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span> Pack ressources · gratuit · 5 livrables
+      </div>
+      <h1>
+        Des ressources<br>
+        pour <span class="accent">maîtriser Claude</span>.
+      </h1>
+      <p class="lede">
+        Le pack compagnon du tuto complet Claude. 5 livrables prêts à l'emploi pour configurer ton Claude, structurer tes prompts, brancher tes outils et automatiser ton quotidien. Sans jargon, sans bullshit.
+      </p>
+      <ul class="bullets">
+        <li class="bullet"><span class="check">✓</span> Cheat sheet — les 4 settings Claude à activer (PDF)</li>
+        <li class="bullet"><span class="check">✓</span> Livre blanc — 6 frameworks de prompt qui marchent (PDF)</li>
+        <li class="bullet"><span class="check">✓</span> Les 10 MCP essentiels pour connecter Claude à tes outils (PDF)</li>
+        <li class="bullet"><span class="check">✓</span> Skill "Préparation de rendez-vous" prêt à fork (.md)</li>
+        <li class="bullet"><span class="check">✓</span> Skill "Compte-rendu de réunion" prêt à fork (.md)</li>
+      </ul>
+    </div>
+    <div class="art">
+      <div class="ebook-wrap">
+        <div class="ebook-shadow"></div>
+        <div class="ebook-cover">
+          <div class="ebook-spine"></div>
+          <div class="ebook-inner">
+            <div class="ebook-eyebrow">Pack ressources · 5 livrables</div>
+            <div class="ebook-title">Maîtriser<br>Claude<br><span class="accent">en pratique.</span></div>
+            <div class="ebook-author">Thomas Richard · Club SMART</div>
+            <div class="ebook-shapes" aria-hidden>
+              <div class="shape shape-circle"></div>
+              <div class="shape shape-sq"></div>
+              <div class="shape shape-tri"></div>
+            </div>
+            <div class="ebook-footer">
+              <span class="ebook-dot"></span>
+              <span>thomrichard.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Form card -->
+<section class="form-section">
+  <div class="form-card">
+    <div class="form-head" id="form-head">
+      <div class="form-eyebrow">Reçois le pack</div>
+      <div class="form-title">Où je t'envoie l'accès ?</div>
+    </div>
+
+    <form id="lead-form" novalidate>
+      <div class="row2">
+        <div class="field">
+          <label>Prénom <span class="err" id="err-prenom"></span></label>
+          <input class="input" type="text" id="prenom" name="prenom" placeholder="Thomas" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label>Email <span class="err" id="err-email"></span></label>
+          <input class="input" type="email" id="email" name="email_address" placeholder="thomas@taboite.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Ton niveau actuel avec l'IA <span class="err" id="err-niveau"></span></label>
+        <div class="segment" id="niveau-seg">
+          <button type="button" class="seg-item" data-v="debutant">
+            <div class="seg-label">Débutant</div>
+            <div class="seg-sub">Je découvre</div>
+          </button>
+          <button type="button" class="seg-item" data-v="intermediaire">
+            <div class="seg-label">Intermédiaire</div>
+            <div class="seg-sub">Je bricole déjà</div>
+          </button>
+          <button type="button" class="seg-item" data-v="avance">
+            <div class="seg-label">Avancé</div>
+            <div class="seg-sub">Je veux scaler</div>
+          </button>
+        </div>
+        <input type="hidden" id="niveau" name="fields[niveau_ia]" value="">
+      </div>
+
+      <button type="submit" class="cta">
+        Reçois le pack <span style="margin-left: 6px;">→</span>
+      </button>
+      <div class="fineprint">
+        Pas de spam. Désinscription en 1 clic. Tes données restent chez moi.
+      </div>
+    </form>
+
+    <div class="success" id="success">
+      <div class="check-ring">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3FA4B1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="success-title" id="success-title">C'est parti !</div>
+      <p class="success-body">L'accès au pack est dans ta boîte mail dans les 2 prochaines minutes. Vérifie ton dossier <em>Promotions</em> au cas où — Gmail aime ranger ce genre de truc.</p>
+      <div class="success-next">
+        <span class="next-dot"></span>
+        <span>Tu vas être redirigé·e dans un instant…</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social proof band -->
+<section class="proof">
+  <div class="proof-inner">
+    <div class="stat">
+      <div class="stat-n">2 030</div>
+      <div class="stat-l">abonnés YouTube</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <div class="stat-n teal">120+</div>
+      <div class="stat-l">membres dans le Club SMART</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="testi">
+      <p class="testi-q">« J'ai gagné des heures par semaine en appliquant les frameworks. C'est concret, c'est appliquable lundi matin. »</p>
+      <div class="testi-a">— membre du Club SMART</div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>© Thomas Richard · Québec</span>
+  <span class="foot-right">thomrichard.com · build-in-public</span>
+</footer>
+
+<script>
+(function() {
+  // === Kit (ex-ConvertKit) form integration ===
+  // Form ID à créer dans Kit : à brancher ici une fois le form créé.
+  // Endpoint API public : https://app.kit.com/forms/<FORM_ID>/subscriptions
+  // Documentation : https://developers.kit.com/v4
+  const KIT_FORM_ID = '9463248';
+
+  const form = document.getElementById('lead-form');
+  const success = document.getElementById('success');
+  const successTitle = document.getElementById('success-title');
+  const formHead = document.getElementById('form-head');
+  const segItems = document.querySelectorAll('#niveau-seg .seg-item');
+  const niveauInput = document.getElementById('niveau');
+
+  // Segmented control
+  segItems.forEach(btn => {
+    btn.addEventListener('click', () => {
+      segItems.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      niveauInput.value = btn.dataset.v;
+      document.getElementById('err-niveau').textContent = '';
+    });
+  });
+
+  function setError(id, msg) {
+    document.getElementById('err-' + id).textContent = msg ? '· ' + msg : '';
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('err', !!msg);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const prenom = document.getElementById('prenom').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const niveau = niveauInput.value;
+    let hasErr = false;
+    setError('prenom', !prenom ? 'Ton prénom' : '');
+    setError('email', !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? 'Email invalide' : '');
+    setError('niveau', !niveau ? 'Choisis un niveau' : '');
+    if (!prenom || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !niveau) return;
+
+    // Submit to Kit
+    try {
+      if (KIT_FORM_ID !== 'TODO_FORM_ID') {
+        const fd = new FormData();
+        fd.append('email_address', email);
+        fd.append('first_name', prenom);
+        fd.append('fields[niveau_ia]', niveau);
+        const res = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
+          method: 'POST',
+          body: fd
+        });
+        if (!res.ok) throw new Error('Kit error ' + res.status);
+      } else {
+        console.warn('KIT_FORM_ID non configuré — submission simulée. Voir landing-page-readme.md');
+      }
+
+      // Show success
+      form.style.display = 'none';
+      formHead.style.display = 'none';
+      successTitle.textContent = `Merci ${prenom} !`;
+      success.classList.add('show');
+
+      // Redirect to thank-you page with resources (after 2.5s)
+      setTimeout(() => {
+        window.location.href = './pack/';
+      }, 2500);
+
+    } catch (err) {
+      alert('Une erreur est survenue. Réessaie dans un instant.');
+      console.error(err);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

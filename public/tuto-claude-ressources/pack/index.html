@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le pack ressources Claude — Club SMART</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --navy: #233039;
+    --teal: #3FA4B1;
+    --amber: #F5AE2A;
+    --paper: #FAFAFA;
+    --white: #FFFFFF;
+    --n-100: #EBEDEF;
+    --n-300: #B8BFC6;
+    --n-500: #5F6A74;
+    --n-600: #43505B;
+    --n-700: #2E3943;
+    --n-800: #1F2830;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 64px; border-bottom: 1px solid rgba(11,11,11,0.06);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ink);
+    box-shadow: inset -6px -6px 0 var(--amber);
+  }
+  .brand-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .nav-right { display: flex; gap: 24px; font-size: 13px; color: var(--n-600); font-weight: 500; }
+  .nav-right a { color: inherit; text-decoration: none; }
+  .nav-right a:hover { color: var(--teal); }
+
+  .container { max-width: 880px; margin: 0 auto; padding: 64px 32px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--teal); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 16px;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+  h1 {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 48px; line-height: 1.0; letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  h1 .accent { color: var(--teal); }
+  .lede {
+    font-size: 18px; line-height: 1.55; color: var(--n-600);
+    max-width: 640px; margin-bottom: 48px;
+  }
+
+  /* Resource cards */
+  .resources { display: flex; flex-direction: column; gap: 14px; }
+  .resource {
+    display: flex; gap: 20px; align-items: center;
+    background: var(--white); border: 1px solid rgba(11,11,11,0.08);
+    border-radius: 14px; padding: 20px 24px;
+    box-shadow: 0 1px 2px rgba(11,11,11,0.04);
+    transition: border-color 150ms, transform 120ms, box-shadow 150ms;
+  }
+  .resource:hover {
+    border-color: var(--teal);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(11,11,11,0.08);
+  }
+  .resource-num {
+    flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--ink); color: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px;
+  }
+  .resource-body { flex: 1; }
+  .resource-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--n-500); font-weight: 500;
+  }
+  .resource-title {
+    font-family: 'Manrope', sans-serif; font-weight: 700;
+    font-size: 18px; letter-spacing: -0.01em;
+    color: var(--ink); margin-top: 2px;
+  }
+  .resource-desc { font-size: 13.5px; color: var(--n-600); margin-top: 4px; }
+  .resource-ctas {
+    flex-shrink: 0;
+    display: flex; gap: 8px; align-items: stretch;
+  }
+  .resource-cta {
+    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px;
+    border-radius: 10px;
+    padding: 10px 14px; cursor: pointer; text-decoration: none;
+    transition: all 150ms;
+    white-space: nowrap;
+    display: inline-flex; align-items: center;
+    border: 1px solid transparent;
+  }
+  .resource-cta.primary {
+    color: var(--paper); background: var(--ink); border-color: var(--ink);
+  }
+  .resource-cta.primary:hover { background: var(--navy); border-color: var(--navy); }
+  .resource-cta.secondary {
+    color: var(--ink); background: var(--paper); border-color: rgba(11,11,11,0.18);
+  }
+  .resource-cta.secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* CTA Club SMART */
+  .club-cta {
+    margin-top: 48px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 18px; padding: 36px 40px;
+    display: flex; gap: 32px; align-items: center; justify-content: space-between;
+  }
+  .club-cta-text { flex: 1; }
+  .club-cta-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--teal); font-weight: 600; margin-bottom: 8px;
+  }
+  .club-cta-title {
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 24px;
+    letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .club-cta-desc { font-size: 14.5px; color: var(--n-300); line-height: 1.55; }
+  .club-cta-btn {
+    flex-shrink: 0;
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px;
+    color: var(--ink); background: var(--amber);
+    border: none; border-radius: 12px;
+    padding: 16px 24px; cursor: pointer; text-decoration: none;
+    transition: transform 120ms;
+  }
+  .club-cta-btn:hover { transform: translateY(-1px); }
+
+  footer.foot {
+    display: flex; justify-content: space-between;
+    padding: 20px 64px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--n-500); border-top: 1px solid rgba(11,11,11,0.06);
+    margin-top: 48px;
+  }
+  .foot-right { color: var(--teal); }
+
+  @media (max-width: 720px) {
+    .nav, footer.foot { padding-left: 24px; padding-right: 24px; }
+    .container { padding: 40px 24px; }
+    h1 { font-size: 34px; }
+    .resource { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .resource-ctas { width: 100%; }
+    .resource-cta { flex: 1; justify-content: center; }
+    .club-cta { flex-direction: column; align-items: flex-start; padding: 28px; }
+    .club-cta-btn { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TR-NAV CSS -->
+<style>
+.tr-nav {
+  background: var(--paper, #FAFAFA);
+  border-bottom: 1px solid rgba(11,11,11,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .tr-nav__inner { padding: 0 20px; }
+  .tr-nav__sub { display: none; }
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0B0B0B;
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0B0B0B;
+  color: #FAFAFA;
+  display: grid;
+  place-items: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+}
+.tr-nav__sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #5F6A74;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2E3943;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: #0B0B0B; }
+.tr-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0B0B0B;
+  background: #F5AE2A;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tr-nav__cta--mobile { display: none; }
+.tr-nav__burger {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(11,11,11,0.10);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #0B0B0B;
+}
+.tr-nav__burger svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+@media (max-width: 720px) {
+  .tr-nav__burger { display: inline-flex; }
+  .tr-nav__cta { display: none; }
+  .tr-nav__links {
+    position: absolute;
+    top: 72px; left: 0; right: 0;
+    background: #FAFAFA;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .tr-nav__links.is-open { display: flex; }
+  .tr-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+  }
+  .tr-nav__link:last-child { border-bottom: none; }
+  .tr-nav__cta--mobile {
+    display: inline-flex !important;
+    align-items: center;
+    margin-top: 12px;
+    background: #F5AE2A;
+    color: #0B0B0B;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- TR-NAV HTML -->
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="https://thomrichard.com" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links" id="tr-nav-links" aria-label="Navigation principale">
+      <a href="https://thomrichard.com/diag-ia" class="tr-nav__link">Diag-IA</a>
+      <a href="https://thomrichard.com/sur-mesure" class="tr-nav__link">Sur-mesure</a>
+      <a href="https://thomrichard.com/portfolio" class="tr-nav__link">Portfolio</a>
+      <a href="https://thomrichard.com/build-in-public" class="tr-nav__link">Building public</a>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta--mobile">Réserver le Diag-IA →</a>
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+    <button type="button" class="tr-nav__burger" id="tr-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="tr-nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<script>
+(function () {
+  const btn = document.getElementById('tr-nav-burger');
+  const menu = document.getElementById('tr-nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+
+<div class="container">
+
+  <div class="eyebrow">
+    <span class="eyebrow-dot"></span> Pack ressources · accès complet
+  </div>
+  <h1>Ton pack pour <span class="accent">maîtriser Claude</span>.</h1>
+  <p class="lede">
+    Voilà tes 5 ressources. Télécharge celles dont tu as besoin maintenant, garde cette page en favoris pour revenir. L'idéal : commence par le cheat sheet, puis enchaîne avec les frameworks de prompt.
+  </p>
+
+  <div class="resources">
+
+    <div class="resource">
+      <div class="resource-num">1</div>
+      <div class="resource-body">
+        <div class="resource-tag">Cheat sheet · 1 page</div>
+        <div class="resource-title">Les 4 settings Claude à activer</div>
+        <div class="resource-desc">5 minutes de config qui transforment Claude en outil pro. Mémoire, artifacts, instructions perso anti-flatterie et anti-emoji.</div>
+      </div>
+      <div class="resource-ctas">
+        <a class="resource-cta secondary" href="./cheat-sheet/index.html">Voir en ligne</a>
+        <a class="resource-cta primary" href="./assets/cheat-sheet-settings-claude.pdf" target="_blank" rel="noopener">Voir le PDF</a>
+      </div>
+    </div>
+
+    <div class="resource">
+      <div class="resource-num">2</div>
+      <div class="resource-body">
+        <div class="resource-tag">Livre blanc · 16 pages</div>
+        <div class="resource-title">6 frameworks de prompt qui marchent</div>
+        <div class="resource-desc">CRAFT, pull prompting, et 4 autres frameworks pour structurer tes prompts. Avec exemples concrets et anti-exemples.</div>
+      </div>
+      <div class="resource-ctas">
+        <a class="resource-cta secondary" href="./frameworks/index.html">Voir en ligne</a>
+        <a class="resource-cta primary" href="./assets/frameworks-prompting.pdf" target="_blank" rel="noopener">Voir le PDF</a>
+      </div>
+    </div>
+
+    <div class="resource">
+      <div class="resource-num">3</div>
+      <div class="resource-body">
+        <div class="resource-tag">Cheat sheet · 2 pages</div>
+        <div class="resource-title">Les 10 MCP essentiels</div>
+        <div class="resource-desc">10 connecteurs MCP pour brancher Claude à tes outils (Airtable, n8n, Firecrawl, VidIQ, Canva…) avec liens directs.</div>
+      </div>
+      <div class="resource-ctas">
+        <a class="resource-cta secondary" href="./mcp/index.html">Voir en ligne</a>
+        <a class="resource-cta primary" href="./assets/liste-mcp-essentiels.pdf" target="_blank" rel="noopener">Voir le PDF</a>
+      </div>
+    </div>
+
+    <div class="resource">
+      <div class="resource-num">4</div>
+      <div class="resource-body">
+        <div class="resource-tag">Skill Claude · .md</div>
+        <div class="resource-title">Préparation de rendez-vous</div>
+        <div class="resource-desc">Un skill prêt à uploader dans Claude.ai. Croise Calendar, CRM, Gmail et te sort un brief structuré avant chaque RDV client.</div>
+      </div>
+      <div class="resource-ctas">
+        <a class="resource-cta secondary" href="./skill-prep-rdv/index.html">Voir en ligne</a>
+        <a class="resource-cta primary" href="./assets/preparation-rendez-vous.md" download>Télécharger .md</a>
+      </div>
+    </div>
+
+    <div class="resource">
+      <div class="resource-num">5</div>
+      <div class="resource-body">
+        <div class="resource-tag">Skill Claude · .md</div>
+        <div class="resource-title">Compte-rendu de réunion</div>
+        <div class="resource-desc">Transforme tes notes ou ta transcription en CR structuré, extrait décisions et actions, et pousse dans tes outils connectés.</div>
+      </div>
+      <div class="resource-ctas">
+        <a class="resource-cta secondary" href="./skill-compte-rendu/index.html">Voir en ligne</a>
+        <a class="resource-cta primary" href="./assets/compte-rendu-reunion.md" download>Télécharger .md</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="club-cta">
+    <div class="club-cta-text">
+      <div class="club-cta-eyebrow">Prochaine étape</div>
+      <div class="club-cta-title">Rejoins le Club SMART</div>
+      <div class="club-cta-desc">Le pack t'a plu ? La communauté Club SMART, c'est l'étape d'après : retours d'expérience, workflows live, setups MCP partagés entre 120+ créateurs et freelances IA francophones. Gratuit.</div>
+    </div>
+    <a class="club-cta-btn" href="https://skool.com/club-smart" target="_blank" rel="noopener">Rejoindre →</a>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <span>© Thomas Richard · Québec</span>
+  <span class="foot-right">thomrichard.com · build-in-public</span>
+</footer>
+
+</body>
+</html>

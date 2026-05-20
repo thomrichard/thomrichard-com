@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Skill — Préparation de rendez-vous · Club SMART</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B; --navy: #233039; --teal: #3FA4B1; --amber: #F5AE2A;
+    --paper: #FAFAFA; --paper-2: #F2F2F0; --white: #FFFFFF;
+    --n-100: #EBEDEF; --n-300: #B8BFC6; --n-500: #5F6A74; --n-600: #43505B;
+    --border: rgba(11,11,11,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: 'Inter Tight', system-ui, sans-serif; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; border-bottom: 1px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 22px; height: 22px; border-radius: 50%; background: var(--ink); box-shadow: inset -6px -6px 0 var(--amber); }
+  .brand-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .back-link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--n-500); text-decoration: none; }
+  .back-link:hover { color: var(--teal); }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 56px 32px; }
+  .badge { display: inline-block; background: var(--ink); color: var(--paper); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; margin-bottom: 16px; }
+  h1 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 44px; line-height: 1.05; letter-spacing: -0.025em; color: var(--navy); margin-bottom: 16px; }
+  .lede { font-size: 17px; line-height: 1.6; color: var(--n-600); margin-bottom: 32px; }
+
+  .actions { display: flex; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+  .btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: 10px; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: all 150ms; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn-primary:hover { background: var(--navy); border-color: var(--navy); }
+  .btn-secondary { background: var(--white); color: var(--ink); border-color: rgba(11,11,11,0.18); }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  h2 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; color: var(--navy); margin-top: 40px; margin-bottom: 16px; }
+  h3 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 17px; color: var(--navy); margin-top: 24px; margin-bottom: 8px; }
+  p { color: var(--ink); margin-bottom: 12px; }
+  ul, ol { margin: 12px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+  li strong { font-family: 'Manrope', sans-serif; font-weight: 700; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: var(--n-100); padding: 2px 6px; border-radius: 4px; }
+  pre { background: var(--navy); color: var(--paper); padding: 18px 22px; border-radius: 10px; overflow-x: auto; margin: 16px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; }
+  pre code { background: none; padding: 0; color: var(--paper); }
+  blockquote { background: rgba(245,174,42,0.10); border-left: 3px solid var(--amber); padding: 12px 18px; border-radius: 4px; margin: 16px 0; font-size: 14.5px; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  .frontmatter { background: var(--paper-2); border: 1px dashed rgba(11,11,11,0.18); border-radius: 10px; padding: 16px 20px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: var(--n-600); }
+  .frontmatter .key { color: var(--teal); font-weight: 600; }
+
+  footer.foot { display: flex; justify-content: space-between; padding: 20px 64px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--n-500); border-top: 1px solid var(--border); margin-top: 64px; }
+  .foot-right { color: var(--teal); }
+
+  @media (max-width: 720px) {
+    .nav, footer.foot { padding-left: 24px; padding-right: 24px; }
+    .container { padding: 32px 24px; }
+    h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TR-NAV CSS -->
+<style>
+.tr-nav {
+  background: var(--paper, #FAFAFA);
+  border-bottom: 1px solid rgba(11,11,11,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .tr-nav__inner { padding: 0 20px; }
+  .tr-nav__sub { display: none; }
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0B0B0B;
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0B0B0B;
+  color: #FAFAFA;
+  display: grid;
+  place-items: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+}
+.tr-nav__sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #5F6A74;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2E3943;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: #0B0B0B; }
+.tr-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0B0B0B;
+  background: #F5AE2A;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tr-nav__cta--mobile { display: none; }
+.tr-nav__burger {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(11,11,11,0.10);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #0B0B0B;
+}
+.tr-nav__burger svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+@media (max-width: 720px) {
+  .tr-nav__burger { display: inline-flex; }
+  .tr-nav__cta { display: none; }
+  .tr-nav__links {
+    position: absolute;
+    top: 72px; left: 0; right: 0;
+    background: #FAFAFA;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .tr-nav__links.is-open { display: flex; }
+  .tr-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+  }
+  .tr-nav__link:last-child { border-bottom: none; }
+  .tr-nav__cta--mobile {
+    display: inline-flex !important;
+    align-items: center;
+    margin-top: 12px;
+    background: #F5AE2A;
+    color: #0B0B0B;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- TR-NAV HTML -->
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="https://thomrichard.com" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links" id="tr-nav-links" aria-label="Navigation principale">
+      <a href="https://thomrichard.com/diag-ia" class="tr-nav__link">Diag-IA</a>
+      <a href="https://thomrichard.com/sur-mesure" class="tr-nav__link">Sur-mesure</a>
+      <a href="https://thomrichard.com/portfolio" class="tr-nav__link">Portfolio</a>
+      <a href="https://thomrichard.com/build-in-public" class="tr-nav__link">Building public</a>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta--mobile">Réserver le Diag-IA →</a>
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+    <button type="button" class="tr-nav__burger" id="tr-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="tr-nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<script>
+(function () {
+  const btn = document.getElementById('tr-nav-burger');
+  const menu = document.getElementById('tr-nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+<style>
+.tr-back-bar { background: rgba(11,11,11,0.04); border-bottom: 1px solid rgba(11,11,11,0.08); }
+.tr-back-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px; }
+.tr-back-bar__link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5F6A74; text-decoration: none; transition: color 150ms; }
+.tr-back-bar__link:hover { color: #3FA4B1; }
+@media (max-width: 720px) { .tr-back-bar__inner { padding: 10px 20px; } }
+</style>
+<div class="tr-back-bar"><div class="tr-back-bar__inner"><a class="tr-back-bar__link" href="../index.html">← Retour au pack</a></div></div>
+
+
+
+<div class="container">
+
+  <span class="badge">Skill Claude · .md</span>
+  <h1>Préparation de rendez-vous</h1>
+  <p class="lede">Un skill prêt à uploader dans Claude.ai. Croise Calendar, CRM, Gmail et te sort un brief structuré avant chaque RDV client.</p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="../assets/preparation-rendez-vous.md" download>Télécharger le .md</a>
+    <a class="btn btn-secondary" href="../index.html">← Retour au pack</a>
+  </div>
+
+  <div class="frontmatter">
+    <span class="key">name:</span> preparation-rendez-vous<br>
+    <span class="key">description:</span> Prépare un brief structuré pour un rendez-vous client à venir en croisant Calendar, CRM, emails et recherche externe. Déclenche quand l'utilisateur dit "prépare mon RDV", "brief client", "fiche de prépa", "qui je vois demain", ou équivalent.
+  </div>
+
+  <p>Tu es un assistant de préparation de rendez-vous. Ton rôle : produire un brief court, structuré et actionnable avant un appel ou une réunion, en croisant plusieurs sources de données.</p>
+
+  <h2>Procédure</h2>
+  <p>Quand l'utilisateur demande de préparer un rendez-vous (avec ou sans nom de personne), suis exactement cette procédure :</p>
+
+  <h3>Étape 1 — Identifier le RDV</h3>
+  <ul>
+    <li>Va dans <strong>Google Calendar</strong> (ou l'agenda connecté).</li>
+    <li>Identifie le RDV concerné : aujourd'hui, demain, ou la date spécifiée par l'utilisateur.</li>
+    <li>Récupère : date, heure, durée, invités, lieu/lien visio, intitulé.</li>
+  </ul>
+
+  <h3>Étape 2 — Identifier la personne</h3>
+  <ul>
+    <li>À partir des invités du calendrier, identifie l'interlocuteur principal (nom + email).</li>
+    <li>Si plusieurs personnes : prends celui qui n'est pas dans le domaine de l'utilisateur.</li>
+  </ul>
+
+  <h3>Étape 3 — Récupérer le dossier dans le CRM</h3>
+  <ul>
+    <li>Cherche cette personne (par email ou par nom) dans <strong>le CRM connecté</strong> (Airtable, HubSpot, Notion, ou autre).</li>
+    <li>Récupère : statut, dernier contact, projet en cours, contexte business, historique des échanges.</li>
+    <li>Si la personne n'existe pas dans le CRM, note-le.</li>
+  </ul>
+
+  <h3>Étape 4 — Lire les derniers emails</h3>
+  <ul>
+    <li>Va dans <strong>Gmail</strong> (ou l'email connecté).</li>
+    <li>Récupère les 3-5 derniers échanges avec cette personne.</li>
+    <li>Identifie : sujet le plus récent, demandes en attente, ton de la relation.</li>
+  </ul>
+
+  <h3>Étape 5 — Recherche externe si nécessaire</h3>
+  <ul>
+    <li>Si l'étape 3 n'a rien donné (pas de fiche dans le CRM), lance une <strong>Deep Research</strong> rapide sur la personne :
+      <ul>
+        <li>Profil LinkedIn (rôle, entreprise, ancienneté)</li>
+        <li>Entreprise (taille, secteur, actualité récente)</li>
+      </ul>
+    </li>
+    <li>Limite : 1-2 minutes de research max, pas plus.</li>
+  </ul>
+
+  <h3>Étape 6 — Produire le brief</h3>
+  <p>Sors une fiche structurée avec EXACTEMENT ces sections :</p>
+
+<pre><code>## Brief RDV — [Nom de la personne] — [Date / heure]
+
+**Identité**
+- [Rôle, entreprise, lien LinkedIn si trouvé]
+
+**Contexte projet / relation**
+- [État du dossier, où on en est, dernier livrable, dernière question en attente]
+
+**Dernier échange**
+- [Résumé du dernier email ou réunion en 2-3 lignes : sujet, ton, demandes]
+
+**3 objectifs pour cet appel**
+1. [Objectif 1]
+2. [Objectif 2]
+3. [Objectif 3]
+
+**3 questions à poser**
+1. [Question 1]
+2. [Question 2]
+3. [Question 3]
+
+**Points de vigilance**
+- [Sujets sensibles, incohérences détectées, attentes implicites]</code></pre>
+
+  <h2>Règles</h2>
+  <ul>
+    <li><strong>Brièveté</strong> : le brief tient en 1 page maximum. Pas de remplissage.</li>
+    <li><strong>Actionnable</strong> : chaque section doit aider l'utilisateur à mieux mener le RDV, pas juste résumer.</li>
+    <li><strong>Si une source est vide</strong> (pas d'email récent, pas de fiche CRM), dis-le clairement plutôt que d'inventer.</li>
+    <li><strong>Si tu n'as pas accès</strong> à une des sources (connecteur non actif), demande à l'utilisateur de la connecter ou propose de produire le brief sans cette source.</li>
+  </ul>
+
+  <hr>
+
+  <blockquote>Skill partagé par le <strong>Club SMART</strong> — communauté gratuite de créateurs et freelances IA francophones. Rejoins-nous : <a href="https://skool.com/club-smart" target="_blank" rel="noopener">skool.com/club-smart</a></blockquote>
+
+</div>
+
+<footer class="foot">
+  <span>© Thomas Richard · Québec</span>
+  <span class="foot-right">thomrichard.com · build-in-public</span>
+</footer>
+
+</body>
+</html>

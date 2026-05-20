@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Les MCP essentiels — connecter Claude à tes outils · Club SMART</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --navy: #233039;
+    --navy-2: #1B262E;
+    --teal: #3FA4B1;
+    --teal-soft: rgba(63, 164, 177, 0.10);
+    --amber: #F5AE2A;
+    --amber-soft: rgba(245, 174, 42, 0.14);
+    --paper: #FAFAFA;
+    --paper-2: #F2F2F0;
+    --muted: rgba(35, 48, 57, 0.62);
+    --border: rgba(35, 48, 57, 0.14);
+    --border-strong: rgba(35, 48, 57, 0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper-2);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 24px auto;
+    padding: 22mm 20mm;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .page:last-of-type { page-break-after: auto; }
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 40% at 100% 0%, var(--teal-soft), transparent 70%);
+    pointer-events: none;
+  }
+  .page > * { position: relative; }
+
+  /* Header */
+  .header { margin-bottom: 10mm; }
+  .badge {
+    display: inline-block;
+    background: var(--navy); color: var(--paper);
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 32px; line-height: 1.05; letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .subtitle {
+    font-size: 14px; color: var(--muted); font-weight: 400;
+    max-width: 90%;
+  }
+
+  /* Sections */
+  section { margin-bottom: 7mm; }
+  h2 {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 18px; line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--navy);
+  }
+  h2 .num { color: var(--teal); margin-right: 6px; }
+  h3 {
+    font-family: 'Manrope', sans-serif; font-weight: 700;
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--teal);
+    margin-top: 14px; margin-bottom: 8px;
+  }
+  p { margin-bottom: 8px; }
+  p strong { font-family: 'Manrope', sans-serif; font-weight: 700; color: var(--navy); }
+
+  /* Tip Amber */
+  .tip {
+    padding: 10px 14px;
+    background: var(--amber-soft);
+    border-left: 3px solid var(--amber);
+    border-radius: 4px;
+    font-size: 12.5px; line-height: 1.5;
+    margin: 10px 0;
+    color: var(--ink);
+  }
+  .tip strong { color: var(--navy); font-family: 'Manrope', sans-serif; font-weight: 700; }
+
+  /* MCP cards — blocs colorés Navy sur fond blanc */
+  .mcp-grid { display: flex; flex-direction: column; gap: 8px; }
+  .mcp-card {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--paper);
+  }
+  .mcp-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 4px; gap: 10px;
+  }
+  .mcp-name {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 15px; color: var(--paper);
+  }
+  .mcp-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: rgba(250,250,250,0.62);
+  }
+  .mcp-meta .difficulty {
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .mcp-why {
+    font-size: 12.5px; color: rgba(250,250,250,0.92); line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .mcp-links {
+    display: flex; gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    flex-wrap: wrap;
+  }
+  .mcp-links a {
+    color: var(--teal); text-decoration: none;
+    border-bottom: 1px dotted var(--teal);
+  }
+  .mcp-links span.label {
+    color: rgba(250,250,250,0.55);
+    margin-right: 4px;
+  }
+
+  /* Native connectors callout — fond blanc cassé avec bordure */
+  .native-box {
+    background: var(--paper-2);
+    border: 1px dashed var(--border-strong);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+  .native-list {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; line-height: 1.7;
+    color: var(--navy);
+  }
+  .native-list span { color: var(--teal); font-weight: 600; }
+
+  /* Stack perso */
+  .stack-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .stack-row {
+    display: flex; gap: 12px; align-items: baseline;
+    font-size: 12.5px;
+  }
+  .stack-row .tool {
+    font-family: 'Manrope', sans-serif; font-weight: 700;
+    color: var(--teal);
+    min-width: 100px;
+  }
+  .stack-row .usage { color: var(--ink); }
+
+  /* Footer */
+  .footer {
+    margin-top: 8mm;
+    padding-top: 6mm;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .footer-text { font-size: 12.5px; line-height: 1.5; max-width: 70%; color: var(--ink); }
+  .footer-text strong {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    color: var(--teal);
+  }
+  .footer-text .url {
+    display: block; margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--navy);
+  }
+  .wordmark {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 12px; letter-spacing: 0.04em;
+    text-align: right; line-height: 1.1;
+    color: var(--navy);
+  }
+  .wordmark .smart { display: block; color: var(--teal); font-size: 16px; }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<!-- TR-NAV CSS -->
+<style>
+.tr-nav {
+  background: var(--paper, #FAFAFA);
+  border-bottom: 1px solid rgba(11,11,11,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .tr-nav__inner { padding: 0 20px; }
+  .tr-nav__sub { display: none; }
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0B0B0B;
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0B0B0B;
+  color: #FAFAFA;
+  display: grid;
+  place-items: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+}
+.tr-nav__sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #5F6A74;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2E3943;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: #0B0B0B; }
+.tr-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0B0B0B;
+  background: #F5AE2A;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tr-nav__cta--mobile { display: none; }
+.tr-nav__burger {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(11,11,11,0.10);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #0B0B0B;
+}
+.tr-nav__burger svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+@media (max-width: 720px) {
+  .tr-nav__burger { display: inline-flex; }
+  .tr-nav__cta { display: none; }
+  .tr-nav__links {
+    position: absolute;
+    top: 72px; left: 0; right: 0;
+    background: #FAFAFA;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .tr-nav__links.is-open { display: flex; }
+  .tr-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+  }
+  .tr-nav__link:last-child { border-bottom: none; }
+  .tr-nav__cta--mobile {
+    display: inline-flex !important;
+    align-items: center;
+    margin-top: 12px;
+    background: #F5AE2A;
+    color: #0B0B0B;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- TR-NAV HTML -->
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="https://thomrichard.com" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links" id="tr-nav-links" aria-label="Navigation principale">
+      <a href="https://thomrichard.com/diag-ia" class="tr-nav__link">Diag-IA</a>
+      <a href="https://thomrichard.com/sur-mesure" class="tr-nav__link">Sur-mesure</a>
+      <a href="https://thomrichard.com/portfolio" class="tr-nav__link">Portfolio</a>
+      <a href="https://thomrichard.com/build-in-public" class="tr-nav__link">Building public</a>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta--mobile">Réserver le Diag-IA →</a>
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+    <button type="button" class="tr-nav__burger" id="tr-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="tr-nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<script>
+(function () {
+  const btn = document.getElementById('tr-nav-burger');
+  const menu = document.getElementById('tr-nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+<style>
+.tr-back-bar { background: rgba(11,11,11,0.04); border-bottom: 1px solid rgba(11,11,11,0.08); }
+.tr-back-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px; }
+.tr-back-bar__link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5F6A74; text-decoration: none; transition: color 150ms; }
+.tr-back-bar__link:hover { color: #3FA4B1; }
+@media (max-width: 720px) { .tr-back-bar__inner { padding: 10px 20px; } }
+</style>
+<div class="tr-back-bar"><div class="tr-back-bar__inner"><a class="tr-back-bar__link" href="../index.html">← Retour au pack</a></div></div>
+
+
+
+<!-- PAGE 1 -->
+<div class="page">
+
+  <header class="header">
+    <span class="badge">Lead magnet</span>
+    <h1>Les MCP essentiels</h1>
+    <p class="subtitle">10 connecteurs MCP pour brancher Claude à tes outils sans coder. Le complément du tuto complet Claude.</p>
+  </header>
+
+  <section>
+    <h2><span class="num">0.</span>Avant de se lancer : natif vs MCP</h2>
+    <p>Beaucoup d'outils sont <strong>déjà connectables nativement</strong> depuis <em>Settings → Connectors</em> de Claude. Pas besoin d'installer un MCP pour ceux-là.</p>
+    <div class="native-box">
+      <div class="native-list">
+        <span>Gmail</span> · <span>Google Calendar</span> · <span>Google Drive</span> · <span>GitHub</span> · <span>Notion</span> · <span>Linear</span> · <span>Asana</span> · <span>Stripe</span> · <span>HubSpot</span> · <span>Cloudflare</span>
+      </div>
+    </div>
+    <p>Les MCP ci-dessous, c'est tout ce qui n'est <strong>pas couvert nativement</strong> et qui change vraiment ton quotidien.</p>
+    <div class="tip">
+      <strong>Comment installer un MCP en 2026 :</strong> Settings → Connectors → "Add MCP server". La plupart proposent un bouton "Install" en 1 clic. Pour les MCP self-hosted (n8n, Filesystem), suis le README du projet.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">1.</span>Data &amp; CRM no-code</h2>
+
+    <div class="mcp-grid">
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Airtable</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">LE stack data des solos. Lire, écrire, filtrer tes bases via Claude. Ton CRM, ton backlog éditorial, ton pipeline de prospection — tout devient pilotable en langage naturel.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/airtable">clubsmart.s.gy/airtable</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/domdomegg/airtable-mcp-server">airtable-mcp-server</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Supabase</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Moyen</span></span>
+        </div>
+        <p class="mcp-why">Quand tu vas un cran plus loin que no-code. Postgres managé + auth + storage + edge functions. Le combo Claude + Supabase = MVP en quelques heures.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/supabase">clubsmart.s.gy/supabase</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/supabase-community/supabase-mcp">supabase-mcp</a></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2.</span>Automation no-code</h2>
+
+    <div class="mcp-grid">
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">n8n-mcp</span>
+          <span class="mcp-meta">Community · <span class="difficulty">Moyen</span></span>
+        </div>
+        <p class="mcp-why">Génère, valide et déploie des workflows n8n directement depuis Claude. Tu décris ton automatisation en français, le MCP construit le workflow. Killer app pour les builders.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/n8n">clubsmart.s.gy/n8n</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/czlonkowski/n8n-mcp">n8n-mcp</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Zapier MCP</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Si t'es plutôt Zapier que n8n. Déclencher des Zaps existants ou en créer via Claude. Plus de 7000 apps connectables d'un coup.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/zapier">clubsmart.s.gy/zapier</a></span>
+          <span><span class="label">MCP :</span><a href="https://mcp.zapier.com">mcp.zapier.com</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Make (via Zapier ou n8n)</span>
+          <span class="mcp-meta">Indirect · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Make n'a pas de MCP officiel à ce jour, mais tu peux le piloter via webhooks déclenchés depuis Claude. Astuce : passe par un MCP HTTP générique ou par n8n comme orchestrateur.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/make">clubsmart.s.gy/make</a></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-text">
+      Page 1 / 2 — la suite : Web &amp; recherche, Création, Stack perso.
+    </div>
+    <div class="wordmark">
+      Club
+      <span class="smart">SMART</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+
+  <section>
+    <h2><span class="num">3.</span>Web &amp; recherche</h2>
+
+    <div class="mcp-grid">
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Firecrawl</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Scrape n'importe quel site, même JS-rendered. Bien plus puissant que la web search native de Claude. Pour la veille, l'analyse concurrentielle, l'extraction structurée.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/firecrawl">clubsmart.s.gy/firecrawl</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/mendableai/firecrawl-mcp-server">firecrawl-mcp</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Brave Search</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Alternative à la web search native sans tracking. Plus précis sur les recherches techniques et long tail. API gratuite jusqu'à 2000 requêtes / mois.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/brave">clubsmart.s.gy/brave</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search">brave-search-mcp</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Apify</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Moyen</span></span>
+        </div>
+        <p class="mcp-why">Si tu as besoin de scrapers pré-construits (LinkedIn, Instagram, Twitter, Google Maps, TripAdvisor). Pour les pros de la prospection et de la veille structurée.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/apify">clubsmart.s.gy/apify</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/apify/actors-mcp-server">actors-mcp-server</a></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4.</span>Création &amp; contenu</h2>
+
+    <div class="mcp-grid">
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Canva</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Génération et édition de visuels en langage naturel. Pas pour le final, mais pour itérer vite sur des concepts de carrousels, vignettes, slides.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/canva">clubsmart.s.gy/canva</a></span>
+          <span><span class="label">MCP :</span><a href="https://canva.com/developers/docs/mcp/">canva.com/developers/mcp</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">Excalidraw</span>
+          <span class="mcp-meta">Community · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Diagrammes, schémas, croquis d'architecture. Sortie en fichiers <code>.excalidraw</code> éditables. Très pratique pour les scripts vidéo, les briefs clients, les explications visuelles.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/excalidraw">clubsmart.s.gy/excalidraw</a></span>
+          <span><span class="label">MCP :</span><a href="https://github.com/yctimlin/mcp_excalidraw">mcp_excalidraw</a></span>
+        </div>
+      </div>
+
+      <div class="mcp-card">
+        <div class="mcp-head">
+          <span class="mcp-name">VidIQ</span>
+          <span class="mcp-meta">Officiel · <span class="difficulty">Facile</span></span>
+        </div>
+        <p class="mcp-why">Pour les créateurs YouTube. Stats chaîne, outliers, keyword research, scoring de titres et de miniatures — le tout depuis Claude. Compagnon idéal du skill <code>youtube-packaging</code>.</p>
+        <div class="mcp-links">
+          <span><span class="label">Outil :</span><a href="https://clubsmart.s.gy/vidiq">clubsmart.s.gy/vidiq</a></span>
+          <span><span class="label">MCP :</span><a href="https://vidiq.com/mcp">vidiq.com/mcp</a></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5.</span>Mon stack perso (Thomas, Club SMART)</h2>
+    <p>Pour donner un exemple concret, voilà les MCP que j'ai branchés sur mon Claude au quotidien :</p>
+    <div class="stack-list">
+      <div class="stack-row">
+        <span class="tool">Airtable</span>
+        <span class="usage">Mon CRM Club SMART + mon backlog éditorial + ma base concepts</span>
+      </div>
+      <div class="stack-row">
+        <span class="tool">n8n-mcp</span>
+        <span class="usage">Génération de workflows pour mes clients freelance et mes pipelines internes</span>
+      </div>
+      <div class="stack-row">
+        <span class="tool">VidIQ</span>
+        <span class="usage">Veille créateurs + scoring de titres et miniatures avant publication</span>
+      </div>
+      <div class="stack-row">
+        <span class="tool">Excalidraw</span>
+        <span class="usage">Diagrammes pour scripts YouTube et briefs clients</span>
+      </div>
+      <div class="stack-row">
+        <span class="tool">Firecrawl</span>
+        <span class="usage">Veille concurrentielle et extraction de pages produits</span>
+      </div>
+    </div>
+    <div class="tip">
+      <strong>Pas la peine de tout installer.</strong> Commence par 1-2 MCP qui correspondent à tes outils du quotidien. Ajoute le reste au fur et à mesure que tu sens le besoin.
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-text">
+      Rejoins le <strong>Club SMART</strong> — communauté gratuite de créateurs et freelances IA francophones. On y partage nos setups MCP, nos workflows et nos retours d'expérience.
+      <span class="url">skool.com/club-smart</span>
+    </div>
+    <div class="wordmark">
+      Club
+      <span class="smart">SMART</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

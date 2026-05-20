@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Skill — Compte-rendu de réunion · Club SMART</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B; --navy: #233039; --teal: #3FA4B1; --amber: #F5AE2A;
+    --paper: #FAFAFA; --paper-2: #F2F2F0; --white: #FFFFFF;
+    --n-100: #EBEDEF; --n-300: #B8BFC6; --n-500: #5F6A74; --n-600: #43505B;
+    --border: rgba(11,11,11,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: 'Inter Tight', system-ui, sans-serif; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; border-bottom: 1px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 22px; height: 22px; border-radius: 50%; background: var(--ink); box-shadow: inset -6px -6px 0 var(--amber); }
+  .brand-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .back-link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--n-500); text-decoration: none; }
+  .back-link:hover { color: var(--teal); }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 56px 32px; }
+  .badge { display: inline-block; background: var(--ink); color: var(--paper); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; margin-bottom: 16px; }
+  h1 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 44px; line-height: 1.05; letter-spacing: -0.025em; color: var(--navy); margin-bottom: 16px; }
+  .lede { font-size: 17px; line-height: 1.6; color: var(--n-600); margin-bottom: 32px; }
+
+  .actions { display: flex; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+  .btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: 10px; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: all 150ms; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn-primary:hover { background: var(--navy); border-color: var(--navy); }
+  .btn-secondary { background: var(--white); color: var(--ink); border-color: rgba(11,11,11,0.18); }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  h2 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; color: var(--navy); margin-top: 40px; margin-bottom: 16px; }
+  h3 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 17px; color: var(--navy); margin-top: 24px; margin-bottom: 8px; }
+  p { color: var(--ink); margin-bottom: 12px; }
+  ul, ol { margin: 12px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+  li strong { font-family: 'Manrope', sans-serif; font-weight: 700; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: var(--n-100); padding: 2px 6px; border-radius: 4px; }
+  pre { background: var(--navy); color: var(--paper); padding: 18px 22px; border-radius: 10px; overflow-x: auto; margin: 16px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; }
+  pre code { background: none; padding: 0; color: var(--paper); }
+  blockquote { background: rgba(245,174,42,0.10); border-left: 3px solid var(--amber); padding: 12px 18px; border-radius: 4px; margin: 16px 0; font-size: 14.5px; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; }
+  th { background: var(--paper-2); font-family: 'Manrope', sans-serif; font-weight: 700; }
+
+  .frontmatter { background: var(--paper-2); border: 1px dashed rgba(11,11,11,0.18); border-radius: 10px; padding: 16px 20px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: var(--n-600); }
+  .frontmatter .key { color: var(--teal); font-weight: 600; }
+
+  footer.foot { display: flex; justify-content: space-between; padding: 20px 64px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--n-500); border-top: 1px solid var(--border); margin-top: 64px; }
+  .foot-right { color: var(--teal); }
+
+  @media (max-width: 720px) {
+    .nav, footer.foot { padding-left: 24px; padding-right: 24px; }
+    .container { padding: 32px 24px; }
+    h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TR-NAV CSS -->
+<style>
+.tr-nav {
+  background: var(--paper, #FAFAFA);
+  border-bottom: 1px solid rgba(11,11,11,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .tr-nav__inner { padding: 0 20px; }
+  .tr-nav__sub { display: none; }
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0B0B0B;
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0B0B0B;
+  color: #FAFAFA;
+  display: grid;
+  place-items: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+}
+.tr-nav__sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #5F6A74;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2E3943;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: #0B0B0B; }
+.tr-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0B0B0B;
+  background: #F5AE2A;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tr-nav__cta--mobile { display: none; }
+.tr-nav__burger {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(11,11,11,0.10);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #0B0B0B;
+}
+.tr-nav__burger svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+@media (max-width: 720px) {
+  .tr-nav__burger { display: inline-flex; }
+  .tr-nav__cta { display: none; }
+  .tr-nav__links {
+    position: absolute;
+    top: 72px; left: 0; right: 0;
+    background: #FAFAFA;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .tr-nav__links.is-open { display: flex; }
+  .tr-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+  }
+  .tr-nav__link:last-child { border-bottom: none; }
+  .tr-nav__cta--mobile {
+    display: inline-flex !important;
+    align-items: center;
+    margin-top: 12px;
+    background: #F5AE2A;
+    color: #0B0B0B;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- TR-NAV HTML -->
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="https://thomrichard.com" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links" id="tr-nav-links" aria-label="Navigation principale">
+      <a href="https://thomrichard.com/diag-ia" class="tr-nav__link">Diag-IA</a>
+      <a href="https://thomrichard.com/sur-mesure" class="tr-nav__link">Sur-mesure</a>
+      <a href="https://thomrichard.com/portfolio" class="tr-nav__link">Portfolio</a>
+      <a href="https://thomrichard.com/build-in-public" class="tr-nav__link">Building public</a>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta--mobile">Réserver le Diag-IA →</a>
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+    <button type="button" class="tr-nav__burger" id="tr-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="tr-nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<script>
+(function () {
+  const btn = document.getElementById('tr-nav-burger');
+  const menu = document.getElementById('tr-nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+<style>
+.tr-back-bar { background: rgba(11,11,11,0.04); border-bottom: 1px solid rgba(11,11,11,0.08); }
+.tr-back-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px; }
+.tr-back-bar__link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5F6A74; text-decoration: none; transition: color 150ms; }
+.tr-back-bar__link:hover { color: #3FA4B1; }
+@media (max-width: 720px) { .tr-back-bar__inner { padding: 10px 20px; } }
+</style>
+<div class="tr-back-bar"><div class="tr-back-bar__inner"><a class="tr-back-bar__link" href="../index.html">← Retour au pack</a></div></div>
+
+
+
+<div class="container">
+
+  <span class="badge">Skill Claude · .md</span>
+  <h1>Compte-rendu de réunion</h1>
+  <p class="lede">Transforme tes notes ou ta transcription en CR structuré, extrait décisions et actions, et pousse dans tes outils connectés.</p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="../assets/compte-rendu-reunion.md" download>Télécharger le .md</a>
+    <a class="btn btn-secondary" href="../index.html">← Retour au pack</a>
+  </div>
+
+  <div class="frontmatter">
+    <span class="key">name:</span> compte-rendu-reunion<br>
+    <span class="key">description:</span> Produit un compte-rendu structuré à partir de notes ou d'une transcription de réunion, extrait les décisions et les actions, et les pousse dans les outils connectés (CRM, gestion de tâches, projet client). Déclenche quand l'utilisateur dit "compte-rendu de réunion", "CR de l'appel", "synthèse de la réunion", "traite mes notes", ou équivalent.
+  </div>
+
+  <p>Tu es un assistant qui transforme des notes ou une transcription brute en compte-rendu professionnel, puis qui propage les actions dans les outils du quotidien.</p>
+
+  <h2>Procédure</h2>
+  <p>Quand l'utilisateur fournit une transcription, des notes vocales, ou dit "compte-rendu de réunion", suis exactement cette procédure :</p>
+
+  <h3>Étape 1 — Identifier le client / contexte</h3>
+  <ul>
+    <li>Lis le contenu fourni (transcription, notes, fichier joint).</li>
+    <li>Identifie :
+      <ul>
+        <li>Le <strong>client</strong> ou interlocuteur principal (nom + entreprise)</li>
+        <li>Le <strong>projet</strong> ou sujet concerné</li>
+        <li>La <strong>date</strong> et la durée approximative de la réunion</li>
+      </ul>
+    </li>
+    <li>Si tu hésites, demande à l'utilisateur avant de continuer.</li>
+  </ul>
+
+  <h3>Étape 2 — Extraire les décisions prises</h3>
+  <p>Liste toutes les décisions actées pendant la réunion. Une décision = un choix qui a été tranché, pas une simple discussion.</p>
+
+  <h3>Étape 3 — Extraire les actions à mener</h3>
+  <p>Pour chaque action, identifie :</p>
+  <ul>
+    <li><strong>Quoi</strong> (description de l'action)</li>
+    <li><strong>Qui</strong> (responsable)</li>
+    <li><strong>Pour quand</strong> (date butoir si mentionnée, sinon "à définir")</li>
+  </ul>
+
+  <table>
+    <thead><tr><th>Action</th><th>Responsable</th><th>Échéance</th></tr></thead>
+    <tbody><tr><td>...</td><td>...</td><td>...</td></tr></tbody>
+  </table>
+
+  <h3>Étape 4 — Produire le compte-rendu</h3>
+  <p>Sors un document structuré avec EXACTEMENT ces sections :</p>
+
+<pre><code># Compte-rendu — [Client] — [Date]
+
+**Participants**
+- [Liste des participants]
+
+**Sujet de la réunion**
+- [1-2 lignes]
+
+**Décisions prises**
+1. [Décision 1]
+2. [Décision 2]
+...
+
+**Actions à mener**
+[Tableau actions / responsables / échéances]
+
+**Points en suspens**
+- [Sujets qui n'ont pas été tranchés et qui doivent revenir au prochain RDV]
+
+**Prochaine étape**
+- [Prochain RDV prévu, ou prochaine action déclenchante]</code></pre>
+
+  <h3>Étape 5 — Propager dans les outils connectés</h3>
+  <p>Une fois le CR validé par l'utilisateur (ou en mode automatique si l'utilisateur a configuré le déclenchement direct) :</p>
+  <ol>
+    <li><strong>Pousser le CR dans le projet Claude / Notion / Drive du client</strong> — vérifie qu'un projet existe pour ce client. Sinon, demande à l'utilisateur où ranger le document.</li>
+    <li><strong>Créer les actions dans le gestionnaire de tâches</strong> — pour chaque ligne du tableau actions : crée une tâche dans <strong>le système connecté</strong> (Airtable, Asana, Linear, Notion, Todoist, ou autre). Préfixe le titre par <code>[Client]</code> pour faciliter le filtrage. Ajoute la date d'échéance et le responsable si possible.</li>
+    <li><strong>Préparer un brouillon d'email de suivi</strong> (optionnel) — si l'utilisateur a Gmail / Outlook connecté, propose un brouillon de mail de suivi adressé au client, qui récapitule les décisions et confirme les prochaines étapes. Ne l'envoie jamais directement — toujours en brouillon.</li>
+  </ol>
+
+  <h2>Règles</h2>
+  <ul>
+    <li><strong>Pas d'invention</strong> : si une info manque (responsable d'une action, date), écris "à définir" plutôt que de deviner.</li>
+    <li><strong>Demande confirmation</strong> avant de pousser dans plusieurs outils en chaîne.</li>
+    <li><strong>Garde un ton neutre et professionnel</strong> dans le CR. Pas d'emoji. Pas de jugement sur ce qui s'est dit en réunion.</li>
+    <li><strong>Si la transcription est très longue</strong> (&gt; 1h de réunion), résume agressivement les décisions et actions — pas de paraphrase exhaustive.</li>
+  </ul>
+
+  <hr>
+
+  <blockquote>Skill partagé par le <strong>Club SMART</strong> — communauté gratuite de créateurs et freelances IA francophones. Rejoins-nous : <a href="https://skool.com/club-smart" target="_blank" rel="noopener">skool.com/club-smart</a></blockquote>
+
+</div>
+
+<footer class="foot">
+  <span>© Thomas Richard · Québec</span>
+  <span class="foot-right">thomrichard.com · build-in-public</span>
+</footer>
+
+</body>
+</html>

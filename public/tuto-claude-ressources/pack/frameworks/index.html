@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>6 frameworks de prompt qui marchent — Club SMART</title>
+<meta name="description" content="Les 6 frameworks de prompt à connaître pour piloter Claude (et tout autre LLM) en 2026. Le compagnon du tuto Claude de Thomas Richard." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --ink: #0B0B0B;
+  --navy: #233039;
+  --teal: #3FA4B1;
+  --amber: #F5AE2A;
+  --paper: #FAFAFA;
+  --white: #FFFFFF;
+  --ink-2: #1A1F24;
+  --n-50: #F6F7F8;
+  --n-100: #EBEDEF;
+  --n-200: #D9DDE1;
+  --n-300: #B8BFC6;
+  --n-400: #8A949D;
+  --n-500: #5F6A74;
+  --n-600: #43505B;
+  --n-700: #2E3943;
+
+  --fg-1: var(--ink);
+  --fg-2: var(--n-600);
+  --fg-3: var(--n-500);
+  --border: rgba(11,11,11,0.10);
+  --border-strong: rgba(11,11,11,0.20);
+
+  --font-display: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 80px 56px 96px;
+}
+
+/* ── Cover ───────────────────────────────────────────────────── */
+.cover {
+  background: var(--navy);
+  color: var(--paper);
+  padding: 96px 56px 88px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+.cover-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.cover .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.cover h1 {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  color: var(--paper);
+  text-wrap: balance;
+}
+.cover h1 .accent { color: var(--amber); }
+.cover .lede {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--n-300);
+  max-width: 640px;
+  margin: 0 0 40px;
+}
+.cover .meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid rgba(250,250,250,0.12);
+}
+.cover .meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cover .meta-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--n-400);
+}
+.cover .meta-value {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--paper);
+}
+
+/* ── Headings ───────────────────────────────────────────────── */
+h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 8px;
+  color: var(--ink);
+  text-wrap: balance;
+}
+h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+p { margin: 0 0 16px; color: var(--fg-2); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-3);
+  font-weight: 500;
+}
+
+/* ── Intro section ──────────────────────────────────────────── */
+.intro {
+  margin-bottom: 64px;
+}
+.intro .lede {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.intro .map {
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.intro .map-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-3);
+  margin-bottom: 16px;
+}
+.intro .map ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.intro .map ol li {
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+.intro .map ol li strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.intro .map ol li .when {
+  color: var(--fg-2);
+  font-weight: 400;
+}
+
+/* ── Framework card ─────────────────────────────────────────── */
+.framework {
+  margin-bottom: 56px;
+  padding: 40px 0 8px;
+  border-top: 2px solid var(--ink);
+}
+.framework-num {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.framework-title {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.framework-title h2 {
+  font-size: 44px;
+  margin: 0;
+}
+.framework-title .full {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--fg-3);
+  letter-spacing: 0;
+}
+.when-card {
+  margin: 24px 0 32px;
+  padding: 20px 24px;
+  background: var(--n-50);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.when-card .when-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.when-card p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Letter table */
+.letters {
+  margin: 24px 0 32px;
+  border-top: 1px solid var(--border);
+}
+.letter-row {
+  display: grid;
+  grid-template-columns: 64px 200px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.letter-key {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.letter-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--teal);
+}
+.letter-desc {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* Examples */
+.examples {
+  margin-top: 32px;
+}
+.examples-label {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.examples-label::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--teal);
+  vertical-align: middle;
+  margin-right: 12px;
+  transform: translateY(-3px);
+}
+.examples-label-real::before {
+  background: var(--amber);
+}
+.example {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 20px 24px;
+  border-radius: var(--r-md);
+  margin-bottom: 12px;
+  position: relative;
+  border: 1px solid var(--ink);
+}
+.example-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.example-body {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--n-200);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.example-body .tag {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* "Vraie vie" example — chat bubble style on paper */
+.examples-label-real {
+  margin-top: 28px;
+}
+.example-real {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--r-md);
+  padding: 20px 24px;
+}
+.example-real .example-title {
+  color: var(--amber);
+  filter: brightness(0.85);
+}
+.example-real .example-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.example-real .example-body strong { font-weight: 600; color: var(--ink); }
+.example-real .example-body em { color: var(--n-600); font-style: italic; }
+
+/* ReAct-specific bridge note */
+.react-bridge {
+  margin: 28px 0;
+  padding: 18px 22px;
+  background: var(--n-50);
+  border-radius: var(--r-md);
+  font-size: 15px;
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+.react-bridge strong { color: var(--ink); font-weight: 600; }
+
+/* ── Ouverture DSPy ────────────────────────────────────────── */
+.ouverture {
+  margin-top: 80px;
+  padding: 48px 48px 40px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--r-xl);
+}
+.ouverture .eyebrow {
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: block;
+}
+.ouverture h2 {
+  color: var(--paper);
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+.ouverture h2 .accent { color: var(--amber); }
+.ouverture p { color: var(--n-300); font-size: 16px; }
+.ouverture p strong { color: var(--paper); font-weight: 600; }
+.ouverture .pullquote {
+  margin: 28px 0 24px;
+  padding: 20px 24px;
+  border-left: 3px solid var(--amber);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--paper);
+  font-style: normal;
+}
+.ouverture .cta-row {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(250,250,250,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.ouverture .cta-primary {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 150ms ease;
+}
+.ouverture .cta-primary:hover {
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+.ouverture .cta-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--n-400);
+  letter-spacing: 0.02em;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.footer {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.footer .footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.footer h4 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.footer ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  color: var(--fg-2);
+}
+.footer ul li { margin-bottom: 6px; }
+.footer .sig {
+  font-size: 13px;
+  color: var(--fg-3);
+  font-family: var(--font-mono);
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--teal); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ── Print ─────────────────────────────────────────────────── */
+@page {
+  size: A4;
+  margin: 18mm 16mm;
+}
+
+/* Première page = cover, pas de marge (full bleed navy) */
+@page :first {
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background: var(--white);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Force les fonds + couleurs à imprimer (sinon Chrome les strip par défaut).
+     L'utilisateur peut désactiver via "Graphismes en arrière-plan" dans le dialogue d'impression. */
+  .cover, .ouverture, .example, .cta-primary,
+  .when-card, .react-bridge, .intro .map, .example-real {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Cover plein page (premier page, @page :first sans marge) */
+  .cover {
+    min-height: 100vh;
+    padding: 80px 56px;
+    margin: 0;
+    page-break-after: always;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .cover-inner { width: 100%; }
+
+  /* Contenu : on laisse @page gérer les marges, pas le container */
+  .page {
+    padding: 0;
+    max-width: none;
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     PAGINATION DES FRAMEWORKS — 2 pages par framework
+     Page 1 : header + when-card + letters + exemple didactique
+     Page 2 : "Ce que ça donne en vrai" + version naturelle
+     ────────────────────────────────────────────────────────── */
+  .framework {
+    page-break-after: always;
+    break-after: page;
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+  .framework:last-of-type {
+    page-break-after: always;
+  }
+
+  /* PAGE 2 du framework = bloc des exemples (didactique + vraie vie ensemble) */
+  .examples {
+    page-break-before: always;
+    break-before: page;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .examples-label-real {
+    page-break-before: auto;
+    break-before: auto;
+    margin-top: 28px;
+  }
+
+  /* Blocs à ne pas couper */
+  .example, .example-real, .letter-row, .when-card, .react-bridge, .framework-title, .examples {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  h2, h3, .framework-num, .examples-label {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Aération en print : on resserre légèrement pour faire tenir page 1 */
+  .framework-title h2 { font-size: 38px; }
+  .when-card { margin: 18px 0 22px; padding: 16px 20px; }
+  .letters { margin: 18px 0 22px; }
+  .letter-row { padding: 11px 0; }
+  .examples-label { font-size: 17px; }
+
+  /* Section CTA Club SMART — page dédiée, card centrée, taille maîtrisée */
+  .ouverture {
+    page-break-before: always;
+    page-break-after: always;
+    break-before: page;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 40px 36px;
+    border-radius: var(--r-xl);
+    min-height: auto;
+  }
+  .ouverture h2 { font-size: 28px; }
+  .ouverture p { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+  .ouverture .pullquote {
+    font-size: 16px;
+    padding: 14px 18px;
+    margin: 20px 0 18px;
+    line-height: 1.4;
+  }
+  .ouverture .cta-row {
+    margin-top: 24px;
+    padding-top: 20px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .ouverture .cta-primary { padding: 12px 24px; font-size: 15px; }
+
+  /* Intro reste fluide */
+  .intro { page-break-after: always; break-after: page; }
+
+  /* Footer sur sa propre page */
+  .footer { page-break-before: always; padding-top: 0; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cover { padding: 56px 28px; }
+  .cover h1 { font-size: 40px; }
+  .cover .lede { font-size: 17px; }
+  .page { padding: 48px 24px; }
+  .framework-title h2 { font-size: 32px; }
+  .letter-row { grid-template-columns: 48px 1fr; }
+  .letter-row .letter-desc { grid-column: 1 / -1; padding-left: 64px; }
+  .ouverture { padding: 32px 28px; }
+  .footer .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<!-- TR-NAV CSS -->
+<style>
+.tr-nav {
+  background: var(--paper, #FAFAFA);
+  border-bottom: 1px solid rgba(11,11,11,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+.tr-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .tr-nav__inner { padding: 0 20px; }
+  .tr-nav__sub { display: none; }
+}
+.tr-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0B0B0B;
+}
+.tr-nav__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0B0B0B;
+  color: #FAFAFA;
+  display: grid;
+  place-items: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+.tr-nav__name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+}
+.tr-nav__sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #5F6A74;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.tr-nav__links {
+  display: flex;
+  gap: 28px;
+}
+.tr-nav__link {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2E3943;
+  text-decoration: none;
+  transition: color 150ms;
+}
+.tr-nav__link:hover { color: #0B0B0B; }
+.tr-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0B0B0B;
+  background: #F5AE2A;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tr-nav__cta--mobile { display: none; }
+.tr-nav__burger {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(11,11,11,0.10);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #0B0B0B;
+}
+.tr-nav__burger svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; }
+@media (max-width: 720px) {
+  .tr-nav__burger { display: inline-flex; }
+  .tr-nav__cta { display: none; }
+  .tr-nav__links {
+    position: absolute;
+    top: 72px; left: 0; right: 0;
+    background: #FAFAFA;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .tr-nav__links.is-open { display: flex; }
+  .tr-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(11,11,11,0.10);
+  }
+  .tr-nav__link:last-child { border-bottom: none; }
+  .tr-nav__cta--mobile {
+    display: inline-flex !important;
+    align-items: center;
+    margin-top: 12px;
+    background: #F5AE2A;
+    color: #0B0B0B;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- TR-NAV HTML -->
+<header class="tr-nav">
+  <div class="tr-nav__inner">
+    <a href="https://thomrichard.com" class="tr-nav__brand">
+      <span class="tr-nav__mark">TR</span>
+      <div>
+        <div class="tr-nav__name">Thomas Richard</div>
+        <div class="tr-nav__sub">AUTOMATION · IA</div>
+      </div>
+    </a>
+    <nav class="tr-nav__links" id="tr-nav-links" aria-label="Navigation principale">
+      <a href="https://thomrichard.com/diag-ia" class="tr-nav__link">Diag-IA</a>
+      <a href="https://thomrichard.com/sur-mesure" class="tr-nav__link">Sur-mesure</a>
+      <a href="https://thomrichard.com/portfolio" class="tr-nav__link">Portfolio</a>
+      <a href="https://thomrichard.com/build-in-public" class="tr-nav__link">Building public</a>
+      <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta--mobile">Réserver le Diag-IA →</a>
+    </nav>
+    <a href="https://tidycal.com/thomrichard/diagia-decouverte" target="_blank" rel="noopener" class="tr-nav__cta">Réserver le Diag-IA →</a>
+    <button type="button" class="tr-nav__burger" id="tr-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="tr-nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<script>
+(function () {
+  const btn = document.getElementById('tr-nav-burger');
+  const menu = document.getElementById('tr-nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+<style>
+.tr-back-bar { background: rgba(11,11,11,0.04); border-bottom: 1px solid rgba(11,11,11,0.08); }
+.tr-back-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px; }
+.tr-back-bar__link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5F6A74; text-decoration: none; transition: color 150ms; }
+.tr-back-bar__link:hover { color: #3FA4B1; }
+@media (max-width: 720px) { .tr-back-bar__inner { padding: 10px 20px; } }
+</style>
+<div class="tr-back-bar"><div class="tr-back-bar__inner"><a class="tr-back-bar__link" href="../index.html">← Retour au pack</a></div></div>
+
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="eyebrow">Club SMART · Compagnon du tuto Claude</div>
+    <h1>6 frameworks de prompt <span class="accent">qui marchent vraiment</span></h1>
+    <p class="lede">Le mémo de poche pour structurer tes prompts — du one-shot rapide à l'agent connecté à des outils. Six grilles à connaître, classées par cas d'usage. Rien de plus, rien de moins.</p>
+    <div class="meta">
+      <div class="meta-block">
+        <div class="meta-label">Format</div>
+        <div class="meta-value">Livre blanc · 12 min de lecture</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Auteur</div>
+        <div class="meta-value">Thomas Richard — Club SMART</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Version</div>
+        <div class="meta-value">v1 — 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE CONTENT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- INTRO ──────────────────────────────────────────────────── -->
+  <section class="intro">
+    <p class="lede">Un bon prompt n'est pas une question d'inspiration. C'est une question de structure. Les frameworks ci-dessous sont les six grilles qui couvrent 95 % des cas en 2026 — du message rapide à l'agent qui pilote des outils.</p>
+    <p>Tu n'as pas besoin de tous les retenir. Apprends-les dans l'ordre, utilise celui qui correspond à ce que tu cherches à produire, et passe au suivant quand le précédent te semble trop court. Les 6 sont rangés du plus simple au plus puissant.</p>
+
+    <div class="map">
+      <div class="map-title">Sommaire — quel framework pour quoi</div>
+      <ol>
+        <li><strong>RTF</strong> <span class="when">— quand tu as 30 secondes</span></li>
+        <li><strong>CRAFT</strong> <span class="when">— quand RTF manque de contexte</span></li>
+        <li><strong>CO-STAR</strong> <span class="when">— pour produire du contenu (posts, mails, comm)</span></li>
+        <li><strong>CRISPE</strong> <span class="when">— pour explorer plusieurs variantes d'une idée</span></li>
+        <li><strong>RISEN</strong> <span class="when">— pour piloter un raisonnement en plusieurs étapes</span></li>
+        <li><strong>ReAct</strong> <span class="when">— dès qu'il y a des outils (MCP, agents, function calling)</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════ 1. RTF ═══════════════════════════════════════════ -->
+  <section class="framework">
+    <div class="framework-num">01 — Le MVP</div>
+    <div class="framework-title">
+      <h2>RTF</h2>
+      <div class="full">Role · Task · Format</div>
+    </div>
+
+    <div class="when-card">
+      <div class="when-label">Quand l'utiliser</div>
+      <p>Quand tu veux un résultat propre en moins d'une minute. 70 % des prompts du quotidien tiennent dans ces trois lettres. À utiliser en premier réflexe.</p>
+    </div>
+
+    <div class="letters">
+      <div class="letter-row">
+        <div class="letter-key">R</div>
+        <div class="letter-name">Role</div>
+        <div class="letter-desc">La casquette experte que prend le LLM (analyste, dev, copywriter, prof…).</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">T</div>
+        <div class="letter-name">Task</div>
+        <div class="letter-desc">L'action unique à réaliser, formulée à l'impératif. Une seule tâche, pas trois.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">F</div>
+        <div class="letter-name">Format</div>
+        <div class="letter-desc">Comment la sortie doit être structurée : bullets, tableau, JSON, longueur exacte…</div>
+      </div>
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Comment ça se traduit — ce qu'il faut mettre dans chaque case</div>
+      <div class="example">
+        <div class="example-title">Exemple · Synthèse d'article</div>
+        <div class="example-body"><span class="tag">Role:</span> analyste veille tech.
+<span class="tag">Task:</span> résume cet article en 5 bullets.
+<span class="tag">Format:</span> markdown, 1 bullet = 1 phrase de 20 mots max.
+
+[article collé ici]</div>
+      </div>
+
+      <div class="examples-label examples-label-real">Ce que ça donne en vrai — comment tu vas l'écrire</div>
+      <div class="example example-real">
+        <div class="example-title">Le même prompt, version naturelle</div>
+        <div class="example-body">Tu es analyste en veille tech. Résume l'article ci-dessous en 5 bullets, format markdown — une phrase de 20 mots maximum par bullet.
+
+[article collé ici]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 2. CRAFT ═══════════════════════════════════════ -->
+  <section class="framework">
+    <div class="framework-num">02 — Le pas-de-côté</div>
+    <div class="framework-title">
+      <h2>CRAFT</h2>
+      <div class="full">Context · Role · Action · Format · Target audience</div>
+    </div>
+
+    <div class="when-card">
+      <div class="when-label">Quand l'utiliser</div>
+      <p>Quand RTF te semble trop court mais que tu n'as pas besoin de la finesse de CO-STAR. Le bon compromis pour des prompts un peu plus consistants au quotidien, surtout dès qu'il y a un public ou un contexte business à préciser.</p>
+    </div>
+
+    <div class="letters">
+      <div class="letter-row">
+        <div class="letter-key">C</div>
+        <div class="letter-name">Context</div>
+        <div class="letter-desc">La situation business ou le décor : produit, projet, contraintes, raison du prompt.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">R</div>
+        <div class="letter-name">Role</div>
+        <div class="letter-desc">La casquette experte du LLM.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">A</div>
+        <div class="letter-name">Action</div>
+        <div class="letter-desc">L'action à réaliser, verbe à l'impératif.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">F</div>
+        <div class="letter-name">Format</div>
+        <div class="letter-desc">La structure de sortie attendue.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">T</div>
+        <div class="letter-name">Target audience</div>
+        <div class="letter-desc">À qui s'adresse le résultat : niveau, persona, ce qu'ils savent déjà.</div>
+      </div>
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Comment ça se traduit — ce qu'il faut mettre dans chaque case</div>
+      <div class="example">
+        <div class="example-title">Exemple · Pitch d'une formation</div>
+        <div class="example-body"><span class="tag">Context:</span> je lance une formation no-code pour solos francophones, lancement dans 3 semaines.
+<span class="tag">Role:</span> copywriter spécialisé infoproduits.
+<span class="tag">Action:</span> rédige le pitch de la page de vente.
+<span class="tag">Format:</span> H1 + 3 paragraphes (problème → promesse → preuve).
+<span class="tag">Target:</span> freelances 30-45 ans qui veulent automatiser sans coder.</div>
+      </div>
+
+      <div class="examples-label examples-label-real">Ce que ça donne en vrai — comment tu vas l'écrire</div>
+      <div class="example example-real">
+        <div class="example-title">Le même prompt, version naturelle</div>
+        <div class="example-body">Je lance une formation no-code pour solos francophones — lancement dans 3 semaines. Tu es copywriter spécialisé infoproduits.
+
+Rédige-moi le pitch de la page de vente : un H1 percutant, puis 3 paragraphes (problème → promesse → preuve). La cible : des freelances 30-45 ans qui veulent automatiser sans coder.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 3. CO-STAR ═════════════════════════════════════ -->
+  <section class="framework">
+    <div class="framework-num">03 — Le contenu</div>
+    <div class="framework-title">
+      <h2>CO-STAR</h2>
+      <div class="full">Context · Objective · Style · Tone · Audience · Response</div>
+    </div>
+
+    <div class="when-card">
+      <div class="when-label">Quand l'utiliser</div>
+      <p>Pour toute production éditoriale ou de communication : posts LinkedIn, mails, scripts, newsletters, annonces. Le seul framework qui sépare proprement le <em>style</em> (registre) du <em>ton</em> (émotion) — utile dès que tu veux que ça sonne juste.</p>
+    </div>
+
+    <div class="letters">
+      <div class="letter-row">
+        <div class="letter-key">C</div>
+        <div class="letter-name">Context</div>
+        <div class="letter-desc">Le décor business ou situationnel pertinent.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">O</div>
+        <div class="letter-name">Objective</div>
+        <div class="letter-desc">L'objectif précis que doit accomplir la sortie (informer, vendre, convertir, …).</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">S</div>
+        <div class="letter-name">Style</div>
+        <div class="letter-desc">Le registre d'écriture : journalistique, storytelling, technique, conversationnel…</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">T</div>
+        <div class="letter-name">Tone</div>
+        <div class="letter-desc">L'émotion portée : posé, urgent, complice, didactique, sec…</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">A</div>
+        <div class="letter-name">Audience</div>
+        <div class="letter-desc">Le persona destinataire : niveau, intérêts, ce qu'il sait déjà.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">R</div>
+        <div class="letter-name">Response</div>
+        <div class="letter-desc">Le format final attendu : type de contenu, longueur, contraintes (CTA, hashtags…).</div>
+      </div>
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Comment ça se traduit — ce qu'il faut mettre dans chaque case</div>
+      <div class="example">
+        <div class="example-title">Exemple · Post LinkedIn build-in-public</div>
+        <div class="example-body"><span class="tag">Context:</span> je viens d'atteindre 50 membres dans mon Club Skool sur l'IA.
+<span class="tag">Objective:</span> annoncer le cap publiquement et attirer 5 nouveaux inscrits.
+<span class="tag">Style:</span> build-in-public, factuel.
+<span class="tag">Tone:</span> posé, fier sans grandiloquence.
+<span class="tag">Audience:</span> freelances francophones curieux d'IA, 30-50 ans.
+<span class="tag">Response:</span> post LinkedIn 900-1100 signes, sans emoji, 1 CTA discret en fin.</div>
+      </div>
+
+      <div class="examples-label examples-label-real">Ce que ça donne en vrai — comment tu vas l'écrire</div>
+      <div class="example example-real">
+        <div class="example-title">Le même prompt, version naturelle</div>
+        <div class="example-body">Je viens d'atteindre 50 membres dans mon Club Skool sur l'IA. Je veux annoncer ce cap sur LinkedIn pour attirer 5 nouveaux inscrits.
+
+Écris-moi un post de 900 à 1100 signes, sans emoji, avec un CTA discret en fin. Style build-in-public et factuel, ton posé et fier sans grandiloquence. Je m'adresse à des freelances francophones curieux d'IA, 30-50 ans.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 4. CRISPE ══════════════════════════════════════ -->
+  <section class="framework">
+    <div class="framework-num">04 — L'exploration</div>
+    <div class="framework-title">
+      <h2>CRISPE</h2>
+      <div class="full">Capacity-Role · Insight · Statement · Personality · Experiment</div>
+    </div>
+
+    <div class="when-card">
+      <div class="when-label">Quand l'utiliser</div>
+      <p>Quand tu n'as pas <em>une</em> bonne réponse en tête mais que tu veux comparer plusieurs angles. Naming, brainstorming, idées d'accroches, options stratégiques. Le seul framework qui force la génération de variantes comparables.</p>
+    </div>
+
+    <div class="letters">
+      <div class="letter-row">
+        <div class="letter-key">CR</div>
+        <div class="letter-name">Capacity-Role</div>
+        <div class="letter-desc">Casquette experte du LLM, formulée précisément.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">I</div>
+        <div class="letter-name">Insight</div>
+        <div class="letter-desc">Le contexte de fond : données, contraintes, ce que tu sais déjà sur le sujet.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">S</div>
+        <div class="letter-name">Statement</div>
+        <div class="letter-desc">Ce que tu lui demandes, formulé explicitement.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">P</div>
+        <div class="letter-name">Personality</div>
+        <div class="letter-desc">La voix ou le style avec lequel tu veux qu'il réponde.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">E</div>
+        <div class="letter-name">Experiment</div>
+        <div class="letter-desc">Le nombre de variantes à produire pour comparer (3, 5, 10…).</div>
+      </div>
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Comment ça se traduit — ce qu'il faut mettre dans chaque case</div>
+      <div class="example">
+        <div class="example-title">Exemple · Naming d'une app</div>
+        <div class="example-body"><span class="tag">Capacity-Role:</span> stratège branding SaaS.
+<span class="tag">Insight:</span> app no-code pour automatiser la gestion de communautés Skool. Cible francophone d'abord, mais ambition internationale.
+<span class="tag">Statement:</span> propose des noms de marque.
+<span class="tag">Personality:</span> court, mémorable, sonorité anglo-friendly.
+<span class="tag">Experiment:</span> 7 variantes, chacune avec 1 ligne de justification.</div>
+      </div>
+
+      <div class="examples-label examples-label-real">Ce que ça donne en vrai — comment tu vas l'écrire</div>
+      <div class="example example-real">
+        <div class="example-title">Le même prompt, version naturelle</div>
+        <div class="example-body">Tu es stratège branding SaaS. Je développe une app no-code pour automatiser la gestion de communautés Skool — cible francophone d'abord, mais avec une ambition internationale ensuite.
+
+Propose-moi 7 noms de marque, courts, mémorables, sonorité anglo-friendly. Pour chaque nom, une ligne de justification.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 5. RISEN ═══════════════════════════════════════ -->
+  <section class="framework">
+    <div class="framework-num">05 — Le workflow</div>
+    <div class="framework-title">
+      <h2>RISEN</h2>
+      <div class="full">Role · Input · Steps · Expectation · Narrowing</div>
+    </div>
+
+    <div class="when-card">
+      <div class="when-label">Quand l'utiliser</div>
+      <p>Pour les tâches complexes qui demandent un raisonnement en plusieurs étapes : analyses, synthèses multi-sources, plans d'action, audits. Le seul framework qui te force à décrire <em>la procédure</em> elle-même, étape par étape.</p>
+    </div>
+
+    <div class="letters">
+      <div class="letter-row">
+        <div class="letter-key">R</div>
+        <div class="letter-name">Role</div>
+        <div class="letter-desc">La casquette experte du LLM.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">I</div>
+        <div class="letter-name">Input</div>
+        <div class="letter-desc">Les données à traiter : texte, sources, fichiers, contexte de départ.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">S</div>
+        <div class="letter-name">Steps</div>
+        <div class="letter-desc">La décomposition explicite de la procédure : étape 1 → étape 2 → étape 3.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">E</div>
+        <div class="letter-name">Expectation</div>
+        <div class="letter-desc">Les critères de qualité du résultat final : ce qui définit un bon livrable.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">N</div>
+        <div class="letter-name">Narrowing</div>
+        <div class="letter-desc">Les contraintes et exclusions : ce qui doit rester hors du scope.</div>
+      </div>
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Comment ça se traduit — ce qu'il faut mettre dans chaque case</div>
+      <div class="example">
+        <div class="example-title">Exemple · Étude de marché synthétique</div>
+        <div class="example-body"><span class="tag">Role:</span> consultant études de marché.
+<span class="tag">Input:</span> 3 rapports d'analystes + transcripts de 4 interviews clients, collés ci-dessous.
+<span class="tag">Steps:</span> 1) extrais les tendances communes aux 3 rapports — 2) classe-les par maturité (émergente / établie / déclinante) — 3) note les contradictions avec les interviews clients.
+<span class="tag">Expectation:</span> synthèse exploitable en COPIL exécutif, max 1 page.
+<span class="tag">Narrowing:</span> ignorer toute prédiction au-delà de 2027.</div>
+      </div>
+
+      <div class="examples-label examples-label-real">Ce que ça donne en vrai — comment tu vas l'écrire</div>
+      <div class="example example-real">
+        <div class="example-title">Le même prompt, version naturelle</div>
+        <div class="example-body">Tu es consultant études de marché. Je te partage 3 rapports d'analystes et les transcripts de 4 interviews clients (collés ci-dessous).
+
+Ta mission, en 3 étapes :
+1. Extrais les tendances communes aux 3 rapports.
+2. Classe-les par maturité — émergente, établie, ou déclinante.
+3. Note les contradictions entre ces tendances et ce que disent les interviews clients.
+
+Je veux une synthèse d'une page maximum, exploitable en COPIL exécutif. Ignore toute prédiction au-delà de 2027.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 6. ReAct ═══════════════════════════════════════ -->
+  <section class="framework">
+    <div class="framework-num">06 — L'agent</div>
+    <div class="framework-title">
+      <h2>ReAct</h2>
+      <div class="full">Reason + Act — la boucle agentique</div>
+    </div>
+
+    <div class="when-card">
+      <div class="when-label">Quand l'utiliser</div>
+      <p>Dès que ton prompt n'est plus un message statique mais un agent qui doit <em>agir</em> : chercher sur le web, lire des fichiers, exécuter du code, appeler des outils (MCP servers, function calling). C'est le pattern qui tourne sous le capot de Claude Code, de Claude.ai avec recherche web, et de tous les agents modernes.</p>
+    </div>
+
+    <div class="letters">
+      <div class="letter-row">
+        <div class="letter-key">→</div>
+        <div class="letter-name">Thought</div>
+        <div class="letter-desc">Le LLM raisonne à voix haute sur l'étape suivante à effectuer.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">→</div>
+        <div class="letter-name">Action</div>
+        <div class="letter-desc">Il appelle un outil concret : search, fetch, read_file, requête SQL…</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">→</div>
+        <div class="letter-name">Observation</div>
+        <div class="letter-desc">L'outil retourne un résultat, que le LLM reçoit comme nouvelle info.</div>
+      </div>
+      <div class="letter-row">
+        <div class="letter-key">↺</div>
+        <div class="letter-name">Boucle</div>
+        <div class="letter-desc">Retour à Thought : faut-il un autre appel ? Le cycle continue jusqu'à la réponse finale.</div>
+      </div>
+    </div>
+
+    <div class="react-bridge">
+      <strong>Important — ReAct n'est pas un prompt que tu écris.</strong> C'est ce qui se passe <em>à l'intérieur</em> du LLM quand tu lui donnes accès à des outils. En tant qu'humain, tu n'écris pas <code>Thought / Action / Observation</code> — tu donnes simplement une mission claire à un agent qui dispose d'outils, et tu l'autorises à itérer. Le format didactique ci-dessous, c'est ce que Claude fait en coulisses ; le bloc "vraie vie" en dessous, c'est ce que tu tapes vraiment.
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Comment ça se passe en coulisses — ce que Claude fait, étape par étape</div>
+      <div class="example">
+        <div class="example-title">Exemple · Veille concurrentielle automatique</div>
+        <div class="example-body"><span class="tag">Thought:</span> je dois identifier les concurrents directs de Cursor en 2026.
+<span class="tag">Action:</span> web_search("Cursor AI competitors 2026")
+<span class="tag">Observation:</span> 3 noms reviennent — Continue, Cline, Aider.
+<span class="tag">Thought:</span> je creuse leur pricing pour comparer.
+<span class="tag">Action:</span> fetch(continue.dev/pricing)
+<span class="tag">Observation:</span> tier free + pro 20$/mois.
+<span class="tag">Thought:</span> j'ai assez d'éléments. Je rédige la synthèse comparative.</div>
+      </div>
+
+      <div class="examples-label examples-label-real">Ce que ça donne en vrai — comment tu vas l'écrire</div>
+      <div class="example example-real">
+        <div class="example-title">Le prompt que tu tapes vraiment dans Claude.ai (avec recherche web activée)</div>
+        <div class="example-body">Fais-moi une veille concurrentielle sur Cursor : identifie ses 3 ou 4 concurrents directs en 2026, va sur leurs sites officiels pour vérifier leur pricing, et compile-moi un tableau comparatif (nom, positionnement, tier gratuit, prix).
+
+Itère autant que nécessaire — si une info te manque ou semble douteuse, refais une recherche pour confirmer avant de me répondre.</div>
+      </div>
+    </div>
+
+    <div class="react-bridge" style="margin-top:24px;">
+      <strong>Comment tu déclenches ReAct concrètement :</strong> ① tu utilises un environnement qui donne des outils au LLM (Claude.ai avec recherche web, Claude Code, un agent MCP, etc.) ② tu formules ta demande comme un <em>objectif</em>, pas comme une question ponctuelle ("trouve", "compare", "vérifie", "débuggue") ③ tu l'autorises explicitement à itérer ("fais autant d'allers-retours que nécessaire", "vérifie avant de répondre"). Le reste se passe tout seul.
+    </div>
+  </section>
+
+  <!-- ═══════ CTA Club SMART ═════════════════════════════════ -->
+  <section class="ouverture">
+    <div class="eyebrow">Le vrai levier · Aller plus loin que les frameworks</div>
+    <h2>Et si <span class="accent">le contexte</span> portait le prompt à ta place ?</h2>
+    <p>Regarde de près les 6 grilles que tu viens de lire. <strong>La moitié de chaque framework, c'est du contexte</strong> que tu réécris à la main, à chaque prompt : qui tu es, ce que tu fais, à qui tu parles, comment tu écris, ce qui s'est passé avant, ce que tu cherches à accomplir.</p>
+    <p>C'est épuisant. Et c'est surtout là où la plupart des gens abandonnent — ils se contentent de RTF, perdent en qualité, et finissent par dire <em>"l'IA marche pas si bien que ça pour moi"</em>.</p>
+
+    <div class="pullquote">La vraie compétence en 2026, ce n'est pas d'écrire de meilleurs prompts. C'est de construire un second cerveau qui porte ton contexte — pour que l'IA y plonge à chaque interaction sans que tu aies à le réécrire.</div>
+
+    <p>C'est exactement ce qu'on construit ensemble dans <strong>le Club SMART</strong> : ton <em>personal AI OS</em>. Un système où tes notes, ton style, tes projets, tes décisions vivent à un seul endroit — et où Claude (ou n'importe quel LLM) vient chercher ce qu'il lui faut quand tu lui parles.</p>
+    <p>Une fois ce système en place, tu n'as plus besoin de réciter ton contexte à chaque prompt. Tu poses ta question. Le système fait le reste.</p>
+
+    <div class="cta-row">
+      <a class="cta-primary" href="https://skool.com/clubsmart">Rejoins le Club SMART</a>
+      <span class="cta-sub">On t'apprend à construire ton AI OS pas à pas, en partant de zéro.</span>
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Pour aller plus loin</h4>
+        <ul>
+          <li>Le tuto Claude complet sur YouTube — chaîne Club SMART</li>
+          <li>Le Club SMART sur Skool — la communauté qui automatise pour de vrai</li>
+          <li>Les autres ressources du Club : skool.com/clubsmart</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources techniques</h4>
+        <ul>
+          <li>Documentation Anthropic — docs.anthropic.com</li>
+          <li>Prompt Engineering Guide — promptingguide.ai</li>
+          <li>Le tuto Claude complet — chaîne Club SMART</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sig">
+      © 2026 Thomas Richard — Club SMART · Version 1
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
